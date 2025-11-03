@@ -14,7 +14,7 @@ namespace Que.Models
         public string? Difficulty { get; set; } = "Medium";
 
         // Validation: ensures the time limit stays between 1 and 60 minutes
-        [Range(1, 60, ErrorMessage = "Time limit must be between 1 and 60 minutes!")]
+        [Range(1, 100, ErrorMessage = "Time limit must be between 1 and 100 minutes!")]
         public int TimeLimit { get; set; } = 10;
 
         public virtual List<Question> Questions { get; set; } = new List<Question>();

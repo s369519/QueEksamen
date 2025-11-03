@@ -1,0 +1,345 @@
+2025-11-03 13:30:31.503 +01:00 [INF] Found 2 users in AuthDbContext
+2025-11-03 13:30:31.625 +01:00 [INF] User profile is available. Using '/Users/arthurflotvik/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-03 13:30:31.651 +01:00 [INF] Now listening on: http://localhost:5043
+2025-11-03 13:30:31.651 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-03 13:30:31.651 +01:00 [INF] Hosting environment: Development
+2025-11-03 13:30:31.651 +01:00 [INF] Content root path: /Users/arthurflotvik/Documents/GitHub/QueEksamen/api
+2025-11-03 13:30:36.681 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/Auth/login - null null
+2025-11-03 13:30:36.701 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:30:36.704 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/Auth/login - 204 null null 23.7758ms
+2025-11-03 13:30:36.706 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/Auth/login - application/json 40
+2025-11-03 13:30:36.708 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:30:36.713 +01:00 [INF] Executing endpoint 'Que.Controllers.AuthController.Login (api)'
+2025-11-03 13:30:36.721 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Que.DTOs.LoginDto) on controller Que.Controllers.AuthController (api).
+2025-11-03 13:30:36.837 +01:00 [INF] [AuthAPIController] user authorized for A
+2025-11-03 13:30:36.842 +01:00 [INF] JWT token generated for UserId=6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:30:36.851 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-11-03 13:30:36.865 +01:00 [INF] Executed action Que.Controllers.AuthController.Login (api) in 142.5196ms
+2025-11-03 13:30:36.865 +01:00 [INF] Executed endpoint 'Que.Controllers.AuthController.Login (api)'
+2025-11-03 13:30:36.867 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/Auth/login - 200 624 application/json; charset=utf-8 160.3853ms
+2025-11-03 13:30:36.886 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:30:36.886 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:30:36.886 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:30:36.886 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:30:36.887 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.9607ms
+2025-11-03 13:30:36.887 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.8529ms
+2025-11-03 13:30:36.887 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:30:36.891 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:30:36.915 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:30:36.917 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:30:36.919 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:30:36.953 +01:00 [INF] [QuizAPIController] Returning 3 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:30:36.953 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:30:36.958 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 40.5791ms
+2025-11-03 13:30:36.958 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:30:36.959 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:30:36.959 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 427 application/json; charset=utf-8 71.3607ms
+2025-11-03 13:30:36.959 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:30:36.960 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:30:36.960 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:30:36.963 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:30:36.964 +01:00 [INF] [QuizAPIController] Returning 3 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:30:36.964 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:30:36.964 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 4.0366ms
+2025-11-03 13:30:36.965 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:30:36.965 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 427 application/json; charset=utf-8 6.0121ms
+2025-11-03 13:31:12.577 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - null null
+2025-11-03 13:31:12.578 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:31:12.579 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - 204 null null 2.7582ms
+2025-11-03 13:31:12.599 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 292
+2025-11-03 13:31:12.599 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:31:12.606 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:31:12.608 +01:00 [INF] Route matched with {action = "Create", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:31:12.630 +01:00 [INF] Claims for current user:
+2025-11-03 13:31:12.630 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:31:12.630 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = A
+2025-11-03 13:31:12.630 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = a@epost.no
+2025-11-03 13:31:12.630 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:31:12.630 +01:00 [INF] username = A
+2025-11-03 13:31:12.630 +01:00 [INF] jti = dc85b99f-fe94-4250-ac16-78a6ddc35b74
+2025-11-03 13:31:12.630 +01:00 [INF] iat = 1762173036
+2025-11-03 13:31:12.630 +01:00 [INF] exp = 1762180236
+2025-11-03 13:31:12.630 +01:00 [INF] iss = http://localhost:5043
+2025-11-03 13:31:12.630 +01:00 [INF] aud = http://localhost:5043
+2025-11-03 13:31:12.751 +01:00 [INF] Quiz 'Privatearthur' created successfully with ID 5
+2025-11-03 13:31:12.751 +01:00 [INF] Executing CreatedAtActionResult, writing value of type 'Que.Models.Quiz'.
+2025-11-03 13:31:12.762 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Create (api) in 154.0642ms
+2025-11-03 13:31:12.762 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:31:12.762 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 201 551 application/json; charset=utf-8 163.6273ms
+2025-11-03 13:31:12.774 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:31:12.774 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:31:12.774 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:31:12.774 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:31:12.774 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.338ms
+2025-11-03 13:31:12.774 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.3335ms
+2025-11-03 13:31:12.776 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:31:12.776 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:31:12.777 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:31:12.777 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:31:12.777 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:31:12.778 +01:00 [INF] [QuizAPIController] Returning 4 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:31:12.778 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:31:12.779 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.9022ms
+2025-11-03 13:31:12.779 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:31:12.779 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 576 application/json; charset=utf-8 2.6785ms
+2025-11-03 13:31:12.781 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:31:12.781 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:31:12.781 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:31:12.781 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:31:12.782 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:31:12.784 +01:00 [INF] [QuizAPIController] Returning 4 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:31:12.784 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:31:12.784 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 3.1578ms
+2025-11-03 13:31:12.785 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:31:12.785 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 576 application/json; charset=utf-8 3.9594ms
+2025-11-03 13:32:57.790 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:32:57.790 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:32:57.790 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:32:57.790 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:32:57.790 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.819ms
+2025-11-03 13:32:57.790 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.5567ms
+2025-11-03 13:32:57.792 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:32:57.792 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:32:57.793 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:32:57.793 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:32:57.793 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:32:57.794 +01:00 [INF] [QuizAPIController] Returning 4 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:32:57.794 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:32:57.794 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.4445ms
+2025-11-03 13:32:57.794 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:32:57.795 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 576 application/json; charset=utf-8 2.1998ms
+2025-11-03 13:32:57.795 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:32:57.795 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:32:57.795 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:32:57.796 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:32:57.796 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:32:57.796 +01:00 [INF] [QuizAPIController] Returning 4 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:32:57.796 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:32:57.797 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.0815ms
+2025-11-03 13:32:57.797 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:32:57.797 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 576 application/json; charset=utf-8 1.8201ms
+2025-11-03 13:36:09.831 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - null null
+2025-11-03 13:36:09.832 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:36:09.832 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - 204 null null 1.5161ms
+2025-11-03 13:36:09.840 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 312
+2025-11-03 13:36:09.841 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:36:09.842 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:36:09.843 +01:00 [INF] Route matched with {action = "Create", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:36:09.847 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-11-03 13:36:09.860 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Create (api) in 16.8029ms
+2025-11-03 13:36:09.860 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:36:09.860 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 400 268 application/problem+json; charset=utf-8 19.2464ms
+2025-11-03 13:36:26.924 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - null null
+2025-11-03 13:36:26.925 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:36:26.925 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - 204 null null 0.949ms
+2025-11-03 13:36:26.934 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 311
+2025-11-03 13:36:26.934 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:36:26.935 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:36:26.936 +01:00 [INF] Route matched with {action = "Create", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:36:26.938 +01:00 [INF] Claims for current user:
+2025-11-03 13:36:26.938 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:36:26.938 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = A
+2025-11-03 13:36:26.938 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = a@epost.no
+2025-11-03 13:36:26.938 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:36:26.938 +01:00 [INF] username = A
+2025-11-03 13:36:26.938 +01:00 [INF] jti = dc85b99f-fe94-4250-ac16-78a6ddc35b74
+2025-11-03 13:36:26.938 +01:00 [INF] iat = 1762173036
+2025-11-03 13:36:26.938 +01:00 [INF] exp = 1762180236
+2025-11-03 13:36:26.938 +01:00 [INF] iss = http://localhost:5043
+2025-11-03 13:36:26.938 +01:00 [INF] aud = http://localhost:5043
+2025-11-03 13:36:26.945 +01:00 [INF] Quiz 'asd sadasd asdasdasdas æøå' created successfully with ID 6
+2025-11-03 13:36:26.945 +01:00 [INF] Executing CreatedAtActionResult, writing value of type 'Que.Models.Quiz'.
+2025-11-03 13:36:26.945 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Create (api) in 9.5187ms
+2025-11-03 13:36:26.945 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:36:26.945 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 201 570 application/json; charset=utf-8 11.2574ms
+2025-11-03 13:36:26.962 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:36:26.962 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:36:26.962 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:36:26.962 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:36:26.963 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.8723ms
+2025-11-03 13:36:26.963 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.5072ms
+2025-11-03 13:36:26.967 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:36:26.967 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:36:26.967 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:36:26.968 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:36:26.968 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:36:26.969 +01:00 [INF] [QuizAPIController] Returning 5 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:36:26.969 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:36:26.969 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.2013ms
+2025-11-03 13:36:26.969 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:36:26.969 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 744 application/json; charset=utf-8 2.1129ms
+2025-11-03 13:36:26.969 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:36:26.969 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:36:26.970 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:36:26.970 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:36:26.970 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:36:26.970 +01:00 [INF] [QuizAPIController] Returning 5 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:36:26.970 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:36:26.970 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 0.858ms
+2025-11-03 13:36:26.970 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:36:26.971 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 744 application/json; charset=utf-8 1.2637ms
+2025-11-03 13:39:20.065 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:39:20.065 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:39:20.066 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.4438ms
+2025-11-03 13:39:20.068 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:39:20.068 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:39:20.069 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:39:20.069 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:39:20.069 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:39:20.070 +01:00 [INF] [QuizAPIController] Returning 5 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:39:20.070 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:39:20.070 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.4059ms
+2025-11-03 13:39:20.070 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:39:20.070 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 744 application/json; charset=utf-8 2.1632ms
+2025-11-03 13:40:23.025 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:40:23.025 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:40:23.025 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.5445ms
+2025-11-03 13:40:23.027 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:40:23.027 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:40:23.028 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:40:23.028 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:40:23.028 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:40:23.029 +01:00 [INF] [QuizAPIController] Returning 5 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:40:23.029 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:40:23.029 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.1122ms
+2025-11-03 13:40:23.029 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:40:23.029 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 744 application/json; charset=utf-8 1.9353ms
+2025-11-03 13:40:45.063 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - null null
+2025-11-03 13:40:45.064 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:40:45.064 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - 204 null null 0.958ms
+2025-11-03 13:40:45.065 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 119
+2025-11-03 13:40:45.065 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:40:45.066 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:40:45.066 +01:00 [INF] Route matched with {action = "Create", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:40:45.068 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-11-03 13:40:45.068 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Create (api) in 1.8849ms
+2025-11-03 13:40:45.068 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:40:45.068 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 400 268 application/problem+json; charset=utf-8 3.3066ms
+2025-11-03 13:40:47.539 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 119
+2025-11-03 13:40:47.540 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:40:47.541 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:40:47.541 +01:00 [INF] Route matched with {action = "Create", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:40:47.542 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-11-03 13:40:47.542 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Create (api) in 1.3457ms
+2025-11-03 13:40:47.542 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:40:47.542 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 400 268 application/problem+json; charset=utf-8 3.144ms
+2025-11-03 13:40:53.910 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - null null
+2025-11-03 13:40:53.911 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:40:53.911 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - 204 null null 0.4887ms
+2025-11-03 13:40:53.912 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 271
+2025-11-03 13:40:53.912 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:40:53.912 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:40:53.913 +01:00 [INF] Route matched with {action = "Create", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:40:53.915 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-11-03 13:40:53.915 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Create (api) in 2.8739ms
+2025-11-03 13:40:53.915 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:40:53.916 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 400 268 application/problem+json; charset=utf-8 3.7606ms
+2025-11-03 13:44:56.019 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - null null
+2025-11-03 13:44:56.021 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:56.021 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - 204 null null 2.6281ms
+2025-11-03 13:44:56.022 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 271
+2025-11-03 13:44:56.022 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:56.023 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:44:56.023 +01:00 [INF] Route matched with {action = "Create", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:44:56.024 +01:00 [INF] Claims for current user:
+2025-11-03 13:44:56.025 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:44:56.025 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name = A
+2025-11-03 13:44:56.025 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress = a@epost.no
+2025-11-03 13:44:56.025 +01:00 [INF] http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier = 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:44:56.025 +01:00 [INF] username = A
+2025-11-03 13:44:56.025 +01:00 [INF] jti = dc85b99f-fe94-4250-ac16-78a6ddc35b74
+2025-11-03 13:44:56.025 +01:00 [INF] iat = 1762173036
+2025-11-03 13:44:56.025 +01:00 [INF] exp = 1762180236
+2025-11-03 13:44:56.025 +01:00 [INF] iss = http://localhost:5043
+2025-11-03 13:44:56.025 +01:00 [INF] aud = http://localhost:5043
+2025-11-03 13:44:56.034 +01:00 [INF] Quiz 'sd' created successfully with ID 7
+2025-11-03 13:44:56.034 +01:00 [INF] Executing CreatedAtActionResult, writing value of type 'Que.Models.Quiz'.
+2025-11-03 13:44:56.034 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Create (api) in 11.0515ms
+2025-11-03 13:44:56.034 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-03 13:44:56.034 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 201 530 application/json; charset=utf-8 12.3601ms
+2025-11-03 13:44:56.047 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:44:56.047 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:56.047 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:44:56.048 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:56.048 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.7202ms
+2025-11-03 13:44:56.048 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.3975ms
+2025-11-03 13:44:56.051 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:44:56.051 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:56.051 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:44:56.051 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:44:56.052 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:44:56.053 +01:00 [INF] [QuizAPIController] Returning 6 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:44:56.053 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:44:56.053 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.726ms
+2025-11-03 13:44:56.053 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:44:56.053 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 875 application/json; charset=utf-8 2.7465ms
+2025-11-03 13:44:56.054 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:44:56.054 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:56.054 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:44:56.054 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:44:56.054 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:44:56.055 +01:00 [INF] [QuizAPIController] Returning 6 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:44:56.055 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:44:56.055 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 0.9292ms
+2025-11-03 13:44:56.055 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:44:56.055 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 875 application/json; charset=utf-8 1.5395ms
+2025-11-03 13:44:59.148 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/7 - null null
+2025-11-03 13:44:59.149 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:59.149 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/7 - null null
+2025-11-03 13:44:59.149 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:59.149 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/7 - 204 null null 0.8642ms
+2025-11-03 13:44:59.149 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/7 - 204 null null 0.1729ms
+2025-11-03 13:44:59.154 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/7 - application/json null
+2025-11-03 13:44:59.154 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:59.155 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-11-03 13:44:59.158 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:44:59.166 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-11-03 13:44:59.202 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 43.7077ms
+2025-11-03 13:44:59.202 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-11-03 13:44:59.202 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/7 - 200 1032 application/json; charset=utf-8 48.3264ms
+2025-11-03 13:44:59.202 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/7 - application/json null
+2025-11-03 13:44:59.202 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:44:59.203 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-11-03 13:44:59.203 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:44:59.204 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-11-03 13:44:59.205 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 2.2518ms
+2025-11-03 13:44:59.205 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-11-03 13:44:59.205 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/7 - 200 1032 application/json; charset=utf-8 2.83ms
+2025-11-03 13:45:06.884 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/7 - null null
+2025-11-03 13:45:06.885 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:45:06.885 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/7 - 204 null null 1.098ms
+2025-11-03 13:45:06.887 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/7 - application/json 469
+2025-11-03 13:45:06.887 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:45:06.888 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-11-03 13:45:06.891 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:45:06.905 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-11-03 13:45:06.905 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 14.5545ms
+2025-11-03 13:45:06.905 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-11-03 13:45:06.906 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/7 - 200 1033 application/json; charset=utf-8 18.8109ms
+2025-11-03 13:45:06.917 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:45:06.917 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:45:06.917 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:45:06.917 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:45:06.917 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.2104ms
+2025-11-03 13:45:06.917 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.0738ms
+2025-11-03 13:45:06.920 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:45:06.920 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:45:06.920 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:45:06.920 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:45:06.921 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:45:06.921 +01:00 [INF] [QuizAPIController] Returning 6 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:45:06.921 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:45:06.922 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.055ms
+2025-11-03 13:45:06.922 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:45:06.922 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 876 application/json; charset=utf-8 1.8837ms
+2025-11-03 13:45:06.922 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:45:06.922 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:45:06.922 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:45:06.922 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:45:06.923 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:45:06.923 +01:00 [INF] [QuizAPIController] Returning 6 visible quizzes for user: 6aea6f1d-411f-4ed4-b1c6-e104d1318540
+2025-11-03 13:45:06.923 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:45:06.923 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 0.8611ms
+2025-11-03 13:45:06.923 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:45:06.923 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 876 application/json; charset=utf-8 1.2847ms
+2025-11-03 13:48:17.010 +01:00 [INF] Application is shutting down...

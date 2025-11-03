@@ -1,19 +1,19 @@
 {
   "Files": [
     {
-      "Id": "/Users/arthurflotvik/Documents/QueREACT/api/obj/Debug/net8.0/scopedcss/projectbundle/api.bundle.scp.css",
+      "Id": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/scopedcss/projectbundle/api.bundle.scp.css",
       "PackagePath": "staticwebassets/api.bundle.scp.css"
     },
     {
-      "Id": "/Users/arthurflotvik/Documents/QueREACT/api/wwwroot/css/quiz.css",
+      "Id": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/wwwroot/css/quiz.css",
       "PackagePath": "staticwebassets/css/quiz.css"
     },
     {
-      "Id": "/Users/arthurflotvik/Documents/QueREACT/api/wwwroot/css/site.css",
+      "Id": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
-      "Id": "/Users/arthurflotvik/Documents/QueREACT/api/wwwroot/js/site.js",
+      "Id": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
     {

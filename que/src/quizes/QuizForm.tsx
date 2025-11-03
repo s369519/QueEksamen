@@ -29,6 +29,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
   const [questions, setQuestions] = useState<Question[]>(initialData?.questions || [] );
   const [isPublic, setIsPublic] = useState(initialData?.isPublic || false);
   const [nameError, setNameError] = useState('');
+  const [timeLimitError, setTimeLimitError] = useState<string>('');
 
   const difficulties = ['Easy', 'Medium', 'Hard'];
 
@@ -42,13 +43,45 @@ const QuizForm: React.FC<QuizFormProps> = ({
   ];
 
   const validateName = (value: string) => {
-    const regex = /^[a-zA-Z0-9]{2,40}$/;
+    const regex = /^[a-zA-ZæøåÆØÅ0-9 \-]{2,40}$/;
     if (!regex.test(value)) {
         setNameError('The name must be numbers or letters between 2 and 20 characters');
         return false;
     }
     setNameError('');
     return true;
+  };
+
+  const validateTimeLimit = (value: number) => {
+      if (isNaN(value)) {
+          setTimeLimitError('The time limit must be a number');
+          return false;
+      }
+
+      if (value < 1 || value > 100) {
+          setTimeLimitError('The time limit must be between 1 and 100 minutes');
+          return false;
+      }
+
+      setTimeLimitError('');
+      return true;
+  };
+
+  const handleTimeLimitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const value = Number(e.target.value);
+  setTimeLimit(value);
+  
+  if (isNaN(value)) {
+    setTimeLimitError("The time limit must be a number");
+    return;
+  }
+  
+  if (value < 1 || value > 100) {
+    setTimeLimitError("The time limit must be between 1 and 100 minutes");
+    return;
+  }
+  
+    setTimeLimitError("");
   };
 
   const addQuestion = () => {
@@ -212,10 +245,12 @@ const QuizForm: React.FC<QuizFormProps> = ({
             <Form.Label>Time Limit (Minutes)</Form.Label>
             <Form.Control
                 type="number"
+                min="1"
+                max="100"
                 value={timeLimit}
-                onChange={(e) => setTimeLimit(Number(e.target.value))}
+                onChange={handleTimeLimitChange}
+                isInvalid={!timeLimitError}
                 required
-                min={1}
             />
             </Form.Group>
         </Col>

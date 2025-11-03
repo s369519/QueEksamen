@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\erikg\\OneDrive\\Student\\Webapplikasjoner\\QueEksamen\\api\\api.csproj": {}
+    "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\erikg\\OneDrive\\Student\\Webapplikasjoner\\QueEksamen\\api\\api.csproj": {
+    "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\erikg\\OneDrive\\Student\\Webapplikasjoner\\QueEksamen\\api\\api.csproj",
+        "projectUniqueName": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\erikg\\OneDrive\\Student\\Webapplikasjoner\\QueEksamen\\api\\api.csproj",
-        "packagesPath": "C:\\Users\\erikg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\erikg\\OneDrive\\Student\\Webapplikasjoner\\QueEksamen\\api\\obj\\",
+        "projectPath": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/api.csproj",
+        "packagesPath": "/Users/arthurflotvik/.nuget/packages/",
+        "outputPath": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\erikg\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/arthurflotvik/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -37,8 +37,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -132,7 +131,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.413/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
