@@ -1,0 +1,33 @@
+2025-11-03 13:06:50.664 +01:00 [INF] Found 2 users in AuthDbContext
+2025-11-03 13:06:50.818 +01:00 [INF] User profile is available. Using 'C:\Users\erikg\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-03 13:06:50.858 +01:00 [INF] Now listening on: http://localhost:5043
+2025-11-03 13:06:50.858 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-03 13:06:50.859 +01:00 [INF] Hosting environment: Development
+2025-11-03 13:06:50.859 +01:00 [INF] Content root path: C:\Users\erikg\OneDrive\Student\Webapplikasjoner\QueEksamen\api
+2025-11-03 13:06:52.793 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:06:52.793 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-03 13:06:52.852 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:06:52.852 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:06:52.859 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 68.6351ms
+2025-11-03 13:06:52.859 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 68.5929ms
+2025-11-03 13:06:52.863 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:06:52.879 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:06:53.160 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:06:53.182 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:06:53.191 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: cec8b59c-1770-4377-b2f0-f553351eddcb
+2025-11-03 13:06:53.346 +01:00 [INF] [QuizAPIController] Returning 3 visible quizzes for user: cec8b59c-1770-4377-b2f0-f553351eddcb
+2025-11-03 13:06:53.358 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:06:53.535 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-03 13:06:53.536 +01:00 [INF] CORS policy execution successful.
+2025-11-03 13:06:53.542 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 352.1347ms
+2025-11-03 13:06:53.542 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:06:53.544 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:06:53.544 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-03 13:06:53.549 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: cec8b59c-1770-4377-b2f0-f553351eddcb
+2025-11-03 13:06:53.551 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 428 application/json; charset=utf-8 687.9212ms
+2025-11-03 13:06:53.553 +01:00 [INF] [QuizAPIController] Returning 3 visible quizzes for user: cec8b59c-1770-4377-b2f0-f553351eddcb
+2025-11-03 13:06:53.554 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-03 13:06:53.557 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 13.4422ms
+2025-11-03 13:06:53.558 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-03 13:06:53.558 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 428 application/json; charset=utf-8 22.9178ms
+2025-11-03 13:13:29.537 +01:00 [INF] Application is shutting down...

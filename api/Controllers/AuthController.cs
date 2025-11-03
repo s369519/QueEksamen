@@ -90,13 +90,14 @@ namespace Que.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            // Kun én NameIdentifier-claim: bruk GUID fra databasen
+            // Claims for authentication and user info
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),         // Dette er GUID som backend bruker
-                new Claim(ClaimTypes.Name, user.Email ?? user.UserName),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),         // GUID som backend bruker
+                new Claim(ClaimTypes.Name, user.UserName ?? ""),       // Brukernavnet
                 new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id),       // SUB bør også være GUID
+                new Claim("username", user.UserName ?? ""),            // Eksplisitt brukernavn claim
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
             };
