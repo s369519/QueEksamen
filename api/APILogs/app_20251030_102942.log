@@ -1,0 +1,6 @@
+2025-10-30 10:29:42.991 +01:00 [INF] Applying migration '20251030092937_AddIsPublic'.
+2025-10-30 10:29:43.026 +01:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Users" (
+    "UserId" INTEGER NOT NULL CONSTRAINT "PK_Users" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL
+);

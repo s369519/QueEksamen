@@ -1,0 +1,49 @@
+/* Main link (brand/logo) at the top of the navbar */
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+  }
+  
+  /* Style for regular links */
+  a {
+    color: #0077cc;
+  }
+  
+  /* Style for primary buttons */
+  .btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+  }
+  
+  /* Style for active navigation links (e.g., active tab in nav-pills) */
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+  }
+  
+  /* Style for top and bottom borders */
+  .border-top {
+    border-top: 1px solid #e5e5e5;
+  }
+  .border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  /* Style for subtle box shadows */
+  .box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  }
+  
+  /* Style for the “accept” button in the cookie policy banner */
+  button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+  }
+
+  /* Ensures the footer always spans the full page width */
+  .custom-footer {
+    width: 100%;
+  }

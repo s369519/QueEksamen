@@ -1,0 +1,6 @@
+2025-10-30 10:28:35.297 +01:00 [INF] Applying migration '20251030085620_AddUserToQuiz'.
+2025-10-30 10:28:35.330 +01:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Users" (
+    "UserId" INTEGER NOT NULL CONSTRAINT "PK_Users" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL
+);

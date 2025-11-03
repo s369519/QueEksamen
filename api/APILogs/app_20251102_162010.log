@@ -1,0 +1,159 @@
+2025-11-02 16:20:10.842 +01:00 [INF] User profile is available. Using '/Users/arthurflotvik/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-02 16:20:10.869 +01:00 [INF] Now listening on: http://localhost:5043
+2025-11-02 16:20:10.870 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-02 16:20:10.870 +01:00 [INF] Hosting environment: Development
+2025-11-02 16:20:10.870 +01:00 [INF] Content root path: /Users/arthurflotvik/Documents/QueREACT/api
+2025-11-02 16:20:11.918 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-02 16:20:11.918 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-02 16:20:11.936 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:11.936 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:11.938 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 21.7379ms
+2025-11-02 16:20:11.939 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 21.6956ms
+2025-11-02 16:20:11.940 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-02 16:20:11.943 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:11.983 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:11.989 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 16:20:11.995 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: A
+2025-11-02 16:20:12.071 +01:00 [INF] [QuizAPIController] Returning 1 visible quizzes for user: A
+2025-11-02 16:20:12.074 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 16:20:12.109 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-02 16:20:12.110 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:12.110 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 119.6057ms
+2025-11-02 16:20:12.110 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:12.111 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:12.112 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 16:20:12.113 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: A
+2025-11-02 16:20:12.115 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 143 application/json; charset=utf-8 174.9541ms
+2025-11-02 16:20:12.137 +01:00 [INF] [QuizAPIController] Returning 1 visible quizzes for user: A
+2025-11-02 16:20:12.137 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 16:20:12.138 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 26.1637ms
+2025-11-02 16:20:12.138 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:12.138 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 143 application/json; charset=utf-8 28.5999ms
+2025-11-02 16:20:17.830 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-02 16:20:17.831 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:17.831 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.9087ms
+2025-11-02 16:20:17.832 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-02 16:20:17.832 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:17.835 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:17.835 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 16:20:17.843 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: A
+2025-11-02 16:20:17.845 +01:00 [INF] [QuizAPIController] Returning 1 visible quizzes for user: A
+2025-11-02 16:20:17.845 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 16:20:17.845 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 10.1102ms
+2025-11-02 16:20:17.845 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:17.845 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 143 application/json; charset=utf-8 13.1307ms
+2025-11-02 16:20:20.163 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-02 16:20:20.163 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:20.163 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:20.163 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 16:20:20.164 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: A
+2025-11-02 16:20:20.164 +01:00 [INF] [QuizAPIController] Returning 1 visible quizzes for user: A
+2025-11-02 16:20:20.164 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 16:20:20.165 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.3466ms
+2025-11-02 16:20:20.165 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:20.165 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 143 application/json; charset=utf-8 2.1699ms
+2025-11-02 16:20:20.165 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-02 16:20:20.165 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:20.166 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:20.166 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 16:20:20.166 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: A
+2025-11-02 16:20:20.167 +01:00 [INF] [QuizAPIController] Returning 1 visible quizzes for user: A
+2025-11-02 16:20:20.168 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 16:20:20.168 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 2.1703ms
+2025-11-02 16:20:20.168 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:20.168 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 143 application/json; charset=utf-8 3.1431ms
+2025-11-02 16:20:22.283 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-02 16:20:22.283 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:22.284 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:22.284 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 16:20:22.285 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: A
+2025-11-02 16:20:22.287 +01:00 [INF] [QuizAPIController] Returning 1 visible quizzes for user: A
+2025-11-02 16:20:22.287 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 16:20:22.287 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 3.4432ms
+2025-11-02 16:20:22.287 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:22.288 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 143 application/json; charset=utf-8 4.7828ms
+2025-11-02 16:20:22.288 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-11-02 16:20:22.288 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:22.289 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:22.289 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 16:20:22.289 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: A
+2025-11-02 16:20:22.289 +01:00 [INF] [QuizAPIController] Returning 1 visible quizzes for user: A
+2025-11-02 16:20:22.290 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 16:20:22.290 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 1.0839ms
+2025-11-02 16:20:22.290 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 16:20:22.290 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 143 application/json; charset=utf-8 1.8668ms
+2025-11-02 16:20:44.838 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - null null
+2025-11-02 16:20:44.838 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:44.839 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/create - 204 null null 0.7163ms
+2025-11-02 16:20:44.840 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 298
+2025-11-02 16:20:44.841 +01:00 [INF] CORS policy execution successful.
+2025-11-02 16:20:44.843 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-02 16:20:44.850 +01:00 [INF] Route matched with {action = "Create", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 16:20:44.938 +01:00 [ERR] Failed executing DbCommand (3ms) [Parameters=[@p0='?' (Size = 5), @p1='?' (Size = 10), @p2='?' (Size = 4), @p3='?' (DbType = Boolean), @p4='?' (Size = 10), @p5='?' (Size = 1), @p6='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Quizes" ("Category", "Description", "Difficulty", "IsPublic", "Name", "OwnerId", "TimeLimit")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6)
+RETURNING "QuizId";
+2025-11-02 16:20:44.947 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'Que.DAL.QuizDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-11-02 16:20:44.950 +01:00 [ERR] Database update failed while creating quiz 'Publictest'
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Que.DAL.QuizRepository.CreateQuiz(Quiz quiz) in /Users/arthurflotvik/Documents/QueREACT/api/DAL/QuizRepository.cs:line 35
+2025-11-02 16:20:44.951 +01:00 [ERR] [QuizAPIController] Failed to create quiz for owner A
+2025-11-02 16:20:44.951 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2025-11-02 16:20:44.951 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Create (api) in 100.7667ms
+2025-11-02 16:20:44.951 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Create (api)'
+2025-11-02 16:20:44.951 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 500 null text/plain; charset=utf-8 110.8614ms
+2025-11-02 16:28:35.415 +01:00 [INF] Application is shutting down...

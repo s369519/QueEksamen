@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    {
+        "name": ".NET Core Launch (web)", // Name of the launch configuration as shown in the debug panel
+        "type": "coreclr", // Type of the debugger to use, in this case, .NET Core CLR (Common Language Runtime)
+        "request": "launch", // Request type, here it is set to launch a new process
+        "preLaunchTask": "build", // Task to run before launching the debugger, typically to build the project
+        "program": "${workspaceFolder}/api/bin/Debug/net8.0/api.dll", // Path to the compiled .NET Core application (the entry point for the application)
+        "args": [],
+        "cwd": "${workspaceFolder}/api", // Current working directory
+        "stopAtEntry": false,
+        "serverReadyAction": {
+            "action": "openExternally",
+            "pattern": "\\bNow listening on:\\s+(http?://\\S+)",
+            "uriFormat": "%s/swagger"
+        },
+        "env": { // Environment variables to set when launching the application
+            "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+    }
+    ]
+}

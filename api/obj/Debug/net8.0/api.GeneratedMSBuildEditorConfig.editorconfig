@@ -1,0 +1,75 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = api
+build_property.RootNamespace = api
+build_property.ProjectDir = /Users/arthurflotvik/Documents/QueREACT/api/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/arthurflotvik/Documents/QueREACT/api
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Question/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVlc3Rpb24vQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Quiz/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpei9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Quiz/CreateQuestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpei9DcmVhdGVRdWVzdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Quiz/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpei9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Quiz/Grid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpei9HcmlkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Quiz/Result.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpei9SZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Quiz/Table.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpei9UYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Quiz/Take.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpei9UYWtlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Quiz/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpei9VcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Shared/_QuizTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19RdWl6VGFibGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/arthurflotvik/Documents/QueREACT/api/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-77uj73hxdm

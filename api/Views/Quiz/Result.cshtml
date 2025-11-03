@@ -1,0 +1,20 @@
+@model Que.ViewModels.ResultViewModel
+
+@{
+    ViewData["Title"] = "Quiz result";
+}
+
+<div class="text-center mt-5">
+    <h2>Result</h2>
+    <p class="lead">@Model.Message</p>
+
+    <div class="mb-3">
+        <div class="progress" style="height: 24px;">
+            <div class="progress-bar" role="progressbar" style="width:@Model.Percentage%;" aria-valuenow="@Model.Percentage" aria-valuemin="0" aria-valuemax="100">
+                @Model.Percentage.ToString("F0")%
+            </div>
+        </div>
+    </div>
+
+    <a asp-controller="Quiz" asp-action="Table" class="btn btn-primary">Back to quizzes</a>
+</div>

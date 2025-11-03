@@ -1,0 +1,136 @@
+@model Que.ViewModels.QuizesViewModel
+
+@{
+    ViewData["Title"] = "Create New Quiz";
+    var difficulties = new List<string> { "Easy", "Medium", "Hard" };
+    var categories = new List<string> { "Trivia", "History", "Geography", "Math", "Science", "Sports" };
+}
+
+<h1>Create New Quiz</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Quiz.Name" class="form-label">Quiz Name</label>
+        <input asp-for="Quiz.Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quiz.Description" class="form-label">Description</label>
+        <textarea asp-for="Quiz.Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quiz.Difficulty" class="form-label">Difficulty</label>
+        <select asp-for="Quiz.Difficulty" class="form-select">
+            <option value="">-- Select Difficulty --</option>
+            @foreach (var d in difficulties)
+            {
+                <option value="@d">@d</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quiz.Category" class="form-label">Category</label>
+        <select asp-for="Quiz.Category" class="form-select">
+            <option value="">-- Select Category --</option>
+            @foreach (var c in categories)
+            {
+                <option value="@c">@c</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quiz.TimeLimit" class="form-label">Time Limit (minutes)</label>
+        <input asp-for="Quiz.TimeLimit" class="form-control" type="number" min="1" max="60" />
+        <span class="text-muted">Maximum 60 Minutes</span>
+        <span asp-validation-for="Quiz.TimeLimit" class="text-danger"></span>
+    </div>
+
+    <h3>Questions</h3>
+    <div id="questions-container">
+        @for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            <div class="question-item border p-3 mb-3" data-index="@i">
+                <div class="mb-2">
+                    <label class="form-label">Question @(@i + 1)</label>
+                    <input name="Questions[@i].Text" class="form-control" value="@Model.Questions[i].Text" />
+                </div>
+                <div class="form-check mb-2">
+                    <input name="Questions[@i].AllowMultiple" type="checkbox" class="form-check-input allow-multiple" @(Model.Questions[i].AllowMultiple ? "checked" : "") />
+                    <label class="form-check-label">Allow multiple answers</label>
+                </div>
+
+                <h5>Options</h5>
+                <div class="options-container">
+                    @for (int j = 0; j < Model.Questions[i].Options.Count; j++)
+                    {
+                        <div class="mb-1">
+                            <input type="text" name="Questions[@i].Options[@j].Text" class="form-control mb-1" value="@Model.Questions[i].Options[j].Text" placeholder="Option text" />
+                            <input type="radio" name="Questions[@i].SelectedOption" class="single-answer" value="@j" />
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <button type="button" id="add-question" class="btn btn-secondary mb-3">Add Question</button>
+    <button type="submit" class="btn btn-primary">Save Quiz</button>
+</form>
+
+@section Scripts {
+<script>
+    let questionIndex = @Model.Questions.Count;
+
+    function updateOptionInputs() {
+        document.querySelectorAll(".question-item").forEach(q => {
+            const allowMultiple = q.querySelector(".allow-multiple").checked;
+            const radios = q.querySelectorAll(".single-answer");
+            radios.forEach(r => {
+                r.type = allowMultiple ? "checkbox" : "radio";
+            });
+        });
+    }
+
+    document.getElementById("questions-container").addEventListener("change", e => {
+        if (e.target.classList.contains("allow-multiple")) {
+            updateOptionInputs();
+        }
+    });
+
+    document.getElementById("add-question").addEventListener("click", function () {
+        const container = document.getElementById("questions-container");
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "question-item border p-3 mb-3";
+        questionDiv.dataset.index = questionIndex;
+
+        questionDiv.innerHTML = `
+            <div class="mb-2">
+                <label class="form-label">Question ${questionIndex + 1}</label>
+                <input name="Questions[${questionIndex}].Text" class="form-control" />
+            </div>
+            <div class="form-check mb-2">
+                <input name="Questions[${questionIndex}].AllowMultiple" type="checkbox" class="form-check-input allow-multiple" />
+                <label class="form-check-label">Allow multiple answers</label>
+            </div>
+            <h5>Options</h5>
+            <div class="options-container">
+                ${[0,1,2,3].map(j => `
+                    <div class="mb-1">
+                        <input name="Questions[${questionIndex}].Options[${j}].Text" class="form-control mb-1" placeholder="Option text" />
+                        <input type="radio" name="Questions[${questionIndex}].SelectedOption" class="single-answer" value="${j}" />
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        container.appendChild(questionDiv);
+        updateOptionInputs();
+        questionIndex++;
+    });
+
+    // Initial update
+    updateOptionInputs();
+</script>
+}

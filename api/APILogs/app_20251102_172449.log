@@ -1,0 +1,17 @@
+2025-11-02 17:24:50.357 +01:00 [INF] User profile is available. Using '/Users/arthurflotvik/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-02 17:24:50.386 +01:00 [INF] Now listening on: http://localhost:5043
+2025-11-02 17:24:50.388 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-02 17:24:50.388 +01:00 [INF] Hosting environment: Development
+2025-11-02 17:24:50.388 +01:00 [INF] Content root path: /Users/arthurflotvik/Documents/QueREACT/api
+2025-11-02 17:25:16.985 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/ - null null
+2025-11-02 17:25:17.006 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/ - 404 0 null 22.4651ms
+2025-11-02 17:25:17.008 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5043/, Response status code: 404
+2025-11-02 17:25:24.187 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/ - null null
+2025-11-02 17:25:24.190 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/ - 404 0 null 2.4338ms
+2025-11-02 17:25:24.190 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5043/, Response status code: 404
+2025-11-02 17:25:41.147 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/ - null null
+2025-11-02 17:25:41.152 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/ - 404 0 null 4.8895ms
+2025-11-02 17:25:41.152 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5043/, Response status code: 404
+2025-11-02 17:25:42.352 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/ - null null
+2025-11-02 17:25:42.353 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/ - 404 0 null 0.9217ms
+2025-11-02 17:25:42.353 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5043/, Response status code: 404

@@ -1,0 +1,209 @@
+@model Que.ViewModels.QuizesViewModel
+
+@{
+    ViewData["Title"] = "Update Quiz";
+    var difficulties = new List<string> { "Easy", "Medium", "Hard" };
+    var categories = new List<string> { "Trivia", "History", "Geography", "Math", "Science", "Sports" };
+}
+
+<h2>Update Quiz</h2>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="Quiz.QuizId" />
+
+    <div class="form-group">
+        <label asp-for="Quiz.Name"></label>
+        <input asp-for="Quiz.Name" class="form-control" />
+        <span asp-validation-for="Quiz.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quiz.Description"></label>
+        <textarea asp-for="Quiz.Description" class="form-control"></textarea>
+        <span asp-validation-for="Quiz.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quiz.Category"></label>
+        <select asp-for="Quiz.Category" class="form-control">
+            @foreach (var cat in categories)
+            {
+                <option value="@cat" selected="@(Model.Quiz.Category == cat ? "selected" : null)">
+                    @cat
+                </option>
+            }
+        </select>
+        <span asp-validation-for="Quiz.Category" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quiz.Difficulty"></label>
+        <select asp-for="Quiz.Difficulty" class="form-control">
+            @foreach (var diff in difficulties)
+            {
+                <option value="@diff" selected="@(Model.Quiz.Difficulty == diff ? "selected" : null)">
+                    @diff
+                </option>
+            }
+        </select>
+        <span asp-validation-for="Quiz.Difficulty" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quiz.TimeLimit"></label>
+        <input asp-for="Quiz.TimeLimit" type="number" class="form-control" min="0" />
+        <span asp-validation-for="Quiz.TimeLimit" class="text-danger"></span>
+    </div>
+
+    <h4 class="d-inline-block">Questions</h4>
+
+    <div id="questions-container"> @* Changed: ID is now"questions-container" *@
+    @for (int i = 0; i < Model.Questions.Count; i++)
+    {
+        <div class="question-block border p-2 m-3" data-index="@i">
+            <input type="hidden" asp-for="Questions[@i].QuestionId" />
+
+            <div class="form-group">
+                <label asp-for="Questions[@i].Text">Question Text</label>
+                <input asp-for="Questions[@i].Text" class="form-control" />
+                <span asp-validation-for="Questions[@i].Text" class="text-danger"></span>
+            </div> 
+
+            <div class="form-check mb-2">
+                <input asp-for="Questions[@i].AllowMultiple" class="form-check-input" />
+                <label asp-for="Questions[@i].AllowMultiple" class="form-check-label">Allow multiple answers</label>
+            </div>
+
+            <h5>Options</h5>
+            @for (int j = 0; j < Model.Questions[i].Options.Count; j++)
+            {
+            <div class="form-group option-block"> @* Added "option-block" for consistency *@
+                    <input type="hidden" asp-for="Questions[@i].Options[@j].OptionId" />
+
+                    <label>Option Text</label>
+                    <input asp-for="Questions[@i].Options[@j].Text" class="form-control" />
+
+                    <div class="form-check">
+                        <input asp-for="Questions[@i].Options[@j].IsCorrect" class="form-check-input" />
+                        <label class="form-check-label">Correct</label>
+                    </div>
+                </div>
+            }
+            <button type="button" 
+                    class="remove-btn remove-question-btn" 
+                    title="Remove question">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    }
+
+    </div> @* Closes questions-container div *@
+
+    <div style="clear: both;"></div>
+
+    <div class="d-flex gap-2 mt-4">
+    <button type="button" id="add-question-btn" class="btn btn-success" title="Add Question">Add Question</button>
+    </div>
+
+    <div class="d-flex gap-2 mt-4">
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Table" class="btn btn-secondary">Cancel</a>
+    </div>
+
+</form>
+
+@section Scripts {
+    <script>
+        let questionIndex = @Model.Questions.Count; // Keeps track of the next available index
+
+        // Corrected: Helper function to generate HTML for a new option
+        function getOptionHtml(questionIdx, optionIdx) {
+            return `
+            <div class="form-group option-block">
+                <input type="hidden" name="Questions[${questionIdx}].Options[${optionIdx}].OptionId" value="0" />
+                    
+                    <label>Option Text</label>
+                    <input name="Questions[${questionIdx}].Options[${optionIdx}].Text" class="form-control" />
+                    
+                    <div class="form-check">
+                        <input type="checkbox" name="Questions[${questionIdx}].Options[${optionIdx}].IsCorrect" class="form-check-input" value="true" />
+                        <label class="form-check-label">Is Correct</label>
+                    </div>
+                </div>
+            `; // mportant: Use backticks to return the string
+        }
+
+        // Add Question function
+        document.getElementById("add-question-btn").addEventListener("click", function () {
+            const container = document.getElementById("questions-container");
+            const html = `
+                <div class="question-block border p-3 mb-3" data-index="${questionIndex}"> 
+
+                    <input type="hidden" name="Questions[${questionIndex}].QuestionId" value="0" />
+
+                    <div class="form-group">
+                        <label>Question Text</label>
+                        <input name="Questions[${questionIndex}].Text" class="form-control" />
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" name="Questions[${questionIndex}].AllowMultiple" class="form-check-input" value="true"/>
+                        <label class="form-check-label">Allow Multiple Answers</label>
+                    </div>
+
+                    <h5>Options</h5>
+                    ${getOptionHtml(questionIndex, 0)}
+                    ${getOptionHtml(questionIndex, 1)}
+                    ${getOptionHtml(questionIndex, 2)}
+                    ${getOptionHtml(questionIndex, 3)}
+
+                    <button type="button" class="remove-btn remove-question-btn" title="Fjern spørsmål">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div> 
+            `;
+            container.insertAdjacentHTML("beforeend", html);
+            questionIndex++;
+        });
+
+        // ------------------------------------------------------------------
+        // NEW FUNCTIONALITY: Remove questions and reindex
+        // ------------------------------------------------------------------
+
+        // Add an event listener to the container to detect clicks on "Remove" buttons
+        document.getElementById("questions-container").addEventListener("click", function (e) {
+            // Check if the click came from a button with the class 'remove-question-btn'
+            if (e.target.classList.contains("remove-question-btn")) {
+                // FFind the nearest parent element that represents the question block
+                const questionBlock = e.target.closest(".question-block");
+                if (questionBlock) {
+                    questionBlock.remove(); // Removes the element from the DOM
+                    reindexQuestions(); // Reindex remaining questions
+                }
+            }
+        });
+
+        /**
+         * Ensures that Questions[i].PropertyName is sequential (0, 1, 2, ...)
+         * so that the ASP.NET Model Binder can correctly bind to a List<Question>.
+         */
+        function reindexQuestions() {
+            const questions = document.querySelectorAll("#questions-container > .question-block");
+            
+            questions.forEach((q, index) => {
+                // Update data-index attribute
+                q.dataset.index = index;
+
+                // Update all name attributes within the question block
+                q.querySelectorAll('[name^="Questions["]').forEach(input => {
+                     const nameAttr = input.getAttribute('name');
+                     
+                     // change Questions[oldIndex] to Questions[newIndex]
+                     input.name = nameAttr.replace(/Questions\[\d+\]/g, `Questions[${index}]`);
+                });
+            });
+            // Update questionIndex to match the new number of questions
+            questionIndex = questions.length;
+        }
+    </script>
+}

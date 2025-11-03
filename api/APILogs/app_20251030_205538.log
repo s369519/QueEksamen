@@ -1,0 +1,652 @@
+2025-10-30 20:55:38.701 +01:00 [INF] User profile is available. Using '/Users/arthurflotvik/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-30 20:55:38.732 +01:00 [INF] Now listening on: http://localhost:5043
+2025-10-30 20:55:38.734 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-30 20:55:38.734 +01:00 [INF] Hosting environment: Development
+2025-10-30 20:55:38.734 +01:00 [INF] Content root path: /Users/arthurflotvik/Documents/QueREACT/api
+2025-10-30 20:55:41.431 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:55:41.431 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:55:41.449 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:41.449 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:41.451 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 20.8449ms
+2025-10-30 20:55:41.451 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 20.841ms
+2025-10-30 20:55:41.452 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:55:41.455 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:41.503 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:41.510 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:41.607 +01:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-10-30 20:55:41.660 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:55:41.698 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:55:41.698 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:41.699 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 186.9256ms
+2025-10-30 20:55:41.699 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:41.700 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:41.700 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:41.701 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 248.659ms
+2025-10-30 20:55:41.723 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:55:41.724 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 23.3287ms
+2025-10-30 20:55:41.724 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:41.724 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 25.918ms
+2025-10-30 20:55:45.990 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 20:55:45.990 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 20:55:45.991 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:45.991 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - 204 null null 0.8022ms
+2025-10-30 20:55:45.991 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:45.991 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - 204 null null 0.9237ms
+2025-10-30 20:55:45.992 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:55:45.992 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:45.995 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:46.002 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:46.026 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:55:46.052 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 49.8728ms
+2025-10-30 20:55:46.052 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:46.052 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 952 application/json; charset=utf-8 60.0762ms
+2025-10-30 20:55:46.053 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:55:46.053 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:46.053 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:46.053 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:46.055 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:55:46.056 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 2.8087ms
+2025-10-30 20:55:46.056 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:46.056 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 952 application/json; charset=utf-8 3.5297ms
+2025-10-30 20:55:49.194 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/1 - null null
+2025-10-30 20:55:49.194 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:49.194 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/1 - 204 null null 0.7764ms
+2025-10-30 20:55:49.196 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - application/json 952
+2025-10-30 20:55:49.196 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:49.197 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:55:49.200 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:49.282 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:55:49.283 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 82.4813ms
+2025-10-30 20:55:49.283 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:55:49.283 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - 200 952 application/json; charset=utf-8 86.8907ms
+2025-10-30 20:55:49.293 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:55:49.293 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:55:49.293 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:49.293 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:49.294 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.3167ms
+2025-10-30 20:55:49.294 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.2481ms
+2025-10-30 20:55:49.296 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:55:49.296 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:49.296 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:49.297 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:49.298 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:55:49.298 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.3021ms
+2025-10-30 20:55:49.298 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:49.298 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 1.7824ms
+2025-10-30 20:55:49.298 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:55:49.298 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:49.299 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:49.299 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:49.299 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:55:49.300 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.9567ms
+2025-10-30 20:55:49.300 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:49.300 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 1.3286ms
+2025-10-30 20:55:50.658 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:55:50.659 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:50.660 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:50.661 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:50.664 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:55:50.666 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 5.4506ms
+2025-10-30 20:55:50.666 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:50.666 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 952 application/json; charset=utf-8 8.5447ms
+2025-10-30 20:55:50.667 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:55:50.667 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:50.667 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:50.667 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:50.668 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:55:50.669 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 2.0148ms
+2025-10-30 20:55:50.669 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:50.669 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 952 application/json; charset=utf-8 2.7884ms
+2025-10-30 20:55:54.126 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - application/json 952
+2025-10-30 20:55:54.127 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:54.128 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:55:54.128 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:54.137 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:55:54.138 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 9.8095ms
+2025-10-30 20:55:54.138 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:55:54.138 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - 200 952 application/json; charset=utf-8 11.5247ms
+2025-10-30 20:55:54.146 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:55:54.146 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:54.147 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:54.147 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:54.149 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:55:54.149 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 2.6339ms
+2025-10-30 20:55:54.149 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:54.149 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 3.374ms
+2025-10-30 20:55:54.150 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:55:54.150 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:54.150 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:54.150 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:54.151 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:55:54.151 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.9595ms
+2025-10-30 20:55:54.151 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:55:54.151 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 1.4209ms
+2025-10-30 20:55:55.407 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 20:55:55.407 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 20:55:55.407 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:55.407 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:55.407 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - 204 null null 0.9033ms
+2025-10-30 20:55:55.408 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - 204 null null 0.9524ms
+2025-10-30 20:55:55.416 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:55:55.416 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:55.416 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:55.416 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:55.417 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:55:55.418 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 1.8593ms
+2025-10-30 20:55:55.418 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:55.418 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 952 application/json; charset=utf-8 2.4012ms
+2025-10-30 20:55:55.419 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:55:55.419 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:55:55.419 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:55.419 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:55:55.419 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:55:55.420 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 1.3817ms
+2025-10-30 20:55:55.420 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:55:55.420 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 952 application/json; charset=utf-8 1.7693ms
+2025-10-30 20:56:07.523 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/1 - null null
+2025-10-30 20:56:07.523 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:07.524 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/1 - 204 null null 0.4577ms
+2025-10-30 20:56:07.524 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - application/json 1112
+2025-10-30 20:56:07.525 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:07.525 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:56:07.525 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:07.562 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:07.563 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 37.6661ms
+2025-10-30 20:56:07.563 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:56:07.563 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - 200 1304 application/json; charset=utf-8 38.7396ms
+2025-10-30 20:56:07.572 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:56:07.572 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:56:07.572 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:07.572 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:07.572 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.2547ms
+2025-10-30 20:56:07.572 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.3332ms
+2025-10-30 20:56:07.574 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:56:07.574 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:07.575 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:07.575 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:07.576 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:56:07.576 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.0792ms
+2025-10-30 20:56:07.576 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:07.576 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 2.2656ms
+2025-10-30 20:56:07.576 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:56:07.577 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:07.577 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:07.577 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:07.577 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:56:07.578 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.7191ms
+2025-10-30 20:56:07.578 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:07.578 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 1.2428ms
+2025-10-30 20:56:08.907 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 20:56:08.907 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:08.907 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - 204 null null 0.4435ms
+2025-10-30 20:56:08.907 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 20:56:08.907 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:08.907 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - 204 null null 0.767ms
+2025-10-30 20:56:08.910 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:56:08.910 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:08.911 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:08.912 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:08.913 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:08.914 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 2.8892ms
+2025-10-30 20:56:08.914 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:08.915 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 1304 application/json; charset=utf-8 4.9433ms
+2025-10-30 20:56:08.915 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:56:08.915 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:08.915 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:08.915 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:08.916 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:08.917 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 1.4071ms
+2025-10-30 20:56:08.917 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:08.917 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 1304 application/json; charset=utf-8 1.8865ms
+2025-10-30 20:56:35.438 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/1 - null null
+2025-10-30 20:56:35.439 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:35.439 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/1 - 204 null null 1.1138ms
+2025-10-30 20:56:35.440 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - application/json 1304
+2025-10-30 20:56:35.441 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:35.441 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:56:35.441 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:35.448 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:35.448 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 6.6546ms
+2025-10-30 20:56:35.448 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:56:35.448 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - 200 1304 application/json; charset=utf-8 7.8881ms
+2025-10-30 20:56:35.460 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:56:35.460 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:56:35.460 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:35.460 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:35.460 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.214ms
+2025-10-30 20:56:35.460 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.2581ms
+2025-10-30 20:56:35.462 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:56:35.462 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:35.462 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:35.462 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:35.463 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:56:35.463 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.1003ms
+2025-10-30 20:56:35.463 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:35.463 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 1.8995ms
+2025-10-30 20:56:35.464 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:56:35.464 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:35.464 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:35.464 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:35.465 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:56:35.465 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.9965ms
+2025-10-30 20:56:35.465 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:35.465 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 1.5145ms
+2025-10-30 20:56:37.430 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 20:56:37.431 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:37.431 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - 204 null null 0.5407ms
+2025-10-30 20:56:37.431 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 20:56:37.431 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:37.431 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/1 - 204 null null 0.1639ms
+2025-10-30 20:56:37.434 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:56:37.434 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:37.434 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:37.434 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:37.435 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:37.436 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 1.8382ms
+2025-10-30 20:56:37.436 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:37.436 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 1304 application/json; charset=utf-8 2.7825ms
+2025-10-30 20:56:37.437 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - application/json null
+2025-10-30 20:56:37.437 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:37.437 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:37.437 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:37.437 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:37.438 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 1.1106ms
+2025-10-30 20:56:37.438 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:37.438 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 200 1304 application/json; charset=utf-8 1.4646ms
+2025-10-30 20:56:39.963 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - application/json 1304
+2025-10-30 20:56:39.964 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:39.964 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:56:39.964 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:39.969 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:39.969 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 4.3245ms
+2025-10-30 20:56:39.969 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:56:39.969 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/1 - 200 1304 application/json; charset=utf-8 5.5181ms
+2025-10-30 20:56:39.978 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:56:39.978 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:39.978 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:39.978 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:39.979 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:56:39.980 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.1908ms
+2025-10-30 20:56:39.980 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:39.980 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 1.9865ms
+2025-10-30 20:56:39.980 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:56:39.980 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:39.980 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:39.980 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:39.981 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:56:39.981 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.2315ms
+2025-10-30 20:56:39.981 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:56:39.982 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 635 application/json; charset=utf-8 1.6374ms
+2025-10-30 20:56:43.830 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - null null
+2025-10-30 20:56:43.830 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - null null
+2025-10-30 20:56:43.830 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:43.830 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - 204 null null 0.317ms
+2025-10-30 20:56:43.830 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:43.830 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - 204 null null 0.3902ms
+2025-10-30 20:56:43.831 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - application/json null
+2025-10-30 20:56:43.832 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:43.832 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:43.832 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:43.834 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:43.835 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 2.2824ms
+2025-10-30 20:56:43.835 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:43.835 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - 200 174 application/json; charset=utf-8 3.3522ms
+2025-10-30 20:56:43.835 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - application/json null
+2025-10-30 20:56:43.835 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:56:43.835 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:43.835 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:56:43.836 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:56:43.836 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 1.0842ms
+2025-10-30 20:56:43.837 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:56:43.837 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - 200 174 application/json; charset=utf-8 1.5971ms
+2025-10-30 20:57:01.399 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/3 - null null
+2025-10-30 20:57:01.400 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:01.400 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/3 - 204 null null 0.866ms
+2025-10-30 20:57:01.402 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/3 - application/json 321
+2025-10-30 20:57:01.402 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:01.403 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:57:01.403 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:01.409 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:01.409 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 5.9231ms
+2025-10-30 20:57:01.409 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:57:01.409 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/3 - 200 493 application/json; charset=utf-8 7.7862ms
+2025-10-30 20:57:01.419 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:57:01.419 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:57:01.419 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:01.419 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:01.419 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.3044ms
+2025-10-30 20:57:01.419 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.5409ms
+2025-10-30 20:57:01.422 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:57:01.422 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:01.422 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:01.422 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:01.423 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:57:01.424 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.553ms
+2025-10-30 20:57:01.424 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:01.424 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 2.1319ms
+2025-10-30 20:57:01.424 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:57:01.424 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:01.424 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:01.424 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:01.425 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:57:01.425 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.9543ms
+2025-10-30 20:57:01.425 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:01.425 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.4616ms
+2025-10-30 20:57:03.321 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - null null
+2025-10-30 20:57:03.321 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:03.322 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - null null
+2025-10-30 20:57:03.322 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:03.322 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - 204 null null 0.8197ms
+2025-10-30 20:57:03.322 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - 204 null null 0.2014ms
+2025-10-30 20:57:03.329 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - application/json null
+2025-10-30 20:57:03.329 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:03.331 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:03.331 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:03.333 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:03.334 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 3.1218ms
+2025-10-30 20:57:03.335 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:03.335 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - 200 493 application/json; charset=utf-8 5.6869ms
+2025-10-30 20:57:03.335 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - application/json null
+2025-10-30 20:57:03.335 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:03.336 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:03.336 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:03.337 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:03.338 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 1.9898ms
+2025-10-30 20:57:03.338 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:03.338 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - 200 493 application/json; charset=utf-8 2.7366ms
+2025-10-30 20:57:13.521 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/3 - null null
+2025-10-30 20:57:13.521 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:13.521 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/3 - 204 null null 0.3312ms
+2025-10-30 20:57:13.522 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/3 - application/json 578
+2025-10-30 20:57:13.522 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:13.522 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:57:13.522 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:13.527 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:13.527 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 4.6087ms
+2025-10-30 20:57:13.527 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:57:13.527 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/3 - 200 553 application/json; charset=utf-8 5.7495ms
+2025-10-30 20:57:13.536 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:57:13.536 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:57:13.536 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:13.536 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:13.536 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.1677ms
+2025-10-30 20:57:13.536 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.1719ms
+2025-10-30 20:57:13.538 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:57:13.539 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:13.539 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:13.539 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:13.540 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:57:13.540 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.9212ms
+2025-10-30 20:57:13.540 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:13.540 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.5852ms
+2025-10-30 20:57:13.541 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:57:13.541 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:13.541 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:13.541 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:13.542 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:57:13.542 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.0157ms
+2025-10-30 20:57:13.542 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:13.543 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.9253ms
+2025-10-30 20:57:15.381 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - null null
+2025-10-30 20:57:15.381 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:15.381 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - 204 null null 0.1849ms
+2025-10-30 20:57:15.383 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - null null
+2025-10-30 20:57:15.383 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:15.383 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - 204 null null 0.078ms
+2025-10-30 20:57:15.385 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - application/json null
+2025-10-30 20:57:15.386 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:15.386 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:15.386 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:15.388 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:15.389 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 2.9153ms
+2025-10-30 20:57:15.389 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:15.389 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - 200 553 application/json; charset=utf-8 3.7981ms
+2025-10-30 20:57:15.390 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - application/json null
+2025-10-30 20:57:15.390 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:15.390 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:15.390 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:15.391 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:15.391 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 1.3223ms
+2025-10-30 20:57:15.391 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:15.391 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - 200 553 application/json; charset=utf-8 1.7366ms
+2025-10-30 20:57:47.273 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/3 - null null
+2025-10-30 20:57:47.273 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:47.273 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/update/3 - 204 null null 0.6758ms
+2025-10-30 20:57:47.274 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/3 - application/json 733
+2025-10-30 20:57:47.274 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:47.275 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:57:47.275 +01:00 [INF] Route matched with {action = "Update", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Que.DTOs.QuizDto) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:47.281 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:47.282 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.Update (api) in 6.2213ms
+2025-10-30 20:57:47.282 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.Update (api)'
+2025-10-30 20:57:47.282 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5043/api/quizapi/update/3 - 200 905 application/json; charset=utf-8 7.505ms
+2025-10-30 20:57:47.296 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:57:47.296 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:47.297 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.2526ms
+2025-10-30 20:57:47.297 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:57:47.297 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:47.297 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.0836ms
+2025-10-30 20:57:47.302 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:57:47.302 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:47.302 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:47.302 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:47.303 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:57:47.303 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.1798ms
+2025-10-30 20:57:47.303 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:47.303 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.71ms
+2025-10-30 20:57:47.304 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:57:47.304 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:47.304 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:47.304 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:47.304 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:57:47.304 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.7291ms
+2025-10-30 20:57:47.304 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:47.305 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.014ms
+2025-10-30 20:57:49.409 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - null null
+2025-10-30 20:57:49.409 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:49.409 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - 204 null null 0.2595ms
+2025-10-30 20:57:49.412 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - null null
+2025-10-30 20:57:49.412 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:49.412 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/3 - 204 null null 0.2967ms
+2025-10-30 20:57:49.414 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - application/json null
+2025-10-30 20:57:49.414 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:49.414 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:49.414 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:49.415 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:49.416 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 2.2053ms
+2025-10-30 20:57:49.416 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:49.417 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - 200 905 application/json; charset=utf-8 3.027ms
+2025-10-30 20:57:49.417 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - application/json null
+2025-10-30 20:57:49.417 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:49.417 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:49.417 +01:00 [INF] Route matched with {action = "GetQuiz", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetQuiz(Int32) on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:49.417 +01:00 [INF] Executing OkObjectResult, writing value of type 'Castle.Proxies.QuizProxy'.
+2025-10-30 20:57:49.418 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetQuiz (api) in 0.9238ms
+2025-10-30 20:57:49.418 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetQuiz (api)'
+2025-10-30 20:57:49.418 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/3 - 200 905 application/json; charset=utf-8 1.2432ms
+2025-10-30 20:57:51.816 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:57:51.816 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:51.817 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:51.817 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:51.821 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:57:51.821 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 3.8445ms
+2025-10-30 20:57:51.821 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:51.821 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 5.2425ms
+2025-10-30 20:57:51.821 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:57:51.821 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:57:51.821 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:51.822 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:57:51.823 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:57:51.823 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.145ms
+2025-10-30 20:57:51.823 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:57:51.823 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.5614ms
+2025-10-30 20:58:03.474 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:58:03.474 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:03.474 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.2878ms
+2025-10-30 20:58:03.475 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:58:03.475 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:03.476 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:03.476 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:58:03.478 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:58:03.479 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 2.8941ms
+2025-10-30 20:58:03.479 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:03.479 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 3.7404ms
+2025-10-30 20:58:15.341 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/Auth/login - null null
+2025-10-30 20:58:15.341 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:15.341 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/Auth/login - 204 null null 0.2753ms
+2025-10-30 20:58:15.342 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/Auth/login - application/json 47
+2025-10-30 20:58:15.344 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:15.345 +01:00 [INF] Executing endpoint 'Que.Controllers.AuthController.Login (api)'
+2025-10-30 20:58:15.347 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Que.DTOs.LoginDto) on controller Que.Controllers.AuthController (api).
+2025-10-30 20:58:15.455 +01:00 [INF] [AuthAPIController] user authorized for Testbruker
+2025-10-30 20:58:15.457 +01:00 [INF] [AuthAPIController] JWT token created for Testbruker
+2025-10-30 20:58:15.459 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-10-30 20:58:15.461 +01:00 [INF] Executed action Que.Controllers.AuthController.Login (api) in 113.6973ms
+2025-10-30 20:58:15.461 +01:00 [INF] Executed endpoint 'Que.Controllers.AuthController.Login (api)'
+2025-10-30 20:58:15.461 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/Auth/login - 200 589 application/json; charset=utf-8 119.1318ms
+2025-10-30 20:58:15.475 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:58:15.475 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:58:15.475 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:15.475 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:15.475 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.1633ms
+2025-10-30 20:58:15.475 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.1635ms
+2025-10-30 20:58:15.476 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:58:15.476 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:15.476 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:15.476 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:58:15.477 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:58:15.477 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.9073ms
+2025-10-30 20:58:15.477 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:15.477 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.2479ms
+2025-10-30 20:58:15.478 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:58:15.478 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:15.479 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:15.479 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:58:15.479 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:58:15.480 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.903ms
+2025-10-30 20:58:15.480 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:15.480 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.3134ms
+2025-10-30 20:58:20.555 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/Auth/login - null null
+2025-10-30 20:58:20.556 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:20.556 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/Auth/login - 204 null null 0.7722ms
+2025-10-30 20:58:20.557 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/Auth/login - application/json 40
+2025-10-30 20:58:20.557 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:20.557 +01:00 [INF] Executing endpoint 'Que.Controllers.AuthController.Login (api)'
+2025-10-30 20:58:20.557 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Que.DTOs.LoginDto) on controller Que.Controllers.AuthController (api).
+2025-10-30 20:58:20.633 +01:00 [INF] [AuthAPIController] user authorized for A
+2025-10-30 20:58:20.633 +01:00 [INF] [AuthAPIController] JWT token created for A
+2025-10-30 20:58:20.633 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-10-30 20:58:20.633 +01:00 [INF] Executed action Que.Controllers.AuthController.Login (api) in 76.0475ms
+2025-10-30 20:58:20.633 +01:00 [INF] Executed endpoint 'Que.Controllers.AuthController.Login (api)'
+2025-10-30 20:58:20.633 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/Auth/login - 200 569 application/json; charset=utf-8 76.5362ms
+2025-10-30 20:58:20.649 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:58:20.649 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 20:58:20.649 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:20.649 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:20.649 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.2437ms
+2025-10-30 20:58:20.649 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.128ms
+2025-10-30 20:58:20.652 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:58:20.653 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:20.653 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:20.653 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:58:20.654 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:58:20.654 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.1499ms
+2025-10-30 20:58:20.654 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:20.654 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.5186ms
+2025-10-30 20:58:20.654 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 20:58:20.654 +01:00 [INF] CORS policy execution successful.
+2025-10-30 20:58:20.654 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:20.654 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 20:58:20.655 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 20:58:20.655 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.8429ms
+2025-10-30 20:58:20.655 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 20:58:20.655 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.2605ms
+2025-10-30 21:07:48.233 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 21:07:48.233 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 21:07:48.233 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:07:48.233 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:07:48.233 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.7257ms
+2025-10-30 21:07:48.233 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.7566ms
+2025-10-30 21:07:48.234 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 21:07:48.234 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:07:48.235 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:07:48.235 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 21:07:48.238 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 21:07:48.238 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 3.029ms
+2025-10-30 21:07:48.238 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:07:48.238 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 3.6852ms
+2025-10-30 21:07:48.238 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 21:07:48.238 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:07:48.239 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:07:48.239 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 21:07:48.239 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 21:07:48.239 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.7954ms
+2025-10-30 21:07:48.239 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:07:48.239 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.1157ms
+2025-10-30 21:10:14.722 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 21:10:14.722 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 21:10:14.722 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:10:14.722 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:10:14.722 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.198ms
+2025-10-30 21:10:14.722 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.1522ms
+2025-10-30 21:10:14.723 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 21:10:14.723 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:10:14.723 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:10:14.723 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 21:10:14.724 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 21:10:14.724 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.9928ms
+2025-10-30 21:10:14.724 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:10:14.724 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.3308ms
+2025-10-30 21:10:14.724 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 21:10:14.724 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:10:14.725 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:10:14.725 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 21:10:14.725 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 21:10:14.725 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 0.6493ms
+2025-10-30 21:10:14.725 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:10:14.725 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 0.8598ms
+2025-10-30 21:17:30.810 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 21:17:30.810 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:17:30.810 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.3486ms
+2025-10-30 21:17:30.811 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 21:17:30.811 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:17:30.811 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.0637ms
+2025-10-30 21:17:30.812 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 21:17:30.812 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:17:30.812 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:17:30.812 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 21:17:30.819 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 21:17:30.819 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 6.4442ms
+2025-10-30 21:17:30.819 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:17:30.819 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 7.1984ms
+2025-10-30 21:17:30.819 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 21:17:30.819 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:17:30.820 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:17:30.820 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 21:17:30.821 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 21:17:30.821 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.1306ms
+2025-10-30 21:17:30.821 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:17:30.821 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.86ms
+2025-10-30 21:19:07.468 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 21:19:07.468 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 21:19:07.468 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:19:07.468 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:19:07.468 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.1516ms
+2025-10-30 21:19:07.468 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 0.1567ms
+2025-10-30 21:19:07.469 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 21:19:07.469 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:19:07.469 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:19:07.469 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 21:19:07.470 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 21:19:07.470 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.0329ms
+2025-10-30 21:19:07.470 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:19:07.471 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.5656ms
+2025-10-30 21:19:07.471 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 21:19:07.471 +01:00 [INF] CORS policy execution successful.
+2025-10-30 21:19:07.471 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:19:07.471 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 21:19:07.472 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 21:19:07.473 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 1.078ms
+2025-10-30 21:19:07.473 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 21:19:07.473 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 603 application/json; charset=utf-8 1.7485ms
+2025-10-30 21:19:11.297 +01:00 [INF] Application is shutting down...

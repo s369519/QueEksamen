@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ESNext", // Output modern JavaScript; let Vite handle browser compatibility
+      "module": "ESNext", // Use native ES modules (import/export) instead of CommonJS
+      "moduleResolution": "node", // How to find modules — "node" works for npm packages
+      "jsx": "react-jsx", // Use the new JSX transform (React 17+); works with Vite
+      "strict": true, // Enable all strict type-checking options
+      "esModuleInterop": true, // Allow default imports from CommonJS modules
+      "skipLibCheck": true, // Skip type checking for library files in node_modules (faster builds)
+      "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names across imports
+      "noEmit": true // Only type-check — don’t output .js files (Vite does the build)
+    },
+    "include": ["src"], // Files and folders to include in the project
+    "exclude": ["node_modules", "dist"] // Folders to exclude from type-checking
+  }

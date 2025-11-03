@@ -1,0 +1,30 @@
+2025-10-26 19:25:31.840 +01:00 [INF] User profile is available. Using '/Users/arthurflotvik/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-26 19:25:31.870 +01:00 [INF] Now listening on: http://localhost:5043
+2025-10-26 19:25:31.871 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-26 19:25:31.872 +01:00 [INF] Hosting environment: Development
+2025-10-26 19:25:31.872 +01:00 [INF] Content root path: /Users/arthurflotvik/Documents/QueREACT/api
+2025-10-26 19:25:34.102 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/ - null null
+2025-10-26 19:25:34.127 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/ - 404 0 null 25.5269ms
+2025-10-26 19:25:34.128 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5043/, Response status code: 404
+2025-10-26 19:25:41.493 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/swagger/index.html - null null
+2025-10-26 19:25:41.525 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/swagger/index.html - 200 null text/html;charset=utf-8 32.19ms
+2025-10-26 19:25:41.598 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/swagger/v1/swagger.json - null null
+2025-10-26 19:25:41.655 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 56.7977ms
+2025-10-26 19:26:02.434 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-26 19:26:02.437 +01:00 [INF] CORS policy execution successful.
+2025-10-26 19:26:02.439 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-26 19:26:02.445 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-26 19:26:02.540 +01:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-10-26 19:26:02.596 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-26 19:26:02.630 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 183.9149ms
+2025-10-26 19:26:02.630 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-26 19:26:02.632 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 249 application/json; charset=utf-8 198.1878ms
+2025-10-26 19:26:02.632 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-26 19:26:02.633 +01:00 [INF] CORS policy execution successful.
+2025-10-26 19:26:02.634 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-26 19:26:02.634 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-26 19:26:02.655 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-26 19:26:02.656 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 22.0285ms
+2025-10-26 19:26:02.656 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-26 19:26:02.656 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 249 application/json; charset=utf-8 23.8769ms
+2025-10-26 19:26:43.797 +01:00 [INF] Application is shutting down...

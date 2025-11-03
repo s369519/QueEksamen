@@ -1,0 +1,54 @@
+2025-10-30 19:34:44.591 +01:00 [INF] User profile is available. Using '/Users/arthurflotvik/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-30 19:34:44.617 +01:00 [INF] Now listening on: http://localhost:5043
+2025-10-30 19:34:44.618 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-30 19:34:44.618 +01:00 [INF] Hosting environment: Development
+2025-10-30 19:34:44.618 +01:00 [INF] Content root path: /Users/arthurflotvik/Documents/QueREACT/api
+2025-10-30 19:35:02.816 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/Auth/login - null null
+2025-10-30 19:35:02.836 +01:00 [INF] CORS policy execution successful.
+2025-10-30 19:35:02.838 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/Auth/login - 204 null null 23.1291ms
+2025-10-30 19:35:02.841 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/Auth/login - application/json 40
+2025-10-30 19:35:02.843 +01:00 [INF] CORS policy execution successful.
+2025-10-30 19:35:02.848 +01:00 [INF] Executing endpoint 'Que.Controllers.AuthController.Login (api)'
+2025-10-30 19:35:02.856 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Que.DTOs.LoginDto) on controller Que.Controllers.AuthController (api).
+2025-10-30 19:35:03.040 +01:00 [INF] [AuthAPIController] user authorized for A
+2025-10-30 19:35:03.047 +01:00 [INF] [AuthAPIController] JWT token created for A
+2025-10-30 19:35:03.057 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-10-30 19:35:03.071 +01:00 [INF] Executed action Que.Controllers.AuthController.Login (api) in 213.0295ms
+2025-10-30 19:35:03.071 +01:00 [INF] Executed endpoint 'Que.Controllers.AuthController.Login (api)'
+2025-10-30 19:35:03.073 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/Auth/login - 200 569 application/json; charset=utf-8 231.1932ms
+2025-10-30 19:35:03.092 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 19:35:03.092 +01:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - null null
+2025-10-30 19:35:03.094 +01:00 [INF] CORS policy execution successful.
+2025-10-30 19:35:03.094 +01:00 [INF] CORS policy execution successful.
+2025-10-30 19:35:03.094 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 2.2409ms
+2025-10-30 19:35:03.097 +01:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5043/api/quizapi/quizlist - 204 null null 4.8972ms
+2025-10-30 19:35:03.100 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 19:35:03.104 +01:00 [INF] CORS policy execution successful.
+2025-10-30 19:35:03.132 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 19:35:03.134 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 19:35:03.193 +01:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-10-30 19:35:03.224 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 19:35:03.228 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 94.519ms
+2025-10-30 19:35:03.228 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 19:35:03.229 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 593 application/json; charset=utf-8 129.0697ms
+2025-10-30 19:35:03.229 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - application/json null
+2025-10-30 19:35:03.229 +01:00 [INF] CORS policy execution successful.
+2025-10-30 19:35:03.230 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 19:35:03.231 +01:00 [INF] Route matched with {action = "QuizList", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] QuizList() on controller Que.Controllers.QuizAPIController (api).
+2025-10-30 19:35:03.254 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[Que.Models.Quiz, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-30 19:35:03.254 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.QuizList (api) in 23.6755ms
+2025-10-30 19:35:03.254 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.QuizList (api)'
+2025-10-30 19:35:03.254 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 593 application/json; charset=utf-8 25.7415ms
+2025-10-30 19:35:09.612 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 19:35:09.613 +01:00 [INF] CORS policy execution successful.
+2025-10-30 19:35:09.616 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-10-30 19:35:09.618 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-10-30 19:35:09.618 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 401 0 null 6.2531ms
+2025-10-30 19:35:09.620 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - null null
+2025-10-30 19:35:09.620 +01:00 [INF] CORS policy execution successful.
+2025-10-30 19:35:09.620 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-10-30 19:35:09.620 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-10-30 19:35:09.620 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/1 - 401 0 null 0.9015ms
+2025-10-30 19:36:40.586 +01:00 [INF] Application is shutting down...

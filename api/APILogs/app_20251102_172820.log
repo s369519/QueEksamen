@@ -1,0 +1,74 @@
+2025-11-02 17:28:21.017 +01:00 [INF] User profile is available. Using '/Users/arthurflotvik/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-02 17:28:21.041 +01:00 [INF] Now listening on: http://localhost:5043
+2025-11-02 17:28:21.042 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-02 17:28:21.042 +01:00 [INF] Hosting environment: Development
+2025-11-02 17:28:21.042 +01:00 [INF] Content root path: /Users/arthurflotvik/Documents/QueREACT/api
+2025-11-02 17:28:30.359 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/ - null null
+2025-11-02 17:28:30.383 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/ - 404 0 null 25.262ms
+2025-11-02 17:28:30.385 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5043/, Response status code: 404
+2025-11-02 17:28:31.704 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/ - null null
+2025-11-02 17:28:31.707 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/ - 404 0 null 3.0332ms
+2025-11-02 17:28:31.708 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5043/, Response status code: 404
+2025-11-02 17:29:25.840 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-02 17:29:25.867 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 17:29:25.876 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 17:29:25.885 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: Anonymous
+2025-11-02 17:29:25.962 +01:00 [INF] [QuizAPIController] Returning 0 visible quizzes for user: Anonymous
+2025-11-02 17:29:25.964 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 17:29:25.997 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 119.7267ms
+2025-11-02 17:29:25.997 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 17:29:26.001 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 2 application/json; charset=utf-8 160.8885ms
+2025-11-02 17:29:30.090 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-02 17:29:30.094 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 17:29:30.095 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 17:29:30.097 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: Anonymous
+2025-11-02 17:29:30.135 +01:00 [INF] [QuizAPIController] Returning 0 visible quizzes for user: Anonymous
+2025-11-02 17:29:30.135 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 17:29:30.135 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 40.5907ms
+2025-11-02 17:29:30.135 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 17:29:30.136 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 2 application/json; charset=utf-8 45.8343ms
+2025-11-02 17:30:11.248 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 356
+2025-11-02 17:30:11.262 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(ReadOnlyMemory`1 encodedTokenMemory)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+2025-11-02 17:30:11.272 +01:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2025-11-02 17:30:11.274 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-02 17:30:11.277 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-02 17:30:11.277 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 401 0 null 29.647ms
+2025-11-02 17:30:35.395 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-02 17:30:35.396 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 17:30:35.397 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 17:30:35.405 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: Anonymous
+2025-11-02 17:30:35.408 +01:00 [INF] [QuizAPIController] Returning 0 visible quizzes for user: Anonymous
+2025-11-02 17:30:35.408 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 17:30:35.409 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 11.9088ms
+2025-11-02 17:30:35.409 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 17:30:35.409 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 2 application/json; charset=utf-8 14.0807ms
+2025-11-02 17:30:38.529 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5043/api/quizapi/create - application/json 356
+2025-11-02 17:30:38.530 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(ReadOnlyMemory`1 encodedTokenMemory)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+2025-11-02 17:30:38.531 +01:00 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2025-11-02 17:30:38.532 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-02 17:30:38.532 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-02 17:30:38.533 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5043/api/quizapi/create - 401 0 null 3.7378ms
+2025-11-02 17:30:48.651 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - null null
+2025-11-02 17:30:48.651 +01:00 [INF] Executing endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 17:30:48.651 +01:00 [INF] Route matched with {action = "GetAllQuizes", controller = "QuizAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllQuizes() on controller Que.Controllers.QuizAPIController (api).
+2025-11-02 17:30:48.652 +01:00 [INF] [QuizAPIController] Fetching quiz list for user: Anonymous
+2025-11-02 17:30:48.654 +01:00 [INF] [QuizAPIController] Returning 0 visible quizzes for user: Anonymous
+2025-11-02 17:30:48.654 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Que.DTOs.QuizDto, api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-02 17:30:48.654 +01:00 [INF] Executed action Que.Controllers.QuizAPIController.GetAllQuizes (api) in 2.8617ms
+2025-11-02 17:30:48.654 +01:00 [INF] Executed endpoint 'Que.Controllers.QuizAPIController.GetAllQuizes (api)'
+2025-11-02 17:30:48.654 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5043/api/quizapi/quizlist - 200 2 application/json; charset=utf-8 3.8955ms
+2025-11-02 17:32:23.539 +01:00 [INF] Application is shutting down...

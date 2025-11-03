@@ -1,0 +1,8 @@
+2025-11-02 17:13:21.665 +01:00 [INF] Applying migration '20251102161300_NyMigration3000'.
+2025-11-02 17:13:21.697 +01:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoles" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_AspNetRoles" PRIMARY KEY,
+    "Name" TEXT NULL,
+    "NormalizedName" TEXT NULL,
+    "ConcurrencyStamp" TEXT NULL
+);

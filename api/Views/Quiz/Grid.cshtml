@@ -1,0 +1,30 @@
+@model Que.ViewModels.QuizesViewModel
+
+<a asp-controller="Quiz" asp-action="Table" class="btn btn-secondary">Table View</a>
+
+<h1>List of Quizes (@Model.CurrentViewName View)</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var quiz in Model.Quizes)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@quiz.Name</h5>
+                    <p class="card-text">@quiz.Description</p>
+                </div>
+                <div class="card-footer text-center">
+                </div>
+                    <a asp-controller="Quiz" asp-action="Update" asp-route-id="@quiz.QuizId" class="btn btn-primary">
+                        Update Quiz
+                    </a>
+                    <a asp-controller="Quiz" asp-action="Delete" asp-route-id="@quiz.QuizId" class="btn btn-primary">
+                        Delete Quiz
+                    </a>
+                    <a asp-controller="Quiz" asp-action="Take" asp-route-id="@quiz.QuizId" class="btn btn-success">
+                            Take Quiz
+                        </a>
+                </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,20 @@
+2025-10-24 14:42:18.448 +02:00 [INF] Now listening on: http://localhost:5102
+2025-10-24 14:42:18.453 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-24 14:42:18.453 +02:00 [INF] Hosting environment: Development
+2025-10-24 14:42:18.453 +02:00 [INF] Content root path: /Users/arthurflotvik/Documents/QueREACT/api
+2025-10-24 14:42:21.105 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/ - null null
+2025-10-24 14:42:21.134 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/ - 404 0 null 30.456ms
+2025-10-24 14:42:21.137 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5102/, Response status code: 404
+2025-10-24 14:42:25.161 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/ - null null
+2025-10-24 14:42:25.163 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/ - 404 0 null 1.8391ms
+2025-10-24 14:42:25.163 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5102/, Response status code: 404
+2025-10-24 14:42:52.134 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/ - null null
+2025-10-24 14:42:52.136 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/ - 404 0 null 1.397ms
+2025-10-24 14:42:52.136 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5102/, Response status code: 404
+2025-10-24 14:43:28.688 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/api/quiz - null null
+2025-10-24 14:43:28.688 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/api/quiz - 404 0 null 0.6201ms
+2025-10-24 14:43:28.688 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5102/api/quiz, Response status code: 404
+2025-10-24 14:43:30.301 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/api/quiz - null null
+2025-10-24 14:43:30.301 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/api/quiz - 404 0 null 0.2806ms
+2025-10-24 14:43:30.301 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5102/api/quiz, Response status code: 404
+2025-10-24 14:43:41.299 +02:00 [INF] Application is shutting down...
