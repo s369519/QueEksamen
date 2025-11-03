@@ -104,27 +104,32 @@ public class QuizAPIController : ControllerBase
 
         try
         {
-            // --- Lag quiz med riktig OwnerId ---
-            var newQuiz = new Quiz
-            {
-                Name = quizDto.Name,
-                Description = quizDto.Description,
-                Category = quizDto.Category,
-                Difficulty = quizDto.Difficulty,
-                TimeLimit = quizDto.TimeLimit,
-                IsPublic = quizDto.IsPublic,
-                OwnerId = user.Id, // Viktig: brukerens GUID
-                Questions = quizDto.Questions?.Select(q => new Question
+                // --- Lag quiz med riktig OwnerId ---
+                var newQuiz = new Quiz
                 {
-                    Text = q.Text,
-                    AllowMultiple = q.AllowMultiple,
-                    Options = q.Options?.Select(o => new Option
+                    Name = quizDto.Name ?? throw new ArgumentNullException(nameof(quizDto.Name)),
+                    Description = quizDto.Description ?? "",
+                    Category = quizDto.Category ?? "General",
+                    Difficulty = quizDto.Difficulty ?? "Medium",
+                    TimeLimit = quizDto.TimeLimit,
+                    IsPublic = quizDto.IsPublic,
+                    OwnerId = userId // Use userId directly
+                };
+
+                // Add questions if they exist
+                if (quizDto.Questions != null)
+                {
+                    newQuiz.Questions = quizDto.Questions.Select(q => new Question
                     {
-                        Text = o.Text,
-                        IsCorrect = o.IsCorrect
-                    }).ToList() ?? new List<Option>()
-                }).ToList() ?? new List<Question>()
-            };
+                        Text = q.Text ?? throw new ArgumentNullException(nameof(q.Text)),
+                        AllowMultiple = q.AllowMultiple,
+                        Options = q.Options?.Select(o => new Option
+                        {
+                            Text = o.Text ?? throw new ArgumentNullException(nameof(o.Text)),
+                            IsCorrect = o.IsCorrect
+                        }).ToList() ?? new List<Option>()
+                    }).ToList();
+                }
 
             var createdQuiz = await _quizRepository.CreateQuiz(newQuiz);
 

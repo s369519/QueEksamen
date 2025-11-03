@@ -112,17 +112,27 @@ const QuizForm: React.FC<QuizFormProps> = ({
 
     if (!validateName(name)) return;
 
+    // Ensure we have valid defaults for required fields
     const quiz: Quiz = {
       quizId: quizId ?? initialData?.quizId,
       name,
-      description,
-      category,
-      difficulty,
-      timeLimit,
+      description: description || '',
+      category: category || 'General',
+      difficulty: difficulty || 'Medium',
+      timeLimit: timeLimit || 10,
       isPublic,
-      questions
+      questions: questions.map(q => ({
+        ...q,
+        text: q.text || '',
+        options: q.options.map(o => ({
+          ...o,
+          text: o.text || '',
+          isCorrect: o.isCorrect || false
+        }))
+      }))
     };
 
+    console.log('Submitting quiz:', quiz); // Add logging
     onQuizChanged(quiz);
   };
 

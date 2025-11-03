@@ -132,23 +132,49 @@ function logDecodedToken(token: string | null) {
     }
 }
 
-export async function createQuiz(token: string, quizData: any) {
-    logDecodedToken(token); // <-- logg claims før du sender request
+export async function createQuiz(quizData: any) {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("User not authenticated.");
 
-    const response = await fetch(`${API_URL}/api/quizapi/create`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify(quizData),
-    });
+    logDecodedToken(token);
+    
+    // Ensure required fields are present
+    const quiz = {
+        ...quizData,
+        timeLimit: quizData.timeLimit || 10, // Default to 10 if not provided
+        questions: quizData.questions || [],
+        isPublic: quizData.isPublic || false,
+    };
 
-    if (!response.ok) {
-        const text = await response.text();
-        throw new Error(`Failed to create quiz: ${text}`);
+    // Log the quiz data being sent
+    console.log("Sending quiz data:", quiz);
+
+    try {
+        const response = await fetch(`${API_URL}/api/quizapi/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+            body: JSON.stringify(quiz),
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            console.error("Server response:", text);
+            if (response.status === 400) {
+                throw new Error(`Validation error: ${text}`);
+            }
+            throw new Error(`Failed to create quiz: ${text}`);
+        }
+
+        const result = await response.json();
+        console.log("Server response success:", result);
+        return result;
+    } catch (error) {
+        console.error("Error creating quiz:", error);
+        throw error;
     }
-
-    return response.json();
+    //return response.json();
 }
 

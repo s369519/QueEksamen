@@ -129,12 +129,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var loggerConfiguration = new LoggerConfiguration()
     .MinimumLevel.Information()
+    // Also write to console so startup logs (user sync etc.) are visible in the terminal
     .WriteTo.File($"APILogs/app_{DateTime.Now:yyyyMMdd_HHmmss}.log")
-    .Filter.ByExcluding(e => e.Properties.TryGetValue("SourceContext", out var value) &&
+    .Filter.ByExcluding(e => e.Properties.TryGetValue("SourceContext", out _) &&
                             e.Level == LogEventLevel.Information &&
                             e.MessageTemplate.Text.Contains("Executed DbCommand"));
 var logger = loggerConfiguration.CreateLogger();
 builder.Logging.AddSerilog(logger);
+// Also add the default console logger so important startup logs are visible in terminal
+builder.Logging.AddConsole();
 
 builder.Services.AddAuthorization();
 
@@ -145,6 +148,63 @@ if (app.Environment.IsDevelopment())
     DBInit.Seed(app);
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+// Ensure users in AuthDbContext are present in QuizDbContext to satisfy FK constraints
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var services = scope.ServiceProvider;
+        var authContext = services.GetRequiredService<AuthDbContext>();
+        var quizContext = services.GetRequiredService<QuizDbContext>();
+
+    // Read all users from the Identity (Auth) database
+    var authUsers = await authContext.Users.AsNoTracking().ToListAsync();
+    var startupLog = services.GetRequiredService<ILoggerFactory>().CreateLogger("UserSync");
+    startupLog.LogInformation("Found {Count} users in AuthDbContext", authUsers.Count);
+
+    var inserted = 0;
+    foreach (var u in authUsers)
+        {
+            // Check if user exists in QuizDb (AuthUser table created by QuizDb migrations)
+            var exists = await quizContext.Set<AuthUser>().FindAsync(u.Id);
+            if (exists == null)
+            {
+                // Create a shallow copy suitable for the QuizDbContext
+                var copy = new AuthUser
+                {
+                    Id = u.Id,
+                    UserName = u.UserName,
+                    NormalizedUserName = u.NormalizedUserName,
+                    Email = u.Email,
+                    NormalizedEmail = u.NormalizedEmail,
+                    EmailConfirmed = u.EmailConfirmed,
+                    PasswordHash = u.PasswordHash,
+                    SecurityStamp = u.SecurityStamp,
+                    ConcurrencyStamp = u.ConcurrencyStamp,
+                    PhoneNumber = u.PhoneNumber,
+                    PhoneNumberConfirmed = u.PhoneNumberConfirmed,
+                    TwoFactorEnabled = u.TwoFactorEnabled,
+                    LockoutEnd = u.LockoutEnd,
+                    LockoutEnabled = u.LockoutEnabled,
+                    AccessFailedCount = u.AccessFailedCount
+                };
+
+                quizContext.Set<AuthUser>().Add(copy);
+                inserted++;
+            }
+        }
+        if (inserted > 0)
+        {
+            await quizContext.SaveChangesAsync();
+            startupLog.LogInformation("Inserted {Inserted} users into QuizDbContext AuthUser table", inserted);
+        }
+    }
+    catch (Exception ex)
+    {
+        var startupLogger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger("Startup");
+        startupLogger.LogError(ex, "Failed to synchronize users between AuthDbContext and QuizDbContext");
+    }
 }
 app.UseStaticFiles();
 app.UseRouting();
@@ -178,4 +238,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();
