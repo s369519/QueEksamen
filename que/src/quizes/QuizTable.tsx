@@ -37,7 +37,7 @@ const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted }) 
                             <td>{quiz.category}</td>
                             <td>{quiz.difficulty}</td>
                             <td>{quiz.timeLimit}</td>
-                            <td>{quiz.isPublic}</td>
+                            <td>{quiz.isPublic ? 'Public' : 'Private'}</td>
                             <td className='text-center'>
                                 {onQuizDeleted && (
                                     <>
