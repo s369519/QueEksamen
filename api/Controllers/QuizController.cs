@@ -637,13 +637,19 @@ public class QuizController : Controller
             return View(model);
         }
 
+        if (model.Quiz == null || model.Questions == null)
+        {
+            _logger.LogError("[QuizController] Quiz or Questions is null in model");
+            return BadRequest("Invalid quiz data");
+        }
+
         try
         {
             // --- Logging av inndata ---
             _logger.LogInformation("[QuizController] Starting update for QuizId {QuizId:0000}. Name='{Name}', Questions={QuestionCount}",
                 model.Quiz.QuizId,
                 model.Quiz.Name,
-                model.Questions?.Count ?? 0
+                model.Questions.Count
             );
 
             var updatedQuiz = new Quiz
