@@ -22,4 +22,20 @@ namespace Que.DTOs
 
         public List<QuestionDto> Questions { get; set; } = new List<QuestionDto>();
     }
+
+    public class QuestionDto
+    {
+        public int QuestionId { get; set; }
+        public string Text { get; set; } = string.Empty;
+        public bool AllowMultiple { get; set; }
+        public List<OptionDto> Options { get; set; } = new List<OptionDto>();
+    }
+
+    public class OptionDto
+    {
+        public int OptionId { get; set; }
+        public string Text { get; set; } = string.Empty;
+        public bool IsCorrect { get; set; }
+    }
+
 }
