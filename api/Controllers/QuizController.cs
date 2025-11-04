@@ -60,7 +60,8 @@ public class QuizAPIController : ControllerBase
                 Category = q.Category,
                 Difficulty = q.Difficulty,
                 TimeLimit = q.TimeLimit,
-                IsPublic = q.IsPublic
+                IsPublic = q.IsPublic,
+                OwnerId = q.OwnerId
             })
             .ToList();
 
@@ -179,6 +180,15 @@ public class QuizAPIController : ControllerBase
         var existingQuiz = await _quizRepository.GetQuizById(id);
         if (existingQuiz == null) return NotFound("Quiz not found");
 
+        // Check if the current user is the owner of the quiz
+        string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (existingQuiz.OwnerId != userId)
+        {
+            _logger.LogWarning("[QuizAPIController] User {UserId} attempted to update quiz {QuizId} owned by {OwnerId}", 
+                userId, id, existingQuiz.OwnerId);
+            return Forbid("You are not authorized to update this quiz.");
+        }
+
         existingQuiz.Name = quizDto.Name;
         existingQuiz.Description = quizDto.Description;
         existingQuiz.Category = quizDto.Category;
@@ -240,6 +250,22 @@ public class QuizAPIController : ControllerBase
     [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
+        var existingQuiz = await _quizRepository.GetQuizById(id);
+        if (existingQuiz == null)
+        {
+            _logger.LogError("[QuizAPIController] Quiz not found for the QuizId {QuizId:0000}", id);
+            return NotFound("Quiz not found");
+        }
+
+        // Check if the current user is the owner of the quiz
+        string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (existingQuiz.OwnerId != userId)
+        {
+            _logger.LogWarning("[QuizAPIController] User {UserId} attempted to delete quiz {QuizId} owned by {OwnerId}", 
+                userId, id, existingQuiz.OwnerId);
+            return Forbid("You are not authorized to delete this quiz.");
+        }
+
         bool returnOk = await _quizRepository.DeleteQuiz(id);
         if (!returnOk) {
             _logger.LogError("[QuizAPIController] Quiz deletion failed for the QuizId {QuizId:0000}", id);

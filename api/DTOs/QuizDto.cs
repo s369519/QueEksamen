@@ -18,6 +18,7 @@ namespace Que.DTOs
         [Range(1, 100, ErrorMessage = "The time limit must be between 1 and 100 minutes")]
         public int TimeLimit { get; set; }
         public bool IsPublic { get; set; }
+        public string? OwnerId { get; set; }
 
         public List<QuestionDto> Questions { get; set; } = new List<QuestionDto>();
     }

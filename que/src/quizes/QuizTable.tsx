@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Quiz } from '../types/quiz';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 
 interface QuizTableProps {
     quizes: Quiz[];
@@ -12,6 +13,7 @@ interface QuizTableProps {
 const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted }) => {
     const [showDescriptions, setShowDescriptions] = useState<boolean>(true);
     const toggleDescriptions = () => setShowDescriptions(prevShowDescriptions => !prevShowDescriptions);
+    const { user } = useAuth();
 
     return (
         <div>
@@ -29,29 +31,34 @@ const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted }) 
                     </tr>
                 </thead>
                 <tbody>
-                    {quizes.map(quiz => (
-                        <tr key={quiz.quizId}>
-                            <td>{quiz.quizId}</td>
-                            <td>{quiz.name}</td>
-                            {showDescriptions && <td>{quiz.description}</td>}
-                            <td>{quiz.category}</td>
-                            <td>{quiz.difficulty}</td>
-                            <td>{quiz.timeLimit}</td>
-                            <td>{quiz.isPublic ? 'Public' : 'Private'}</td>
-                            <td className='text-center'>
-                                {onQuizDeleted && (
-                                    <>
-                                    <Link to={`/quizupdate/${quiz.quizId}`}>
-                                    Update
-                                    </Link>
-                                    <Link to="#" onClick={() => onQuizDeleted(quiz.quizId!)} className='btn btn-link text-danger'>
-                                    Delete
-                                    </Link>
-                                    </>
-                                )}
-                            </td>
-                        </tr>
-                    ))}
+                    {quizes.map(quiz => {
+                        const isOwner = user && quiz.ownerId === user.sub;
+                        const canEdit = onQuizDeleted && isOwner;
+                        
+                        return (
+                            <tr key={quiz.quizId}>
+                                <td>{quiz.quizId}</td>
+                                <td>{quiz.name}</td>
+                                {showDescriptions && <td>{quiz.description}</td>}
+                                <td>{quiz.category}</td>
+                                <td>{quiz.difficulty}</td>
+                                <td>{quiz.timeLimit}</td>
+                                <td>{quiz.isPublic ? 'Public' : 'Private'}</td>
+                                <td className='text-center'>
+                                    {canEdit && (
+                                        <>
+                                        <Link to={`/quizupdate/${quiz.quizId}`}>
+                                        Update
+                                        </Link>
+                                        <Link to="#" onClick={() => onQuizDeleted(quiz.quizId!)} className='btn btn-link text-danger'>
+                                        Delete
+                                        </Link>
+                                        </>
+                                    )}
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </Table>
         </div>
