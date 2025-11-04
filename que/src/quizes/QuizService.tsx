@@ -42,7 +42,6 @@ const handleLogin = async (username: string, password: string) => {
 
 export const fetchQuizes = async () => {
     const token = localStorage.getItem("token");
-    if (!token) throw new Error("User not authenticated.");
   
     const headers: HeadersInit = {
         "Content-Type": "application/json"
@@ -66,11 +65,18 @@ export const fetchQuizes = async () => {
 
 export const fetchQuizById = async (quizId: string) => {
     const token = localStorage.getItem("token");
+    
+    const headers: HeadersInit = {
+        "Content-Type": "application/json"
+    };
+
+    // Add token if available, but allow anonymous access for public quizzes
+    if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+    }
+
     const response = await fetch(`${API_URL}/api/quizapi/${quizId}`, {
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        }
+        headers: headers
     });
     return handleResponse(response);
 };

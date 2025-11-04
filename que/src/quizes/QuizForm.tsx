@@ -25,7 +25,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
   const [description, setDescription] = useState(initialData?.description || '');
   const [category, setCategory] = useState(initialData?.category || '');
   const [difficulty, setDifficulty] = useState(initialData?.difficulty || '');
-  const [timeLimit, setTimeLimit] = useState(initialData?.timeLimit || 0);
+  const [timeLimit, setTimeLimit] = useState(initialData?.timeLimit || 10);
   const [questions, setQuestions] = useState<Question[]>(initialData?.questions || [] );
   const [isPublic, setIsPublic] = useState(initialData?.isPublic || false);
   const [nameError, setNameError] = useState('');
@@ -45,7 +45,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
   const validateName = (value: string) => {
     const regex = /^[a-zA-ZæøåÆØÅ0-9 \-]{2,40}$/;
     if (!regex.test(value)) {
-        setNameError('The name must be numbers or letters between 2 and 20 characters');
+        setNameError('The name must be numbers or letters between 2 and 40 characters');
         return false;
     }
     setNameError('');
@@ -249,7 +249,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
                 max="100"
                 value={timeLimit}
                 onChange={handleTimeLimitChange}
-                isInvalid={!timeLimitError}
+                isInvalid={!!timeLimitError}
                 required
             />
             </Form.Group>

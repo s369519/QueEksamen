@@ -148,7 +148,7 @@ public class QuizAPIController : ControllerBase
         }
     }
 
-    [Authorize]
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetQuiz(int id)
     {
