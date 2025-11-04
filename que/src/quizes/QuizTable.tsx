@@ -45,6 +45,9 @@ const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted }) 
                                 <td>{quiz.timeLimit}</td>
                                 <td>{quiz.isPublic ? 'Public' : 'Private'}</td>
                                 <td className='text-center'>
+                                    <Link to={`/quiztake/${quiz.quizId}`} className='btn btn-link text-success me-2'>
+                                        Take Quiz
+                                    </Link>
                                     {canEdit && (
                                         <>
                                         <Link to={`/quizupdate/${quiz.quizId}`}>

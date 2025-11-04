@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
 
 namespace Que.Controllers;
 
@@ -23,11 +24,18 @@ public class QuizAPIController : ControllerBase
     private readonly IQuizRepository _quizRepository;
     private readonly ILogger<QuizAPIController> _logger;
     private readonly UserManager<AuthUser> _userManager;
-    public QuizAPIController(IQuizRepository quizRepository, ILogger<QuizAPIController> logger, UserManager<AuthUser> userManager)
+    private readonly QuizDbContext _quizDbContext;
+    
+    public QuizAPIController(
+        IQuizRepository quizRepository, 
+        ILogger<QuizAPIController> logger, 
+        UserManager<AuthUser> userManager,
+        QuizDbContext quizDbContext)
     {
         _quizRepository = quizRepository;
         _logger = logger;
         _userManager = userManager;
+        _quizDbContext = quizDbContext;
     }
 
     [AllowAnonymous]
@@ -101,6 +109,33 @@ public class QuizAPIController : ControllerBase
         {
             _logger.LogError("User not found in database for UserId={UserId}", userId);
             return Unauthorized("User not found in database");
+        }
+
+        // --- Sørg for at brukeren finnes i QuizDbContext (for FK-constraint) ---
+        var userInQuizDb = await _quizDbContext.Set<AuthUser>().FindAsync(userId);
+        if (userInQuizDb == null)
+        {
+            _logger.LogInformation("Syncing user {UserId} to QuizDbContext", userId);
+            var userCopy = new AuthUser
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                NormalizedUserName = user.NormalizedUserName,
+                Email = user.Email,
+                NormalizedEmail = user.NormalizedEmail,
+                EmailConfirmed = user.EmailConfirmed,
+                PasswordHash = user.PasswordHash,
+                SecurityStamp = user.SecurityStamp,
+                ConcurrencyStamp = user.ConcurrencyStamp,
+                PhoneNumber = user.PhoneNumber,
+                PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+                TwoFactorEnabled = user.TwoFactorEnabled,
+                LockoutEnd = user.LockoutEnd,
+                LockoutEnabled = user.LockoutEnabled,
+                AccessFailedCount = user.AccessFailedCount
+            };
+            _quizDbContext.Set<AuthUser>().Add(userCopy);
+            await _quizDbContext.SaveChangesAsync();
         }
 
         try
@@ -272,6 +307,184 @@ public class QuizAPIController : ControllerBase
             return BadRequest("Quiz deletion failed");
         }
         return NoContent();
+    }
+
+    // =========================
+    // TAKE QUIZ - Get quiz data for taking (without correct answers)
+    // =========================
+    [AllowAnonymous]
+    [HttpGet("take/{id}")]
+    public async Task<IActionResult> GetQuizForTaking(int id)
+    {
+        var quiz = await _quizRepository.GetQuizWithDetailsAsync(id);
+        if (quiz == null)
+        {
+            _logger.LogError("[QuizAPIController] Quiz not found for taking, QuizId {QuizId:0000}", id);
+            return NotFound("Quiz not found");
+        }
+
+        // Check access: public quizzes for all, private only for owner
+        string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        bool isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+
+        if (!quiz.IsPublic && (!isAuthenticated || quiz.OwnerId != userId))
+        {
+            _logger.LogWarning("[QuizAPIController] User {UserId} attempted to take private quiz {QuizId}", 
+                userId ?? "Anonymous", id);
+            return Forbid("You are not authorized to take this private quiz.");
+        }
+
+        // Map to DTO without revealing correct answers
+        var quizTakeDto = new QuizTakeDto
+        {
+            QuizId = quiz.QuizId,
+            QuizName = quiz.Name,
+            TotalQuestions = quiz.Questions?.Count ?? 0,
+            TimeLimit = quiz.TimeLimit,
+            Questions = quiz.Questions?.Select(q => new QuestionTakeDto
+            {
+                QuestionId = q.QuestionId,
+                Text = q.Text,
+                AllowMultiple = q.AllowMultiple,
+                Options = q.Options?.Select(o => new OptionTakeDto
+                {
+                    OptionId = o.OptionId,
+                    Text = o.Text
+                    // IsCorrect is intentionally NOT included
+                }).ToList() ?? new List<OptionTakeDto>()
+            }).ToList() ?? new List<QuestionTakeDto>()
+        };
+
+        _logger.LogInformation("[QuizAPIController] User {UserId} started taking quiz {QuizId}", 
+            userId ?? "Anonymous", id);
+
+        return Ok(quizTakeDto);
+    }
+
+    // =========================
+    // SUBMIT ANSWER - Check if answer is correct (with partial scoring)
+    // =========================
+    [AllowAnonymous]
+    [HttpPost("take/answer")]
+    public async Task<IActionResult> SubmitAnswer([FromBody] SubmitAnswerDto submitDto)
+    {
+        if (submitDto == null || submitDto.SelectedOptionIds == null || !submitDto.SelectedOptionIds.Any())
+        {
+            return BadRequest("No answer selected");
+        }
+
+        // Get the question with options
+        var question = await _quizRepository.GetQuestionByIdAsync(submitDto.QuestionId);
+        if (question == null)
+        {
+            return NotFound("Question not found");
+        }
+
+        // Verify the question belongs to the quiz
+        if (question.QuizId != submitDto.QuizId)
+        {
+            return BadRequest("Question does not belong to this quiz");
+        }
+
+        // Calculate score (0.0 to 1.0)
+        double scoreValue = 0.0;
+        bool isFullyCorrect = false;
+
+        if (question.AllowMultiple)
+        {
+            // For multiple choice: calculate partial score
+            var correctOptionIds = question.Options.Where(o => o.IsCorrect).Select(o => o.OptionId).ToHashSet();
+            var incorrectOptionIds = question.Options.Where(o => !o.IsCorrect).Select(o => o.OptionId).ToHashSet();
+            var selectedSet = submitDto.SelectedOptionIds.ToHashSet();
+
+            // Count correct selections and incorrect selections
+            int correctSelected = selectedSet.Intersect(correctOptionIds).Count();
+            int incorrectSelected = selectedSet.Intersect(incorrectOptionIds).Count();
+            int totalCorrect = correctOptionIds.Count;
+
+            if (totalCorrect > 0)
+            {
+                // Score = (correct selections / total correct options) - penalty for wrong selections
+                // Penalty: each wrong selection reduces score proportionally
+                double correctRatio = (double)correctSelected / totalCorrect;
+                double penalty = (double)incorrectSelected / totalCorrect;
+                scoreValue = Math.Max(0.0, correctRatio - penalty);
+                
+                // Fully correct if all correct selected and no incorrect selected
+                isFullyCorrect = correctSelected == totalCorrect && incorrectSelected == 0;
+            }
+        }
+        else
+        {
+            // For single choice: either correct (1.0) or incorrect (0.0)
+            var selectedOption = question.Options.FirstOrDefault(o => o.OptionId == submitDto.SelectedOptionIds.First());
+            if (selectedOption != null && selectedOption.IsCorrect)
+            {
+                scoreValue = 1.0;
+                isFullyCorrect = true;
+            }
+        }
+
+        _logger.LogInformation("[QuizAPIController] Answer submitted for QuizId {QuizId}, QuestionId {QuestionId}, Score: {Score:F2}, FullyCorrect: {IsCorrect}", 
+            submitDto.QuizId, submitDto.QuestionId, scoreValue, isFullyCorrect);
+
+        return Ok(new { 
+            isCorrect = isFullyCorrect,
+            scoreValue = scoreValue,
+            isPartiallyCorrect = scoreValue > 0.0 && !isFullyCorrect
+        });
+    }
+
+    // =========================
+    // GET QUIZ RESULTS - Get quiz with correct answers (for review after completion)
+    // =========================
+    [AllowAnonymous]
+    [HttpGet("results/{id}")]
+    public async Task<IActionResult> GetQuizResults(int id)
+    {
+        var quiz = await _quizRepository.GetQuizWithDetailsAsync(id);
+        if (quiz == null)
+        {
+            _logger.LogError("[QuizAPIController] Quiz not found for results, QuizId {QuizId:0000}", id);
+            return NotFound("Quiz not found");
+        }
+
+        // Check access: public quizzes for all, private only for owner
+        string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        bool isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+
+        if (!quiz.IsPublic && (!isAuthenticated || quiz.OwnerId != userId))
+        {
+            _logger.LogWarning("[QuizAPIController] User {UserId} attempted to view results for private quiz {QuizId}", 
+                userId ?? "Anonymous", id);
+            return Forbid("You are not authorized to view results for this private quiz.");
+        }
+
+        // Map to DTO WITH correct answers (for review)
+        var quizResultsDto = new QuizTakeDto
+        {
+            QuizId = quiz.QuizId,
+            QuizName = quiz.Name,
+            TotalQuestions = quiz.Questions?.Count ?? 0,
+            TimeLimit = quiz.TimeLimit,
+            Questions = quiz.Questions?.Select(q => new QuestionTakeDto
+            {
+                QuestionId = q.QuestionId,
+                Text = q.Text,
+                AllowMultiple = q.AllowMultiple,
+                Options = q.Options?.Select(o => new OptionTakeDto
+                {
+                    OptionId = o.OptionId,
+                    Text = o.Text,
+                    IsCorrect = o.IsCorrect  // NOW included for review
+                }).ToList() ?? new List<OptionTakeDto>()
+            }).ToList() ?? new List<QuestionTakeDto>()
+        };
+
+        _logger.LogInformation("[QuizAPIController] User {UserId} viewed results for quiz {QuizId}", 
+            userId ?? "Anonymous", id);
+
+        return Ok(quizResultsDto);
     }
 }
 

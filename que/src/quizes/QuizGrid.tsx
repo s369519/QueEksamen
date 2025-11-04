@@ -29,12 +29,19 @@ const QuizGrid: React.FC<QuizGridProps> = ({ quizes, apiUrl, onQuizDeleted }) =>
                                     <Card.Text>{quiz.difficulty}</Card.Text>
                                     <Card.Text>Time Limit: {quiz.timeLimit} Minutes</Card.Text>
                                     
-                                    <div className="mt-auto d-flex justify-content-between gap-2">
+                                    <div className="mt-auto d-flex flex-column gap-2">
+                                        <Button href={`/quiztake/${quiz.quizId}`} variant="success" className="w-100">
+                                            Take Quiz
+                                        </Button>
                                         {canEdit && (
-                                            <>
-                                                <Button href={`/quizupdate/${quiz.quizId}`} variant="primary">Update</Button>
-                                                <Button onClick={() => onQuizDeleted(quiz.quizId!)} variant="danger">Delete</Button>
-                                            </>
+                                            <div className="d-flex gap-2">
+                                                <Button href={`/quizupdate/${quiz.quizId}`} variant="primary" className="flex-grow-1">
+                                                    Update
+                                                </Button>
+                                                <Button onClick={() => onQuizDeleted(quiz.quizId!)} variant="danger" className="flex-grow-1">
+                                                    Delete
+                                                </Button>
+                                            </div>
                                         )}
                                     </div>
                                 </Card.Body>

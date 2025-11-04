@@ -184,3 +184,83 @@ export async function createQuiz(quizData: any) {
     //return response.json();
 }
 
+// Get quiz for taking (without correct answers)
+export const fetchQuizForTaking = async (quizId: string) => {
+    const token = localStorage.getItem("token");
+    
+    const headers: HeadersInit = {
+        "Content-Type": "application/json"
+    };
+
+    // Add token if available (for private quizzes)
+    if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    const response = await fetch(`${API_URL}/api/quizapi/take/${quizId}`, {
+        headers: headers
+    });
+
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || "Failed to fetch quiz for taking");
+    }
+
+    return response.json();
+};
+
+// Submit answer for a question
+export const submitAnswer = async (quizId: number, questionId: number, selectedOptionIds: number[]) => {
+    const token = localStorage.getItem("token");
+    
+    const headers: HeadersInit = {
+        "Content-Type": "application/json"
+    };
+
+    // Add token if available
+    if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    const response = await fetch(`${API_URL}/api/quizapi/take/answer`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+            quizId,
+            questionId,
+            selectedOptionIds
+        })
+    });
+
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || "Failed to submit answer");
+    }
+
+    return response.json();
+};
+
+// Get quiz results with correct answers (for review after completion)
+export const fetchQuizResults = async (quizId: string) => {
+    const token = localStorage.getItem("token");
+    
+    const headers: HeadersInit = {
+        "Content-Type": "application/json"
+    };
+
+    // Add token if available (for private quizzes)
+    if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    const response = await fetch(`${API_URL}/api/quizapi/results/${quizId}`, {
+        headers: headers
+    });
+
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || "Failed to fetch quiz results");
+    }
+
+    return response.json();
+};
