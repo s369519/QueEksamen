@@ -469,8 +469,6 @@ C:/Users/erikg/OneDrive/Student/Webapplikasjoner/QueEksamen/api/obj/Debug/net8.0
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/api.csproj.CoreCompileInputs.cache
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/api.MvcApplicationPartsAssemblyInfo.cs
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/api.MvcApplicationPartsAssemblyInfo.cache
-/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/api.RazorAssemblyInfo.cache
-/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/api.RazorAssemblyInfo.cs
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/api.sourcelink.json
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/staticwebassets.build.json
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/staticwebassets.development.json
@@ -479,9 +477,7 @@ C:/Users/erikg/OneDrive/Student/Webapplikasjoner/QueEksamen/api/obj/Debug/net8.0
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.api.props
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.api.props
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/staticwebassets.pack.json
-/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/scopedcss/bundle/api.styles.css
-/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/scopedcss/projectbundle/api.bundle.scp.css
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/api.csproj.Up2Date
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/api.dll
 /Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/Debug/net8.0/refint/api.dll

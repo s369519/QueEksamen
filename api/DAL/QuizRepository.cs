@@ -68,56 +68,11 @@ public class QuizRepository : IQuizRepository
         }
     }
 
-    public async Task<IEnumerable<Quiz>> GetAllQuizzesAsync()
-    {
-        return await _db.Quizes.ToListAsync();
-    }
-
-    public async Task AddQuizAsync(Quiz quiz)
-    {
-        await _db.Quizes.AddAsync(quiz);
-        await _db.SaveChangesAsync();
-    }
-
-   
-
-    // QUESTIONS 
     public async Task<Question?> GetQuestionByIdAsync(int questionId)
     {
-        return await _db.Questions.FindAsync(questionId);
-    }
-
-    public async Task UpdateQuestionAsync(Question question)
-    {
-        _db.Questions.Update(question);
-        await _db.SaveChangesAsync();
-    }
-
-    public async Task<IEnumerable<Question>> GetQuestionsByQuizIdAsync(int quizId)
-    {
         return await _db.Questions
-            .Where(q => q.QuizId == quizId)
-            .ToListAsync();
-    }
-
-    // OPTIONS
-    public async Task<Option?> GetOptionByIdAsync(int optionId)
-    {
-        return await _db.Options.FindAsync(optionId);
-    }
-
-    public async Task UpdateOptionAsync(Option option)
-    {
-        _db.Options.Update(option);
-        await _db.SaveChangesAsync();
-    }
-
-    public async Task<IEnumerable<Option>> GetOptionsByQuizId(int quizId)
-    {
-        return await _db.Options
-            // Rettingspunkt #1: Korrekt null-sjekk og riktig bruk av parameteren 'quizId'
-            .Where(o => o.Question != null && o.Question.QuizId == quizId) 
-            .ToListAsync();
+            .Include(q => q.Options)
+            .FirstOrDefaultAsync(q => q.QuestionId == questionId);
     }
 
     public async Task<List<Question>> GetQuestionsByQuizId(int quizId)
