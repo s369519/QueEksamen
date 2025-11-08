@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/api.csproj": {}
+    "/Users/dq/WebEksamen/QueEksamen/api/api.csproj": {}
   },
   "projects": {
-    "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/api.csproj": {
+    "/Users/dq/WebEksamen/QueEksamen/api/api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/api.csproj",
+        "projectUniqueName": "/Users/dq/WebEksamen/QueEksamen/api/api.csproj",
         "projectName": "api",
-        "projectPath": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/api.csproj",
-        "packagesPath": "/Users/arthurflotvik/.nuget/packages/",
-        "outputPath": "/Users/arthurflotvik/Documents/GitHub/QueEksamen/api/obj/",
+        "projectPath": "/Users/dq/WebEksamen/QueEksamen/api/api.csproj",
+        "packagesPath": "/Users/dq/.nuget/packages/",
+        "outputPath": "/Users/dq/WebEksamen/QueEksamen/api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/arthurflotvik/.nuget/NuGet/NuGet.Config"
+          "/Users/dq/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -131,7 +131,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.413/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.414/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

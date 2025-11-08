@@ -264,3 +264,44 @@ export const fetchQuizResults = async (quizId: string) => {
 
     return response.json();
 };
+
+// USER PROFILE CODE
+
+export const getUserProfile = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("User not authenticated");
+
+    const response = await fetch(`${API_URL}/api/user/profile`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    return handleResponse(response);
+};
+
+export const getUserQuizzes = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("User not authenticated");
+
+    const response = await fetch(`${API_URL}/api/quizapi/my-quizzes`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    return handleResponse(response);
+};
+
+export const getUserAttemptedQuizzes = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("User not authenticated");
+
+    const response = await fetch(`${API_URL}/api/quizapi/attempted-quizzes`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    return handleResponse(response);
+};

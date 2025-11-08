@@ -8,7 +8,8 @@
       "esModuleInterop": true, // Allow default imports from CommonJS modules
       "skipLibCheck": true, // Skip type checking for library files in node_modules (faster builds)
       "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names across imports
-      "noEmit": true // Only type-check — don’t output .js files (Vite does the build)
+      "noEmit": true,// Only type-check — don’t output .js files (Vite does the build)
+      "allowSyntheticDefaultImports": true
     },
     "include": ["src"], // Files and folders to include in the project
     "exclude": ["node_modules", "dist"] // Folders to exclude from type-checking

@@ -10,6 +10,8 @@ import LoginPage from './auth/LoginPage'
 import RegisterPage from './auth/RegisterPage'
 import ProtectedRoute from './auth/ProtectedRoute'
 import { AuthProvider } from './auth/AuthContext'
+import Profile from './views/Profile/Profile'
+
 import './App.css'
 
 const App: React.FC = () => {
@@ -28,6 +30,7 @@ const App: React.FC = () => {
             <Route element={<ProtectedRoute />}>
               <Route path='/quizcreate' element={<QuizCreatePage />} />
               <Route path='/quizupdate/:quizId' element={<QuizUpdatePage />}/>
+              <Route path='/profile' element={<Profile />} /> //NY kode
             </Route>
 
             <Route path='*' element={<Navigate to="/" replace />} />
