@@ -15,8 +15,8 @@
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "8.0.21",
           "Microsoft.AspNetCore.OpenApi": "8.0.7",
           "Microsoft.EntityFrameworkCore.Design": "8.0.8",
-          "Microsoft.EntityFrameworkCore.Proxies": "8.0.7",
-          "Microsoft.EntityFrameworkCore.Sqlite": "8.0.7",
+          "Microsoft.EntityFrameworkCore.Proxies": "8.0.8",
+          "Microsoft.EntityFrameworkCore.Sqlite": "8.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
           "Microsoft.IdentityModel.Tokens": "8.0.2",
           "Serilog": "4.3.0",
@@ -389,14 +389,14 @@
         }
       },
       "Microsoft.CSharp/4.7.0": {},
-      "Microsoft.Data.Sqlite.Core/8.0.7": {
+      "Microsoft.Data.Sqlite.Core/8.0.8": {
         "dependencies": {
           "SQLitePCLRaw.core": "2.1.6"
         },
         "runtime": {
           "lib/net8.0/Microsoft.Data.Sqlite.dll": {
-            "assemblyVersion": "8.0.7.0",
-            "fileVersion": "8.0.724.31404"
+            "assemblyVersion": "8.0.8.0",
+            "fileVersion": "8.0.824.36704"
           }
         }
       },
@@ -438,15 +438,15 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Proxies/8.0.7": {
+      "Microsoft.EntityFrameworkCore.Proxies/8.0.8": {
         "dependencies": {
           "Castle.Core": "5.1.1",
           "Microsoft.EntityFrameworkCore": "8.0.8"
         },
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Proxies.dll": {
-            "assemblyVersion": "8.0.7.0",
-            "fileVersion": "8.0.724.31404"
+            "assemblyVersion": "8.0.8.0",
+            "fileVersion": "8.0.824.36704"
           }
         }
       },
@@ -462,22 +462,22 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Sqlite/8.0.7": {
+      "Microsoft.EntityFrameworkCore.Sqlite/8.0.8": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Sqlite.Core": "8.0.7",
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": "8.0.8",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.1.6"
         }
       },
-      "Microsoft.EntityFrameworkCore.Sqlite.Core/8.0.7": {
+      "Microsoft.EntityFrameworkCore.Sqlite.Core/8.0.8": {
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "8.0.7",
+          "Microsoft.Data.Sqlite.Core": "8.0.8",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.8",
           "Microsoft.Extensions.DependencyModel": "8.0.1"
         },
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Sqlite.dll": {
-            "assemblyVersion": "8.0.7.0",
-            "fileVersion": "8.0.724.31404"
+            "assemblyVersion": "8.0.8.0",
+            "fileVersion": "8.0.824.36704"
           }
         }
       },
@@ -1161,12 +1161,12 @@
       "path": "microsoft.csharp/4.7.0",
       "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
-    "Microsoft.Data.Sqlite.Core/8.0.7": {
+    "Microsoft.Data.Sqlite.Core/8.0.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3H5ht15zKtw9ma9v092kI0gjV+P45EbJPsmnkk/DNVz/yDPPVYSyCGytSatN2dZQ19ZazLg3gUzoBdsoO5V5JQ==",
-      "path": "microsoft.data.sqlite.core/8.0.7",
-      "hashPath": "microsoft.data.sqlite.core.8.0.7.nupkg.sha512"
+      "sha512": "sha512-qHInO2EvOcPhjgboP0TGnXM7rASdvWXrw6jAH8Yuz5YP82VTje7d/NKiX1i+dVbE3+G3JuW1kqNVB8yLvsqgYA==",
+      "path": "microsoft.data.sqlite.core/8.0.8",
+      "hashPath": "microsoft.data.sqlite.core.8.0.8.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/8.0.8": {
       "type": "package",
@@ -1196,12 +1196,12 @@
       "path": "microsoft.entityframeworkcore.design/8.0.8",
       "hashPath": "microsoft.entityframeworkcore.design.8.0.8.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Proxies/8.0.7": {
+    "Microsoft.EntityFrameworkCore.Proxies/8.0.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QXaz3KxardLcEc++7nNy35LGTuLxf/bIMV4+gLV+mbvfXMdC2p5yLuW+S0qcX6hNWqtDo7OHEbZ1Jcf2ezh9ZA==",
-      "path": "microsoft.entityframeworkcore.proxies/8.0.7",
-      "hashPath": "microsoft.entityframeworkcore.proxies.8.0.7.nupkg.sha512"
+      "sha512": "sha512-q4UneU7rhDgRdDwkta/VyKBNnAoKanKnuHQiVZ8xK1lD0VWg03q886XffrWu7qhzoViohPucGbqtRDOMrBD93Q==",
+      "path": "microsoft.entityframeworkcore.proxies/8.0.8",
+      "hashPath": "microsoft.entityframeworkcore.proxies.8.0.8.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/8.0.8": {
       "type": "package",
@@ -1210,19 +1210,19 @@
       "path": "microsoft.entityframeworkcore.relational/8.0.8",
       "hashPath": "microsoft.entityframeworkcore.relational.8.0.8.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Sqlite/8.0.7": {
+    "Microsoft.EntityFrameworkCore.Sqlite/8.0.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-odTJtx/J7/EyPtg+pGfDbuEZJaODH+yG7R4mkmnhrHYwJPtzSzPue1xl4jBjxwEVVWd/qdBP5z/E+8dAnW9hGQ==",
-      "path": "microsoft.entityframeworkcore.sqlite/8.0.7",
-      "hashPath": "microsoft.entityframeworkcore.sqlite.8.0.7.nupkg.sha512"
+      "sha512": "sha512-IDB7Xs16hN/3VkWFCCa4r3fqoJxMVezwq418gr8dBkRBO0pxH+BX/Kjk/U3PYXDvzVLkXqUgJsHv1XoFrJbZPQ==",
+      "path": "microsoft.entityframeworkcore.sqlite/8.0.8",
+      "hashPath": "microsoft.entityframeworkcore.sqlite.8.0.8.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Sqlite.Core/8.0.7": {
+    "Microsoft.EntityFrameworkCore.Sqlite.Core/8.0.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pqjQey+EEmsLwTv4vGeSGFw4o6nGLFdEM3ii2FCjfb0YZd3+tqX4O5jNZE/2+Y9rN4QQcbsb/8Cf6NIoyuKZng==",
-      "path": "microsoft.entityframeworkcore.sqlite.core/8.0.7",
-      "hashPath": "microsoft.entityframeworkcore.sqlite.core.8.0.7.nupkg.sha512"
+      "sha512": "sha512-w5k/ENj3+BPbmggqh83RRuPhhKcJmW7CmdJuGwdX1eFrmptJwnzKiHfQCPkJAu9df16PSs5YFeWrDgepfqnltA==",
+      "path": "microsoft.entityframeworkcore.sqlite.core/8.0.8",
+      "hashPath": "microsoft.entityframeworkcore.sqlite.core.8.0.8.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Tools/8.0.8": {
       "type": "package",

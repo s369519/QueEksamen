@@ -77,6 +77,60 @@ public class QuizAPIController : ControllerBase
         return Ok(visibleQuizzes);
     }
 
+    [AllowAnonymous]
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetQuiz(int id)
+    {
+         var quiz = await _quizRepository.GetQuizById(id);
+        if (quiz == null)
+        {
+            _logger.LogError("[QuizAPIController] Quiz not found for the QuizId {QuizId:0000}", id);
+            return NotFound("Quiz not found for the QuizId");
+        }
+
+        string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        bool isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+
+        if (!quiz.IsPublic && (!isAuthenticated || quiz.OwnerId != userId))
+        {
+            return Forbid("You are not authorized to access this private quiz.");
+        }
+
+        return Ok(quiz);
+    }
+    
+    [Authorize]
+    [HttpGet("user/quizzes")]
+    public async Task<IActionResult> GetUserQuizzes()
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userId))
+        {
+            _logger.LogWarning("[QuizAPIController] GetUserQuizzes called without valid user ID");
+            return Unauthorized();
+        }
+
+        _logger.LogInformation("[QuizAPIController] Fetching quizzes for user: {UserId}", userId);
+        var quizzes = await _quizRepository.GetQuizzesByUserId(userId);
+        return Ok(quizzes);
+    }
+
+    [Authorize]
+    [HttpGet("user/attempts")]
+    public async Task<IActionResult> GetUserAttemptedQuizzes()
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userId))
+        {
+            _logger.LogWarning("[QuizAPIController] GetUserAttemptedQuizzes called without valid user ID");
+            return Unauthorized();
+        }
+
+        _logger.LogInformation("[QuizAPIController] Fetching quiz attempts for user: {UserId}", userId);
+        var attempts = await _quizRepository.GetAttemptedQuizzesByUserId(userId);
+        return Ok(attempts);
+    }
+
     [Authorize]
     [HttpPost("create")]
     public async Task<IActionResult> Create([FromBody] QuizDto quizDto)
@@ -183,27 +237,7 @@ public class QuizAPIController : ControllerBase
         }
     }
 
-    [AllowAnonymous]
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetQuiz(int id)
-    {
-         var quiz = await _quizRepository.GetQuizById(id);
-        if (quiz == null)
-        {
-            _logger.LogError("[QuizAPIController] Quiz not found for the QuizId {QuizId:0000}", id);
-            return NotFound("Quiz not found for the QuizId");
-        }
 
-        string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        bool isAuthenticated = User.Identity?.IsAuthenticated ?? false;
-
-        if (!quiz.IsPublic && (!isAuthenticated || quiz.OwnerId != userId))
-        {
-            return Forbid("You are not authorized to access this private quiz.");
-        }
-
-        return Ok(quiz);
-    }
 
     [Authorize]
     [HttpPut("update/{id}")]
@@ -485,4 +519,5 @@ public class QuizAPIController : ControllerBase
 
         return Ok(quizResultsDto);
     }
+
 }

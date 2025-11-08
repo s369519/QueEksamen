@@ -479,7 +479,7 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "Microsoft.Data.Sqlite.Core/8.0.7": {
+      "Microsoft.Data.Sqlite.Core/8.0.8": {
         "type": "package",
         "dependencies": {
           "SQLitePCLRaw.core": "2.1.6"
@@ -562,11 +562,11 @@
           "build/net8.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Proxies/8.0.7": {
+      "Microsoft.EntityFrameworkCore.Proxies/8.0.8": {
         "type": "package",
         "dependencies": {
           "Castle.Core": "5.1.1",
-          "Microsoft.EntityFrameworkCore": "8.0.7"
+          "Microsoft.EntityFrameworkCore": "8.0.8"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Proxies.dll": {
@@ -596,10 +596,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Sqlite/8.0.7": {
+      "Microsoft.EntityFrameworkCore.Sqlite/8.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Sqlite.Core": "8.0.7",
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": "8.0.8",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.1.6"
         },
         "compile": {
@@ -609,11 +609,11 @@
           "lib/net8.0/_._": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Sqlite.Core/8.0.7": {
+      "Microsoft.EntityFrameworkCore.Sqlite.Core/8.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "8.0.7",
-          "Microsoft.EntityFrameworkCore.Relational": "8.0.7",
+          "Microsoft.Data.Sqlite.Core": "8.0.8",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.8",
           "Microsoft.Extensions.DependencyModel": "8.0.1"
         },
         "compile": {
@@ -2469,10 +2469,10 @@
         "version.txt"
       ]
     },
-    "Microsoft.Data.Sqlite.Core/8.0.7": {
-      "sha512": "3H5ht15zKtw9ma9v092kI0gjV+P45EbJPsmnkk/DNVz/yDPPVYSyCGytSatN2dZQ19ZazLg3gUzoBdsoO5V5JQ==",
+    "Microsoft.Data.Sqlite.Core/8.0.8": {
+      "sha512": "qHInO2EvOcPhjgboP0TGnXM7rASdvWXrw6jAH8Yuz5YP82VTje7d/NKiX1i+dVbE3+G3JuW1kqNVB8yLvsqgYA==",
       "type": "package",
-      "path": "microsoft.data.sqlite.core/8.0.7",
+      "path": "microsoft.data.sqlite.core/8.0.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2484,7 +2484,7 @@
         "lib/net8.0/Microsoft.Data.Sqlite.xml",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.dll",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.xml",
-        "microsoft.data.sqlite.core.8.0.7.nupkg.sha512",
+        "microsoft.data.sqlite.core.8.0.8.nupkg.sha512",
         "microsoft.data.sqlite.core.nuspec"
       ]
     },
@@ -2550,10 +2550,10 @@
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Proxies/8.0.7": {
-      "sha512": "QXaz3KxardLcEc++7nNy35LGTuLxf/bIMV4+gLV+mbvfXMdC2p5yLuW+S0qcX6hNWqtDo7OHEbZ1Jcf2ezh9ZA==",
+    "Microsoft.EntityFrameworkCore.Proxies/8.0.8": {
+      "sha512": "q4UneU7rhDgRdDwkta/VyKBNnAoKanKnuHQiVZ8xK1lD0VWg03q886XffrWu7qhzoViohPucGbqtRDOMrBD93Q==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.proxies/8.0.7",
+      "path": "microsoft.entityframeworkcore.proxies/8.0.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2561,7 +2561,7 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Proxies.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Proxies.xml",
-        "microsoft.entityframeworkcore.proxies.8.0.7.nupkg.sha512",
+        "microsoft.entityframeworkcore.proxies.8.0.8.nupkg.sha512",
         "microsoft.entityframeworkcore.proxies.nuspec"
       ]
     },
@@ -2580,24 +2580,24 @@
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Sqlite/8.0.7": {
-      "sha512": "odTJtx/J7/EyPtg+pGfDbuEZJaODH+yG7R4mkmnhrHYwJPtzSzPue1xl4jBjxwEVVWd/qdBP5z/E+8dAnW9hGQ==",
+    "Microsoft.EntityFrameworkCore.Sqlite/8.0.8": {
+      "sha512": "IDB7Xs16hN/3VkWFCCa4r3fqoJxMVezwq418gr8dBkRBO0pxH+BX/Kjk/U3PYXDvzVLkXqUgJsHv1XoFrJbZPQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlite/8.0.7",
+      "path": "microsoft.entityframeworkcore.sqlite/8.0.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "PACKAGE.md",
         "lib/net8.0/_._",
-        "microsoft.entityframeworkcore.sqlite.8.0.7.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.8.0.8.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlite.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Sqlite.Core/8.0.7": {
-      "sha512": "pqjQey+EEmsLwTv4vGeSGFw4o6nGLFdEM3ii2FCjfb0YZd3+tqX4O5jNZE/2+Y9rN4QQcbsb/8Cf6NIoyuKZng==",
+    "Microsoft.EntityFrameworkCore.Sqlite.Core/8.0.8": {
+      "sha512": "w5k/ENj3+BPbmggqh83RRuPhhKcJmW7CmdJuGwdX1eFrmptJwnzKiHfQCPkJAu9df16PSs5YFeWrDgepfqnltA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlite.core/8.0.7",
+      "path": "microsoft.entityframeworkcore.sqlite.core/8.0.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2605,7 +2605,7 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Sqlite.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Sqlite.xml",
-        "microsoft.entityframeworkcore.sqlite.core.8.0.7.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.core.8.0.8.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlite.core.nuspec"
       ]
     },
@@ -4284,8 +4284,8 @@
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 8.*",
       "Microsoft.AspNetCore.OpenApi >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.8",
-      "Microsoft.EntityFrameworkCore.Proxies >= 8.0.7",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 8.0.7",
+      "Microsoft.EntityFrameworkCore.Proxies >= 8.0.8",
+      "Microsoft.EntityFrameworkCore.Sqlite >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.8",
       "Microsoft.IdentityModel.Tokens >= 8.0.2",
       "Serilog >= 4.3.0",
@@ -4369,11 +4369,11 @@
           },
           "Microsoft.EntityFrameworkCore.Proxies": {
             "target": "Package",
-            "version": "[8.0.7, )"
+            "version": "[8.0.8, )"
           },
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
-            "version": "[8.0.7, )"
+            "version": "[8.0.8, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

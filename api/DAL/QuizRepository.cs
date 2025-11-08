@@ -113,4 +113,36 @@ public class QuizRepository : IQuizRepository
             return false;
         }
     }
+    public async Task<IEnumerable<Quiz>> GetQuizzesByUserId(string userId)
+    {
+        return await _db.Quizes
+            .Where(q => q.OwnerId == userId)
+            .Include(q => q.Questions)
+            .ThenInclude(q => q.Options)
+            .OrderByDescending(q => q.QuizId)
+            .ToListAsync();
+    }
+
+     public async Task<IEnumerable<Quiz>> GetAttemptedQuizzesByUserId(string userId)
+    {
+        // Requires QuizAttempt DbSet; if ikke opprettet vil dette returnere tom liste
+        if (!_db.Model.GetEntityTypes().Any(e => e.ClrType == typeof(QuizAttempt)))
+        {
+            return new List<Quiz>();
+        }
+
+        var quizIds = await _db.QuizAttempts
+            .Where(a => a.UserId == userId)
+            .Select(a => a.QuizId)
+            .Distinct()
+            .ToListAsync();
+
+        if (!quizIds.Any()) return new List<Quiz>();
+
+        return await _db.Quizes
+            .Where(q => quizIds.Contains(q.QuizId))
+            .Include(q => q.Questions)
+                .ThenInclude(q => q.Options)
+            .ToListAsync();
+    }
 }

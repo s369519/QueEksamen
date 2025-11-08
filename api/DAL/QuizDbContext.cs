@@ -9,6 +9,7 @@ public class QuizDbContext : DbContext
     {
         // Database.EnsureCreated();  // Fjern denne linjen hvis du bruker migrasjoner
     }
+    public DbSet<QuizAttempt> QuizAttempts { get; set; }
 
     public DbSet<Quiz> Quizes { get; set; }
     public DbSet<Question> Questions { get; set; }
