@@ -48,7 +48,7 @@ export default function Profile() {
     }, []);
 
     const handleCreateQuiz = () => {
-        navigate('/create-quiz');
+        navigate('/quizcreate');
     };
 
     const handleQuizClick = (quizId: string) => {
