@@ -4296,19 +4296,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/dq/.nuget/packages/": {}
+    "C:\\Users\\erikg\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dq/WebEksamen/QueEksamen/api/api.csproj",
+      "projectUniqueName": "C:\\Users\\erikg\\OneDrive\\Student\\Webapplikasjoner\\QueEksamen\\QueEksamen\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "/Users/dq/WebEksamen/QueEksamen/api/api.csproj",
-      "packagesPath": "/Users/dq/.nuget/packages/",
-      "outputPath": "/Users/dq/WebEksamen/QueEksamen/api/obj/",
+      "projectPath": "C:\\Users\\erikg\\OneDrive\\Student\\Webapplikasjoner\\QueEksamen\\QueEksamen\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\erikg\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\erikg\\OneDrive\\Student\\Webapplikasjoner\\QueEksamen\\QueEksamen\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/dq/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\erikg\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4331,7 +4331,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -4425,7 +4426,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.414/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
