@@ -1,9 +1,0 @@
-2025-10-24 15:17:34.357 +02:00 [INF] Now listening on: https://localhost:7022
-2025-10-24 15:17:34.361 +02:00 [INF] Now listening on: http://localhost:5102
-2025-10-24 15:17:34.364 +02:00 [INF] Application started. Press Ctrl+C to shut down.
-2025-10-24 15:17:34.365 +02:00 [INF] Hosting environment: Development
-2025-10-24 15:17:34.365 +02:00 [INF] Content root path: /Users/arthurflotvik/Documents/QueREACT/api
-2025-10-24 15:17:34.501 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/swagger/index.html - null null
-2025-10-24 15:17:34.573 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/swagger/index.html - 200 null text/html;charset=utf-8 73.3105ms
-2025-10-24 15:17:34.677 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/swagger/v1/swagger.json - null null
-2025-10-24 15:17:34.707 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 30.2184ms

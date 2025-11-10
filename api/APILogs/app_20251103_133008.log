@@ -1,7 +1,0 @@
-2025-11-03 13:30:09.124 +01:00 [INF] Found 2 users in AuthDbContext
-2025-11-03 13:30:09.244 +01:00 [INF] User profile is available. Using '/Users/arthurflotvik/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
-2025-11-03 13:30:09.274 +01:00 [INF] Now listening on: http://localhost:5043
-2025-11-03 13:30:09.274 +01:00 [INF] Application started. Press Ctrl+C to shut down.
-2025-11-03 13:30:09.274 +01:00 [INF] Hosting environment: Development
-2025-11-03 13:30:09.274 +01:00 [INF] Content root path: /Users/arthurflotvik/Documents/GitHub/QueEksamen/api
-2025-11-03 13:30:27.932 +01:00 [INF] Application is shutting down...
