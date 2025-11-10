@@ -398,6 +398,18 @@ FodyWeavers.xsd
 *.msi
 *.msix
 *.msm
+
+# Added: ignore API build artifacts and local SQLite DB files that appeared in recent changes
+# (obj/bin artifacts are already ignored globally, but make API paths explicit)
+/api/bin/
+/api/obj/
+
+# Local SQLite DB files and related journal files
+/api/*.db
+/api/*.db-shm
+/api/*.db-wal
+/api/*.db.bak
+
 *.msp
 
 # JetBrains Rider
