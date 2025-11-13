@@ -442,7 +442,7 @@ public class QuizAPIController : ControllerBase
                 double correctRatio = (double)correctSelected / totalCorrect;
                 double penalty = (double)incorrectSelected / totalCorrect;
                 scoreValue = Math.Max(0.0, correctRatio - penalty);
-                
+
                 // Fully correct if all correct selected and no incorrect selected
                 isFullyCorrect = correctSelected == totalCorrect && incorrectSelected == 0;
             }
@@ -458,15 +458,51 @@ public class QuizAPIController : ControllerBase
             }
         }
 
-        _logger.LogInformation("[QuizAPIController] Answer submitted for QuizId {QuizId}, QuestionId {QuestionId}, Score: {Score:F2}, FullyCorrect: {IsCorrect}", 
+        _logger.LogInformation("[QuizAPIController] Answer submitted for QuizId {QuizId}, QuestionId {QuestionId}, Score: {Score:F2}, FullyCorrect: {IsCorrect}",
             submitDto.QuizId, submitDto.QuestionId, scoreValue, isFullyCorrect);
 
-        return Ok(new { 
+        return Ok(new
+        {
             isCorrect = isFullyCorrect,
             scoreValue = scoreValue,
             isPartiallyCorrect = scoreValue > 0.0 && !isFullyCorrect
         });
     }
+    
+    //Legger inn Quiz forsøk hvis de er innlogget med brukeren
+
+[Authorize]
+[HttpPost("submit-attempt")]
+public async Task<IActionResult> SubmitQuizAttempt([FromBody] QuizAttemptDto attemptDto)
+{
+    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    if (string.IsNullOrEmpty(userId))
+    {
+        return Unauthorized();
+    }
+
+    var quiz = await _quizRepository.GetQuizById(attemptDto.QuizId);
+    if (quiz == null)
+    {
+        return NotFound("Quiz not found");
+    }
+
+    var attempt = new QuizAttempt
+    {
+        QuizId = attemptDto.QuizId,
+        UserId = userId,
+        Score = attemptDto.Score,
+        AttemptedAt = DateTime.UtcNow
+    };
+
+    _quizDbContext.QuizAttempts.Add(attempt);
+    await _quizDbContext.SaveChangesAsync();
+
+    _logger.LogInformation("[QuizAPIController] Quiz attempt saved for user {UserId}, quiz {QuizId}, score {Score}", 
+        userId, attemptDto.QuizId, attemptDto.Score);
+
+    return Ok(new { message = "Quiz attempt saved successfully", attemptId = attempt.QuizAttemptId });
+}
 
     // =========================
     // GET QUIZ RESULTS - Get quiz with correct answers (for review after completion)

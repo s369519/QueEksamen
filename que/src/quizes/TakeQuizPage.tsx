@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Card, Button, Form, Alert, ProgressBar, Container } from 'react-bootstrap';
 import { QuizTake, QuestionTake } from '../types/quizTake';
 import * as QuizService from './QuizService';
+import { fetchQuizById, submitAnswer, submitQuizAttempt } from './QuizService';
 
 interface AnswerHistory {
     questionId: number;
@@ -33,6 +34,22 @@ const TakeQuizPage: React.FC = () => {
         isPartiallyCorrect: boolean;
         scoreValue: number;
     } | null>(null);
+
+    // ========== NY FUNKSJON - LEGG TIL HER ==========
+    const handleQuizComplete = async (finalScore: number) => {
+        try {
+            if (!id) return;
+            
+            // Lagre forsøket til backend
+            await QuizService.submitQuizAttempt(parseInt(id), finalScore);
+            
+            console.log('Quiz attempt saved successfully with score:', finalScore);
+        } catch (error) {
+            console.error('Error submitting quiz attempt:', error);
+            // Fortsett likevel - brukeren kan se resultatene
+        }
+    };
+    // ========== SLUTT PÅ NY FUNKSJON ==========
 
     useEffect(() => {
         if (!id) return;
@@ -90,7 +107,7 @@ const TakeQuizPage: React.FC = () => {
     };
 
     const handleSubmitAnswer = async () => {
-        if (!quiz || !currentQuestion || selectedOptions.length === 0) return;
+        if (!quiz || !currentQuestion || selectedOptions.length === 0 || !id) return;
 
         setIsSubmitting(true);
         try {
@@ -109,17 +126,30 @@ const TakeQuizPage: React.FC = () => {
             });
 
             // Save answer to history
-            setAnswerHistory(prev => [...prev, {
+            const answerRecord = {
                 questionId: currentQuestion.questionId,
                 questionText: currentQuestion.text,
                 selectedOptionIds: selectedOptions,
                 isCorrect: result.isCorrect,
                 isPartiallyCorrect: result.isPartiallyCorrect,
                 scoreValue: result.scoreValue
-            }]);
+            };
+
+            setAnswerHistory(prev => [...prev, answerRecord]);
 
             // Update score with actual score value (0.0 to 1.0)
             setScore(prev => prev + result.scoreValue);
+
+            // Check if this is the last question
+            if (currentQuestionIndex + 1 >= quiz.questions.length) {
+                // Siste spørsmål - beregn total score og lagre forsøk
+                const totalScore = [...answerHistory, answerRecord].reduce((sum, answer) => sum + answer.scoreValue, 0);
+                const maxScore = quiz.questions.length;
+                const finalScore = (totalScore / maxScore) * 100; // Score i prosent
+                
+                // Lagre forsøket til backend
+                await handleQuizComplete(finalScore);
+            }
 
             // Wait a moment to show feedback, then move to next question or show result
             setTimeout(() => {

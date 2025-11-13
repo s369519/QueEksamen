@@ -305,3 +305,21 @@ export const getUserAttemptedQuizzes = async () => {
     });
     return handleResponse(response);
 };
+
+
+export const submitQuizAttempt = async (quizId: number, score: number) => {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('Not authenticated');
+
+    const response = await fetch(`${API_URL}/api/QuizAPI/submit-attempt`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ quizId, score })
+    });
+    
+    return handleResponse(response);
+};
+

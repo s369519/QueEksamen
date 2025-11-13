@@ -123,7 +123,7 @@ public class QuizRepository : IQuizRepository
             .ToListAsync();
     }
 
-     public async Task<IEnumerable<Quiz>> GetAttemptedQuizzesByUserId(string userId)
+   /*  public async Task<IEnumerable<Quiz>> GetAttemptedQuizzesByUserId(string userId)
     {
         // Requires QuizAttempt DbSet; if ikke opprettet vil dette returnere tom liste
         if (!_db.Model.GetEntityTypes().Any(e => e.ClrType == typeof(QuizAttempt)))
@@ -144,5 +144,25 @@ public class QuizRepository : IQuizRepository
             .Include(q => q.Questions)
                 .ThenInclude(q => q.Options)
             .ToListAsync();
-    }
+    } */ //GAMMEL QUIZ ATTEMPT METODE
+
+public async Task<IEnumerable<Quiz>> GetAttemptedQuizzesByUserId(string userId)
+{
+    // Hent alle unike quiz-IDer brukeren har forsøkt
+    var quizIds = await _db.QuizAttempts
+        .Where(a => a.UserId == userId)
+        .Select(a => a.QuizId)
+        .Distinct()
+        .ToListAsync();
+
+    // Hvis ingen forsøk, returner tom liste
+    if (!quizIds.Any()) return new List<Quiz>();
+
+    // Hent alle quizer basert på quiz-IDene
+    return await _db.Quizes
+        .Where(q => quizIds.Contains(q.QuizId))
+        .Include(q => q.Questions)
+            .ThenInclude(q => q.Options)
+        .ToListAsync();
+}
 }
