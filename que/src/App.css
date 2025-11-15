@@ -1,9 +1,21 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   /* text-align: center; */
+  display: flex;
+  flex-direction: column;
 }
+
+.main-content {
+  flex: 1;   /* <-- THIS pushes footer to bottom */
+}
+
 
 .logo {
   height: 6em;
@@ -39,4 +51,11 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.app-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px 0;
+  color: #777;
 }

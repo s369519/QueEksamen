@@ -7,7 +7,6 @@ import QuizUpdatePage from './quizes/QuizUpdatePage'
 import TakeQuizPage from './quizes/TakeQuizPage'
 import NavMenu from './shared/NavMenu'
 import LoginPage from './auth/LoginPage'
-import RegisterPage from './auth/RegisterPage'
 import ProtectedRoute from './auth/ProtectedRoute'
 import { AuthProvider } from './auth/AuthContext'
 import Profile from './views/Profile/Profile'
@@ -19,13 +18,15 @@ const App: React.FC = () => {
     <AuthProvider>
       <Router>
         <NavMenu />
-        <Container className='mt-4'>
+        <Container className='mt-4 main-content'>
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/quizes' element={<QuizListPage />} />
             <Route path='/quiztake/:id' element={<TakeQuizPage />} />
+
+            /* Combines login+register page
             <Route path='/login' element={<LoginPage />} />
-            <Route path='/register' element={<RegisterPage />} />
+            <Route path="/register" element={<LoginPage />} />
 
             <Route element={<ProtectedRoute />}>
               <Route path='/quizcreate' element={<QuizCreatePage />} />
@@ -36,6 +37,12 @@ const App: React.FC = () => {
             <Route path='*' element={<Navigate to="/" replace />} />
           </Routes>
         </Container>
+
+        <footer className="app-footer">
+          © 2025 Qué Quiz App — All rights reserved.
+        </footer>
+
+
       </Router>
     </AuthProvider>
   )
