@@ -9,12 +9,12 @@ const NavMenu: React.FC = () => {
     return (
         <Navbar expand="lg">
             <Container>
-                <Navbar.Brand as={Link} to="/">Que</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Explore</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/quizes">Quizes</Nav.Link>
+        
+                        <Nav.Link as={Link} to="/quizes">My Quizes</Nav.Link>
                         {isAuthenticated && (
                             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                         )}
