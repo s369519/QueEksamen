@@ -188,7 +188,7 @@ const TakeQuizPage: React.FC = () => {
                     <Alert.Heading>Error</Alert.Heading>
                     <p>{error}</p>
                     <Button variant="outline-danger" onClick={() => navigate('/quizlist')}>
-                        Back to Quiz List
+                        Back to Home Page
                     </Button>
                 </Alert>
             </Container>
@@ -222,7 +222,7 @@ const TakeQuizPage: React.FC = () => {
                         {percentage >= 50 && percentage < 70 && <p className="text-warning">Good effort! 👍</p>}
                         {percentage < 50 && <p className="text-danger">Keep practicing! 💪</p>}
                         <Button variant="primary" onClick={() => navigate('/quizlist')}>
-                            Back to Quiz List
+                            Back to Home Page
                         </Button>
                     </Card.Body>
                 </Card>
@@ -307,7 +307,7 @@ const TakeQuizPage: React.FC = () => {
 
                 <div className="text-center mt-4 mb-5">
                     <Button variant="primary" size="lg" onClick={() => navigate('/quizlist')}>
-                        Back to Quiz List
+                        Back to Home Page
                     </Button>
                 </div>
             </Container>
