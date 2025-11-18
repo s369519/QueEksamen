@@ -129,7 +129,7 @@ export default function Profile() {
                                     onClick={() => handleQuizClick(quiz.quizId)}
                                 >
                                     <h3>{quiz.title}</h3>
-                                    <p className="quiz-score">Score: {quiz.score}%</p>
+                                    <p className="quiz-score">Score: {quiz.score?.toFixed(2)}%</p>
                                     <p className="quiz-date">Completed: {new Date(quiz.createdAt).toLocaleDateString()}</p>
                                 </div>
                             ))

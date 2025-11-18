@@ -17,6 +17,7 @@ interface QuizPreview {
 const HomePage: React.FC = () => {
   const { isAuthenticated } = useAuth();
   const [featuredQuizzes, setFeaturedQuizzes] = useState<QuizPreview[]>([]);
+  const [filteredQuizzes, setFilteredQuizzes] = useState<QuizPreview[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,37 +29,33 @@ const HomePage: React.FC = () => {
     const fetchFeaturedQuizzes = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/quizzes?featured=true&limit=6');
+        const response = await fetch('http://localhost:5043/api/QuizAPI/quizlist');
         if (!response.ok) {
           throw new Error('Failed to fetch featured quizzes');
         }
         const data = await response.json();
-        setFeaturedQuizzes(data);
+        console.log('Fetched quizzes:', data);
+        
+        if (data && data.length > 0) {
+          // Take only first 6 quizzes for featured section
+          setFeaturedQuizzes(data.slice(0, 6).map((quiz: any) => ({
+            quizId: quiz.quizId,
+            name: quiz.name,
+            description: quiz.description || 'No description available',
+            difficulty: quiz.difficulty || 'Medium',
+            questionCount: quiz.questionCount || 0,
+            timeLimit: quiz.timeLimit || 10,
+            category: quiz.category || 'General'
+          })));
+        } else {
+          // No public quizzes available
+          setFeaturedQuizzes([]);
+        }
         setError(null);
       } catch (err) {
         console.error('Error fetching featured quizzes:', err);
-        // Mock data for demo - no error message
-        setFeaturedQuizzes([
-          {
-            quizId: 1,
-            name: 'General Knowledge Quiz',
-            description: 'Test your knowledge across various topics',
-            difficulty: 'Medium',
-            questionCount: 5,
-            timeLimit: 10,
-            category: 'General'
-          },
-          {
-            quizId: 2,
-            name: 'Science & Nature',
-            description: 'Explore the wonders of science and nature',
-            difficulty: 'Hard',
-            questionCount: 5,
-            timeLimit: 15,
-            category: 'Science'
-          }
-        ]);
-        setError(null);
+        setFeaturedQuizzes([]);
+        setError('Failed to load quizzes. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -66,6 +63,55 @@ const HomePage: React.FC = () => {
 
     fetchFeaturedQuizzes();
   }, []);
+
+  // Apply filters whenever they change
+  useEffect(() => {
+    let filtered = [...featuredQuizzes];
+
+    // Search filter
+    if (searchTerm) {
+      filtered = filtered.filter(quiz =>
+        quiz.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        quiz.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        quiz.category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Category filter
+    if (selectedCategory !== 'All Categories') {
+      filtered = filtered.filter(quiz =>
+        quiz.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    // Level filter
+    if (selectedLevel !== 'All Levels') {
+      filtered = filtered.filter(quiz =>
+        quiz.difficulty.toLowerCase() === selectedLevel.toLowerCase()
+      );
+    }
+
+    // Length filter
+    if (selectedLength !== 'Any Length') {
+      filtered = filtered.filter(quiz => {
+        const questionCount = quiz.questionCount;
+        switch (selectedLength) {
+          case '1-5 questions':
+            return questionCount >= 1 && questionCount <= 5;
+          case '6-10 questions':
+            return questionCount >= 6 && questionCount <= 10;
+          case '11-15 questions':
+            return questionCount >= 11 && questionCount <= 15;
+          case '16+ questions':
+            return questionCount >= 16;
+          default:
+            return true;
+        }
+      });
+    }
+
+    setFilteredQuizzes(filtered);
+  }, [featuredQuizzes, searchTerm, selectedCategory, selectedLevel, selectedLength]);
 
   const getDifficultyColor = (difficulty: string): string => {
     switch (difficulty?.toLowerCase()) {
@@ -87,6 +133,7 @@ const HomePage: React.FC = () => {
       level: selectedLevel,
       length: selectedLength
     });
+    // Filters are applied automatically via useEffect
   };
 
   return (
@@ -152,14 +199,17 @@ const HomePage: React.FC = () => {
                 onChange={(e) => setSelectedLength(e.target.value)}
               >
                 <option>Any Length</option>
-                <option>5 questions</option>
-                <option>10 questions</option>
-                <option>15+ questions</option>
+                <option>1-5 questions</option>
+                <option>6-10 questions</option>
+                <option>11-15 questions</option>
+                <option>16+ questions</option>
               </select>
             </div>
 
             <div className="filters-bottom">
-              <p className="quiz-count text-muted">Showing 20 of 20 quizzes</p>
+              <p className="quiz-count text-muted">
+                Showing {filteredQuizzes.length} of {featuredQuizzes.length} quizzes
+              </p>
               <Button className="set-filters-btn" onClick={handleSetFilters}>
                 Set Filters
               </Button>
@@ -179,9 +229,9 @@ const HomePage: React.FC = () => {
             </div>
           )}
 
-          {!loading && featuredQuizzes.length > 0 ? (
+          {!loading && filteredQuizzes.length > 0 ? (
             <Row className="g-4">
-              {featuredQuizzes.map((quiz) => (
+              {filteredQuizzes.map((quiz) => (
                 <Col key={quiz.quizId} md={6} lg={4}>
                   <QuizCard quiz={quiz} getDifficultyColor={getDifficultyColor} />
                 </Col>
@@ -190,7 +240,11 @@ const HomePage: React.FC = () => {
           ) : (
             !loading && (
               <div className="text-center py-5">
-                <p className="text-muted">No quizzes available at the moment.</p>
+                <p className="text-muted">
+                  {featuredQuizzes.length === 0 
+                    ? 'No quizzes available at the moment.' 
+                    : 'No quizzes match your filters.'}
+                </p>
               </div>
             )
           )}
@@ -242,7 +296,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, getDifficultyColor }) => {
       </Card.Body>
 
       <Card.Footer className="bg-white border-top-0">
-        <Link to={`/quizes/${quiz.quizId}`} className="btn btn-sm btn-start-quiz w-100">
+        <Link to={`/quiztake/${quiz.quizId}`} className="btn btn-sm btn-start-quiz w-100">
           Start Quiz
         </Link>
       </Card.Footer>

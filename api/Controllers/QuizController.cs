@@ -59,16 +59,17 @@ public class QuizAPIController : ControllerBase
         // Filtrer synlighet
         var visibleQuizzes = quizzes
             .Where(q => q.IsPublic || (isAuthenticated && q.OwnerId == userId))
-            .Select(q => new QuizDto
+            .Select(q => new 
             {
-                QuizId = q.QuizId,
-                Name = q.Name,
-                Description = q.Description,
-                Category = q.Category,
-                Difficulty = q.Difficulty,
-                TimeLimit = q.TimeLimit,
-                IsPublic = q.IsPublic,
-                OwnerId = q.OwnerId
+                q.QuizId,
+                q.Name,
+                q.Description,
+                q.Category,
+                q.Difficulty,
+                q.TimeLimit,
+                q.IsPublic,
+                q.OwnerId,
+                QuestionCount = q.Questions != null ? q.Questions.Count : 0
             })
             .ToList();
 
@@ -93,7 +94,7 @@ public class QuizAPIController : ControllerBase
 
         if (!quiz.IsPublic && (!isAuthenticated || quiz.OwnerId != userId))
         {
-            return Forbid("You are not authorized to access this private quiz.");
+            return Unauthorized(new { message = "You are not authorized to access this private quiz." });
         }
 
         return Ok(quiz);
@@ -127,7 +128,22 @@ public class QuizAPIController : ControllerBase
         }
 
         _logger.LogInformation("[QuizAPIController] Fetching quiz attempts for user: {UserId}", userId);
-        var attempts = await _quizRepository.GetAttemptedQuizzesByUserId(userId);
+        
+        // Fetch quiz attempts with details
+        var attempts = await _quizDbContext.QuizAttempts
+            .Where(a => a.UserId == userId)
+            .Include(a => a.Quiz)
+            .OrderByDescending(a => a.AttemptedAt)
+            .Select(a => new
+            {
+                quizId = a.QuizId.ToString(),
+                title = a.Quiz != null ? a.Quiz.Name : "Unknown Quiz",
+                description = a.Quiz != null ? a.Quiz.Description : null,
+                score = a.Score,
+                createdAt = a.AttemptedAt
+            })
+            .ToListAsync();
+
         return Ok(attempts);
     }
 
@@ -254,7 +270,7 @@ public class QuizAPIController : ControllerBase
         {
             _logger.LogWarning("[QuizAPIController] User {UserId} attempted to update quiz {QuizId} owned by {OwnerId}", 
                 userId, id, existingQuiz.OwnerId);
-            return Forbid("You are not authorized to update this quiz.");
+            return Unauthorized(new { message = "You are not authorized to update this quiz." });
         }
 
         existingQuiz.Name = quizDto.Name;
@@ -331,7 +347,7 @@ public class QuizAPIController : ControllerBase
         {
             _logger.LogWarning("[QuizAPIController] User {UserId} attempted to delete quiz {QuizId} owned by {OwnerId}", 
                 userId, id, existingQuiz.OwnerId);
-            return Forbid("You are not authorized to delete this quiz.");
+            return Unauthorized(new { message = "You are not authorized to delete this quiz." });
         }
 
         bool returnOk = await _quizRepository.DeleteQuiz(id);
@@ -364,7 +380,7 @@ public class QuizAPIController : ControllerBase
         {
             _logger.LogWarning("[QuizAPIController] User {UserId} attempted to take private quiz {QuizId}", 
                 userId ?? "Anonymous", id);
-            return Forbid("You are not authorized to take this private quiz.");
+            return Unauthorized(new { message = "You are not authorized to take this private quiz." });
         }
 
         // Map to DTO without revealing correct answers
@@ -526,7 +542,7 @@ public async Task<IActionResult> SubmitQuizAttempt([FromBody] QuizAttemptDto att
         {
             _logger.LogWarning("[QuizAPIController] User {UserId} attempted to view results for private quiz {QuizId}", 
                 userId ?? "Anonymous", id);
-            return Forbid("You are not authorized to view results for this private quiz.");
+            return Unauthorized(new { message = "You are not authorized to view results for this private quiz." });
         }
 
         // Map to DTO WITH correct answers (for review)

@@ -9,6 +9,7 @@ public class QuizDbContext : DbContext
     {
         // Database.EnsureCreated();  // Fjern denne linjen hvis du bruker migrasjoner
     }
+    public DbSet<AuthUser> Users { get; set; } = null!;
     public DbSet<QuizAttempt> QuizAttempts { get; set; }
 
     public DbSet<Quiz> Quizes { get; set; }
@@ -22,6 +23,13 @@ public class QuizDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // ==========================
+        // KONFIGURASJON AV AUTHUSER
+        // ==========================
+        
+        // Spesifiser at AuthUser skal bruke "AuthUser" tabellen, ikke "Users"
+        modelBuilder.Entity<AuthUser>().ToTable("AuthUser");
+
         // ==========================
         // RELASJONER MED CASCADING DELETE
         // ==========================
