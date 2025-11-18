@@ -127,7 +127,7 @@ const QuizListPage: React.FC = () => {
                 }
             
                 {user && (
-                    <Button href="/quizcreate" className="btn btn-secondary mt-3">Add new Quiz</Button>
+                    <Button href="/quizcreate" className="btn btn-secondary mt-3">Create New Quiz</Button>
                 )}
             </div>
         
