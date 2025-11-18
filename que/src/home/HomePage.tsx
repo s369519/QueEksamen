@@ -126,14 +126,11 @@ const HomePage: React.FC = () => {
     }
   };
 
-  const handleSetFilters = () => {
-    console.log('Filters applied:', {
-      search: searchTerm,
-      category: selectedCategory,
-      level: selectedLevel,
-      length: selectedLength
-    });
-    // Filters are applied automatically via useEffect
+  const handleResetFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('All Categories');
+    setSelectedLevel('All Levels');
+    setSelectedLength('Any Length');
   };
 
   return (
@@ -210,8 +207,8 @@ const HomePage: React.FC = () => {
               <p className="quiz-count text-muted">
                 Showing {filteredQuizzes.length} of {featuredQuizzes.length} quizzes
               </p>
-              <Button className="set-filters-btn" onClick={handleSetFilters}>
-                Set Filters
+              <Button className="set-filters-btn" onClick={handleResetFilters}>
+                Reset Filters
               </Button>
             </div>
           </div>
