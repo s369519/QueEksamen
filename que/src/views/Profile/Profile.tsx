@@ -51,8 +51,12 @@ export default function Profile() {
         navigate('/quizcreate');
     };
 
-    const handleQuizClick = (quizId: string) => {
-        navigate(`/quiz/${quizId}`);
+    const handleCreatedQuizClick = (quizId: string) => {
+        navigate(`/quizupdate/${quizId}`);
+    };
+
+    const handleAttemptedQuizClick = (quizId: string) => {
+        navigate(`/quiztake/${quizId}`);
     };
 
     if (isLoading) {
@@ -105,7 +109,7 @@ export default function Profile() {
                                 <div 
                                     key={quiz.quizId} 
                                     className="quiz-card"
-                                    onClick={() => handleQuizClick(quiz.quizId)}
+                                    onClick={() => handleCreatedQuizClick(quiz.quizId)}
                                 >
                                     <h3>{quiz.title}</h3>
                                     {quiz.description && <p>{quiz.description}</p>}
@@ -126,7 +130,7 @@ export default function Profile() {
                                 <div 
                                     key={quiz.quizId} 
                                     className="quiz-card"
-                                    onClick={() => handleQuizClick(quiz.quizId)}
+                                    onClick={() => handleAttemptedQuizClick(quiz.quizId)}
                                 >
                                     <h3>{quiz.title}</h3>
                                     <p className="quiz-score">Score: {quiz.score?.toFixed(2)}%</p>

@@ -113,7 +113,20 @@ public class QuizAPIController : ControllerBase
 
         _logger.LogInformation("[QuizAPIController] Fetching quizzes for user: {UserId}", userId);
         var quizzes = await _quizRepository.GetQuizzesByUserId(userId);
-        return Ok(quizzes);
+        
+        var quizSummaries = quizzes.Select(q => new
+        {
+            quizId = q.QuizId.ToString(),
+            title = q.Name,
+            description = q.Description,
+            createdAt = DateTime.UtcNow, // Quiz model doesn't have CreatedAt, using current time as placeholder
+            category = q.Category,
+            difficulty = q.Difficulty,
+            isPublic = q.IsPublic,
+            questionCount = q.Questions?.Count ?? 0
+        });
+        
+        return Ok(quizSummaries);
     }
 
     [Authorize]
