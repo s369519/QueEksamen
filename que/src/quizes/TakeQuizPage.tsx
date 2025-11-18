@@ -339,16 +339,22 @@ const TakeQuizPage: React.FC = () => {
 
                     <Form>
                         {currentQuestion.options.map(option => (
-                            <Form.Check
+                            <div
                                 key={option.optionId}
-                                type={currentQuestion.allowMultiple ? 'checkbox' : 'radio'}
-                                id={`option-${option.optionId}`}
-                                label={option.text}
-                                checked={selectedOptions.includes(option.optionId)}
-                                onChange={() => handleOptionToggle(option.optionId)}
-                                className="mb-3 p-3 border rounded"
-                                disabled={isSubmitting || answerFeedback !== null}
-                            />
+                                onClick={() => !isSubmitting && answerFeedback === null && handleOptionToggle(option.optionId)}
+                                style={{ cursor: isSubmitting || answerFeedback !== null ? 'default' : 'pointer' }}
+                            >
+                                <Form.Check
+                                    type={currentQuestion.allowMultiple ? 'checkbox' : 'radio'}
+                                    id={`option-${option.optionId}`}
+                                    label={option.text}
+                                    checked={selectedOptions.includes(option.optionId)}
+                                    onChange={() => {}} // Handled by div onClick
+                                    className="mb-3 p-3 border rounded"
+                                    disabled={isSubmitting || answerFeedback !== null}
+                                    style={{ cursor: isSubmitting || answerFeedback !== null ? 'default' : 'pointer' }}
+                                />
+                            </div>
                         ))}
                     </Form>
 
