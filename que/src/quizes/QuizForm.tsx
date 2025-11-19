@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Card, Row, Col } from 'react-bootstrap';
+import { Button, Form, Card, Row, Col, Container } from 'react-bootstrap';
 import { Quiz } from '../types/quiz';
 
 interface Question {
@@ -26,7 +26,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
   const [category, setCategory] = useState(initialData?.category || '');
   const [difficulty, setDifficulty] = useState(initialData?.difficulty || '');
   const [timeLimit, setTimeLimit] = useState(initialData?.timeLimit || 10);
-  const [questions, setQuestions] = useState<Question[]>(initialData?.questions || [] );
+  const [questions, setQuestions] = useState<Question[]>(initialData?.questions || []);
   const [isPublic, setIsPublic] = useState(initialData?.isPublic || false);
   const [nameError, setNameError] = useState('');
   const [timeLimitError, setTimeLimitError] = useState<string>('');
@@ -45,47 +45,47 @@ const QuizForm: React.FC<QuizFormProps> = ({
   const validateName = (value: string) => {
     const regex = /^[a-zA-ZæøåÆØÅ0-9 \-]{2,40}$/;
     if (!regex.test(value)) {
-        setNameError('The name must be numbers or letters between 2 and 40 characters');
-        return false;
+      setNameError('The name must be numbers or letters between 2 and 40 characters');
+      return false;
     }
     setNameError('');
     return true;
   };
 
   const validateTimeLimit = (value: number) => {
-      if (isNaN(value)) {
-          setTimeLimitError('The time limit must be a number');
-          return false;
-      }
+    if (isNaN(value)) {
+      setTimeLimitError('The time limit must be a number');
+      return false;
+    }
 
-      if (value < 1 || value > 100) {
-          setTimeLimitError('The time limit must be between 1 and 100 minutes');
-          return false;
-      }
+    if (value < 1 || value > 100) {
+      setTimeLimitError('The time limit must be between 1 and 100 minutes');
+      return false;
+    }
 
-      setTimeLimitError('');
-      return true;
+    setTimeLimitError('');
+    return true;
   };
 
   const handleTimeLimitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const value = Number(e.target.value);
-  setTimeLimit(value);
-  
-  if (isNaN(value)) {
-    setTimeLimitError("The time limit must be a number");
-    return;
-  }
-  
-  if (value < 1 || value > 100) {
-    setTimeLimitError("The time limit must be between 1 and 100 minutes");
-    return;
-  }
-  
+    const value = Number(e.target.value);
+    setTimeLimit(value);
+    
+    if (isNaN(value)) {
+      setTimeLimitError("The time limit must be a number");
+      return;
+    }
+    
+    if (value < 1 || value > 100) {
+      setTimeLimitError("The time limit must be between 1 and 100 minutes");
+      return;
+    }
+    
     setTimeLimitError("");
   };
 
   const addQuestion = () => {
-    const defaultOptions = Array(4).fill(null).map(() => ({ text: '', isCorrect: false}));
+    const defaultOptions = Array(4).fill(null).map(() => ({ text: '', isCorrect: false }));
     setQuestions([
       ...questions,
       { text: '', options: defaultOptions }
@@ -145,7 +145,6 @@ const QuizForm: React.FC<QuizFormProps> = ({
 
     if (!validateName(name)) return;
 
-    // Ensure we have valid defaults for required fields
     const quiz: Quiz = {
       quizId: quizId ?? initialData?.quizId,
       name,
@@ -165,209 +164,280 @@ const QuizForm: React.FC<QuizFormProps> = ({
       }))
     };
 
-    console.log('Submitting quiz:', quiz); // Add logging
+    console.log('Submitting quiz:', quiz);
     onQuizChanged(quiz);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h4>Quiz Information</h4>
+    <Card className="shadow-sm border-0" style={{ backgroundColor: 'white' }}>
+      <Card.Body className="p-4">
+        <Form onSubmit={handleSubmit}>
+          {/* Quiz Information Section */}
+          <div className="mb-4">
+            <h4 className="fw-bold mb-3" style={{ color: '#6f42c1' }}>
+              <i className="bi bi-info-circle me-2"></i>
+              Quiz Information
+            </h4>
 
-      <Row className="mb-3">
-        <Col>
-            <Form.Group controlId="quizName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-                type="text"
-                placeholder="Enter quiz name"
-                value={name}
-                onChange={(e) => {
-                    setName(e.target.value);
-                    validateName(e.target.value);
-                }}
-                required
-            />
-            { nameError && <div className='text-danger mt-1'>{nameError}</div>}
-            </Form.Group>
-        </Col>
+            <Row className="mb-3">
+              <Col md={6}>
+                <Form.Group controlId="quizName">
+                  <Form.Label className="fw-semibold">Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter quiz name"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      validateName(e.target.value);
+                    }}
+                    isInvalid={!!nameError}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {nameError}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Col>
 
-        <Col>
-            <Form.Group controlId="quizCategory">
-            <Form.Label>Category</Form.Label>
-            <Form.Select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
-            >
-                <option value="">Select a category</option>
-                {categories.map((cat, i) => (
-                <option key={i} value={cat}>{cat}</option>
-                ))}
-            </Form.Select>
-            </Form.Group>
-        </Col>
-        </Row>
+              <Col md={6}>
+                <Form.Group controlId="quizCategory">
+                  <Form.Label className="fw-semibold">Category</Form.Label>
+                  <Form.Select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
+                  >
+                    <option value="">Select a category</option>
+                    {categories.map((cat, i) => (
+                      <option key={i} value={cat}>{cat}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            </Row>
 
-        <Row className="mb-3">
-        <Col>
-            <Form.Group controlId="quizDescription">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-                as="textarea"
-                rows={2}
-                placeholder="Enter quiz description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            />
-            </Form.Group>
-        </Col>
-        </Row>
+            <Row className="mb-3">
+              <Col>
+                <Form.Group controlId="quizDescription">
+                  <Form.Label className="fw-semibold">Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter quiz description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-        <Row className="mb-3">
-        <Col>
-            <Form.Group controlId="quizDifficulty">
-            <Form.Label>Difficulty</Form.Label>
-            <Form.Select
-                value={difficulty}
-                onChange={(e) => setDifficulty(e.target.value)}
-                required
-            >
-                <option value="">Select difficulty</option>
-                {difficulties.map((diff, i) => (
-                <option key={i} value={diff}>{diff}</option>
-                ))}
-            </Form.Select>
-            </Form.Group>
-        </Col>
+            <Row className="mb-3">
+              <Col md={4}>
+                <Form.Group controlId="quizDifficulty">
+                  <Form.Label className="fw-semibold">Difficulty</Form.Label>
+                  <Form.Select
+                    value={difficulty}
+                    onChange={(e) => setDifficulty(e.target.value)}
+                    required
+                  >
+                    <option value="">Select difficulty</option>
+                    {difficulties.map((diff, i) => (
+                      <option key={i} value={diff}>{diff}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
 
-        <Col>
-            <Form.Group controlId="quizTimeLimit">
-            <Form.Label>Time Limit (Minutes)</Form.Label>
-            <Form.Control
-                type="number"
-                min="1"
-                max="100"
-                value={timeLimit}
-                onChange={handleTimeLimitChange}
-                isInvalid={!!timeLimitError}
-                required
-            />
-            </Form.Group>
-        </Col>
+              <Col md={4}>
+                <Form.Group controlId="quizTimeLimit">
+                  <Form.Label className="fw-semibold">
+                    <i className="bi bi-clock me-1"></i>
+                    Time Limit (Minutes)
+                  </Form.Label>
+                  <Form.Control
+                    type="number"
+                    min="1"
+                    max="100"
+                    value={timeLimit}
+                    onChange={handleTimeLimitChange}
+                    isInvalid={!!timeLimitError}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {timeLimitError}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Col>
 
-        <Col>
-            <Form.Group controlId="quizVisibility">
-            <Form.Label>Quiz Visibility</Form.Label>
-            <Form.Check
-                type="switch"
-                id="visibility-switch"
-                label={isPublic ? "Public - visible to everyone" : "Private - only visible to you"}
-                checked={isPublic}
-                onChange={(e) => setIsPublic(e.target.checked)}
-            />
-            </Form.Group>
-        </Col>
-        </Row>
+              <Col md={4}>
+                <Form.Group controlId="quizVisibility">
+                  <Form.Label className="fw-semibold d-flex align-items-center">
+                    <i className="bi bi-globe me-2"></i>
+                    Quiz Visibility
+                  </Form.Label>
+                  <Form.Check
+                    type="switch"
+                    id="visibility-switch"
+                    label={isPublic ? "Public - Anyone can take this quiz" : "Private - Only you can see this quiz"}
+                    checked={isPublic}
+                    onChange={(e) => setIsPublic(e.target.checked)}
+                    className="mt-2"
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+          </div>
 
-      <hr />
-      <h4>Questions</h4>
+          <hr className="my-4" />
 
-      {questions.map((question, qIndex) => (
-        <Card key={qIndex} className="mb-3 p-3">
-          <Form.Group className="mb-2">
-            <Form.Label>Question {qIndex + 1}</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter question text"
-              value={question.text}
-              onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
-              required
-            />
-          </Form.Group>
-
-          <Form.Check
-            type="switch"
-            label="Allow multiple answers"
-            checked={question.allowMultiple || false}
-            onChange={(e) => {
-                const updated = [...questions];
-                updated[qIndex].allowMultiple = e.target.checked;
-
-                // Hvis vi slår av "allow multiple", behold kun første korrekt svar
-                if (!e.target.checked) {
-                let firstCorrectFound = false;
-                updated[qIndex].options = updated[qIndex].options.map(opt => {
-                    if (opt.isCorrect) {
-                    if (!firstCorrectFound) {
-                        firstCorrectFound = true;
-                        return opt; // behold første korrekt
-                    } else {
-                        return { ...opt, isCorrect: false }; // fjern de andre
-                    }
-                    }
-                    return opt;
-                });
-                }
-
-                setQuestions(updated);
-            }}
-            />
-
-          {question.options.map((option, oIndex) => (
-            <div key={oIndex} className="d-flex align-items-center mb-2 gap-2">
-              <Form.Check
-                type="checkbox"
-                checked={option.isCorrect}
-                onChange={() => handleCorrectToggle(qIndex, oIndex)}
-                label=""
-              />
-              <Form.Control
-                type="text"
-                placeholder={`Option ${oIndex + 1}`}
-                value={option.text}
-                onChange={(e) =>
-                  handleOptionChange(qIndex, oIndex, e.target.value)
-                }
-                required
-              />
-              <Button
-                variant="outline-danger"
-                size="sm"
-                onClick={() => removeOption(qIndex, oIndex)}
+          {/* Questions Section */}
+          <div className="mb-4">
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h4 className="fw-bold mb-0" style={{ color: '#6f42c1' }}>
+                <i className="bi bi-question-circle me-2"></i>
+                Questions
+              </h4>
+              <Button 
+                variant="outline-success" 
+                onClick={addQuestion}
+                className="shadow-sm"
               >
-                ✕
+                <i className="bi bi-plus-circle me-2"></i>
+                Add Question
               </Button>
             </div>
-          ))}
 
-          <div className="d-flex justify-content-between mt-2">
-            <Button
-              variant="outline-success"
-              size="sm"
-              onClick={() => addOption(qIndex)}
+            {questions.length === 0 && (
+              <div className="text-center py-5 text-muted">
+                <i className="bi bi-clipboard-x fs-1 d-block mb-3"></i>
+                <p>No questions yet. Click "Add Question" to start building your quiz.</p>
+              </div>
+            )}
+
+            {questions.map((question, qIndex) => (
+              <Card key={qIndex} className="mb-3 shadow-sm border-0" style={{ backgroundColor: '#f8f9fa' }}>
+                <Card.Body className="p-4">
+                  <div className="d-flex justify-content-between align-items-start mb-3">
+                    <h5 className="fw-bold" style={{ color: '#6f42c1' }}>
+                      Question {qIndex + 1}
+                    </h5>
+                    <Button
+                      variant="outline-danger"
+                      size="sm"
+                      onClick={() => removeQuestion(qIndex)}
+                    >
+                      <i className="bi bi-trash me-1"></i>
+                      Remove
+                    </Button>
+                  </div>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label className="fw-semibold">Question Text</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter question text"
+                      value={question.text}
+                      onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+
+                  <Form.Check
+                    type="switch"
+                    label="Allow multiple correct answers"
+                    checked={question.allowMultiple || false}
+                    onChange={(e) => {
+                      const updated = [...questions];
+                      updated[qIndex].allowMultiple = e.target.checked;
+
+                      if (!e.target.checked) {
+                        let firstCorrectFound = false;
+                        updated[qIndex].options = updated[qIndex].options.map(opt => {
+                          if (opt.isCorrect) {
+                            if (!firstCorrectFound) {
+                              firstCorrectFound = true;
+                              return opt;
+                            } else {
+                              return { ...opt, isCorrect: false };
+                            }
+                          }
+                          return opt;
+                        });
+                      }
+
+                      setQuestions(updated);
+                    }}
+                    className="mb-3"
+                  />
+
+                  <div className="mb-3">
+                    <Form.Label className="fw-semibold">Options</Form.Label>
+                    {question.options.map((option, oIndex) => (
+                      <div key={oIndex} className="d-flex align-items-center mb-2 gap-2">
+                        <Form.Check
+                          type="checkbox"
+                          checked={option.isCorrect}
+                          onChange={() => handleCorrectToggle(qIndex, oIndex)}
+                          label=""
+                          title="Mark as correct answer"
+                        />
+                        <Form.Control
+                          type="text"
+                          placeholder={`Option ${oIndex + 1}`}
+                          value={option.text}
+                          onChange={(e) => handleOptionChange(qIndex, oIndex, e.target.value)}
+                          required
+                        />
+                        <Button
+                          variant="outline-danger"
+                          size="sm"
+                          onClick={() => removeOption(qIndex, oIndex)}
+                          disabled={question.options.length <= 2}
+                        >
+                          <i className="bi bi-x-lg"></i>
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button
+                    variant="outline-success"
+                    size="sm"
+                    onClick={() => addOption(qIndex)}
+                  >
+                    <i className="bi bi-plus-circle me-1"></i>
+                    Add Option
+                  </Button>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
+
+          <hr className="my-4" />
+
+          {/* Submit Buttons */}
+          <div className="d-flex justify-content-end gap-2">
+            <Button 
+              variant="outline-secondary" 
+              size="lg"
+              onClick={() => window.history.back()}
             >
-              + Add Option
+              Cancel
             </Button>
-            <Button
-              variant="outline-danger"
-              size="sm"
-              onClick={() => removeQuestion(qIndex)}
+            <Button 
+              type="submit"
+              size="lg"
+              className="px-4"
+              style={{ backgroundColor: '#6f42c1', borderColor: '#6f42c1', color: 'white' }}
             >
-              Remove Question
+              <i className="bi bi-check-circle me-2"></i>
+              {isUpdate ? 'Update Quiz' : 'Create Quiz'}
             </Button>
           </div>
-        </Card>
-      ))}
-
-      <Button variant="outline-primary" onClick={addQuestion}>
-        + Add Question
-      </Button>
-
-      <hr />
-      <Button variant="primary" type="submit">
-        {isUpdate ? 'Update Quiz' : 'Create Quiz'}
-      </Button>
-    </Form>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 };
 
