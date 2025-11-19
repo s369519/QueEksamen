@@ -405,10 +405,10 @@ FodyWeavers.xsd
 /api/obj/
 
 # Local SQLite DB files and related journal files
-/api/*.db
-/api/*.db-shm
-/api/*.db-wal
-/api/*.db.bak
+#/api/*.db
+#/api/*.db-shm
+#/api/*.db-wal
+#/api/*.db.bak
 
 *.msp
 
