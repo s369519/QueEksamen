@@ -14,7 +14,7 @@ const NavMenu: React.FC = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
         
-                        <Nav.Link as={Link} to="/quizes">My Quizes</Nav.Link>
+                        <Nav.Link as={Link} to="/quizes">Quizes</Nav.Link>
                         {isAuthenticated && (
                             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                         )}
