@@ -299,8 +299,8 @@ export const getUserQuizzes = async () => {
         description: quiz.description || '',
         category: quiz.category || 'General',
         difficulty: quiz.difficulty || 'Medium',
-        timeLimit: quiz.timeLimit || 10,
-        isPublic: quiz.isPublic || false,
+        timeLimit: quiz.timeLimit,
+        isPublic: quiz.isPublic !== undefined ? quiz.isPublic : false,
         ownerId: quiz.ownerId,
         questionCount: quiz.questionCount || 0
     }));

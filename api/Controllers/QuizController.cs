@@ -122,6 +122,7 @@ public class QuizAPIController : ControllerBase
             createdAt = DateTime.UtcNow, // Quiz model doesn't have CreatedAt, using current time as placeholder
             category = q.Category,
             difficulty = q.Difficulty,
+            timeLimit = q.TimeLimit,
             isPublic = q.IsPublic,
             questionCount = q.Questions?.Count ?? 0
         });
