@@ -3,19 +3,121 @@ import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Alert } from "react-bootstrap";
 import * as authService from "./AuthService";
-import "../views/Login/LoginPage.css";
+
+// ----------------- inline styles -----------------
+
+const loginPageStyle: React.CSSProperties = {
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  paddingTop: "60px",
+  background: "#ffffff",
+};
+
+const loginBrandStyle: React.CSSProperties = {
+  textAlign: "center",
+  marginBottom: "24px",
+};
+
+const brandTitleStyle: React.CSSProperties = {
+  fontSize: "40px",
+  fontWeight: 800,
+  margin: "0 0 6px",
+  color: "#6a5cff",
+};
+
+const brandSubtitleStyle: React.CSSProperties = {
+  margin: 0,
+  color: "#7a7b8a",
+  fontSize: "16px",
+};
+
+const loginCardStyle: React.CSSProperties = {
+  backgroundColor: "#ffffff",
+  width: "100%",
+  maxWidth: "520px",
+  borderRadius: "20px",
+  padding: "24px 26px 28px",
+  boxShadow: "0 14px 40px rgba(20, 20, 40, 0.15)",
+};
+
+const loginCardHeaderStyle: React.CSSProperties = {
+  textAlign: "center",
+  marginBottom: "18px",
+};
+
+const loginIconStyle: React.CSSProperties = {
+  fontSize: "22px",
+};
+
+const loginHeaderTitleStyle: React.CSSProperties = {
+  fontSize: "22px",
+  fontWeight: 700,
+  margin: "6px 0 4px",
+};
+
+const loginHeaderTextStyle: React.CSSProperties = {
+  margin: "0 0 12px",
+  color: "#8b8c98",
+  fontSize: "14px",
+};
+
+const loginTabsStyle: React.CSSProperties = {
+  background: "#f1f2f7",
+  borderRadius: 999,
+  padding: 4,
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: 4,
+};
+
+const loginTabBaseStyle: React.CSSProperties = {
+  border: "none",
+  background: "transparent",
+  borderRadius: 999,
+  padding: "8px 10px",
+  fontSize: "14px",
+  fontWeight: 600,
+  color: "#75768a",
+  cursor: "pointer",
+};
+
+const loginTabActiveStyle: React.CSSProperties = {
+  background: "#ffffff",
+  color: "#1e2033",
+  boxShadow: "0 3px 10px rgba(0, 0, 0, 0.08)",
+};
+
+const inputStyle: React.CSSProperties = {
+  borderRadius: 10,
+  border: "1px solid #e0e2ea",
+  backgroundColor: "#f7f8fb",
+};
+
+const submitButtonStyle: React.CSSProperties = {
+  width: "100%",
+  borderRadius: 10,
+  fontWeight: 600,
+  padding: "10px",
+  backgroundColor: "#070714",
+  border: "none",
+};
+
+const alertStyle: React.CSSProperties = {
+  borderRadius: 10,
+};
+
+// ------------------------------------------------
 
 const LoginPage: React.FC = () => {
-  // which tab is active? "login" or "register"
   const [mode, setMode] = useState<"login" | "register">("login");
 
-  // login form state
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
   });
 
-  // register form state
   const [registerData, setRegisterData] = useState({
     username: "",
     email: "",
@@ -28,24 +130,17 @@ const LoginPage: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  // handle change for login form
-  const handleLoginChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  // handle change for register form
-  const handleRegisterChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRegisterData({
       ...registerData,
       [e.target.name]: e.target.value,
     });
   };
 
-  // submit login
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -63,7 +158,6 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  // submit register
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -72,7 +166,6 @@ const LoginPage: React.FC = () => {
     try {
       await authService.register(registerData);
       setSuccess("Registration successful! You can now log in.");
-      // switch to login tab after success
       setMode("login");
       setLoginData({
         username: registerData.username,
@@ -89,29 +182,32 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <main className="login-page">
+    <main style={loginPageStyle}>
       {/* Brand / logo */}
-      <div className="login-brand">
-        <h1>¿Qué ?</h1>
-        <p>Join the ultimate quiz community</p>
+      <div style={loginBrandStyle}>
+        <h1 style={brandTitleStyle}>¿Qué ?</h1>
+        <p style={brandSubtitleStyle}>Join the ultimate quiz community</p>
       </div>
 
       {/* Card */}
-      <div className="login-card">
-        <div className="login-card-header">
-          <span className="login-icon" aria-hidden>
+      <div style={loginCardStyle}>
+        <div style={loginCardHeaderStyle}>
+          <span style={loginIconStyle} aria-hidden>
             👤
           </span>
-          <h2>Welcome</h2>
-          <p>Sign in to your account or create a new one</p>
+          <h2 style={loginHeaderTitleStyle}>Welcome</h2>
+          <p style={loginHeaderTextStyle}>
+            Sign in to your account or create a new one
+          </p>
 
           {/* Tabs */}
-          <div className="login-tabs" role="tablist">
+          <div style={loginTabsStyle} role="tablist">
             <button
               type="button"
-              className={`login-tab ${
-                mode === "login" ? "active" : ""
-              }`}
+              style={{
+                ...loginTabBaseStyle,
+                ...(mode === "login" ? loginTabActiveStyle : {}),
+              }}
               onClick={() => {
                 setMode("login");
                 setError(null);
@@ -122,9 +218,10 @@ const LoginPage: React.FC = () => {
             </button>
             <button
               type="button"
-              className={`login-tab ${
-                mode === "register" ? "active" : ""
-              }`}
+              style={{
+                ...loginTabBaseStyle,
+                ...(mode === "register" ? loginTabActiveStyle : {}),
+              }}
               onClick={() => {
                 setMode("register");
                 setError(null);
@@ -138,12 +235,12 @@ const LoginPage: React.FC = () => {
 
         {/* Messages */}
         {error && (
-          <Alert variant="danger" className="mb-3">
+          <Alert variant="danger" className="mb-3" style={alertStyle}>
             {error}
           </Alert>
         )}
         {success && (
-          <Alert variant="success" className="mb-3">
+          <Alert variant="success" className="mb-3" style={alertStyle}>
             {success}
           </Alert>
         )}
@@ -161,6 +258,7 @@ const LoginPage: React.FC = () => {
                 onChange={handleLoginChange}
                 required
                 autoComplete="username"
+                style={inputStyle}
               />
             </Form.Group>
 
@@ -175,10 +273,11 @@ const LoginPage: React.FC = () => {
                 required
                 autoComplete="current-password"
                 minLength={6}
+                style={inputStyle}
               />
             </Form.Group>
 
-            <Button type="submit" className="login-submit-btn">
+            <Button type="submit" style={submitButtonStyle}>
               Sign In
             </Button>
           </Form>
@@ -196,6 +295,7 @@ const LoginPage: React.FC = () => {
                 value={registerData.username}
                 onChange={handleRegisterChange}
                 required
+                style={inputStyle}
               />
             </Form.Group>
 
@@ -208,6 +308,7 @@ const LoginPage: React.FC = () => {
                 value={registerData.email}
                 onChange={handleRegisterChange}
                 required
+                style={inputStyle}
               />
             </Form.Group>
 
@@ -221,10 +322,11 @@ const LoginPage: React.FC = () => {
                 onChange={handleRegisterChange}
                 required
                 minLength={6}
+                style={inputStyle}
               />
             </Form.Group>
 
-            <Button type="submit" className="login-submit-btn">
+            <Button type="submit" style={submitButtonStyle}>
               Sign Up
             </Button>
           </Form>

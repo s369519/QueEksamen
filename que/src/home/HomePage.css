@@ -1,0 +1,141 @@
+.home-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Hero title – bare spesialtekst (gradient på ¿Qué?) */
+.hero-que {
+  display: inline-block;
+  font-size: 2.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-left: 0.5rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* Gradientkortet "Find Your Perfect Quiz" */
+.find-quiz-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  color: #ffffff;
+}
+
+/* Quiz card hover-effekt */
+.quiz-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+}
+
+/* Start-knapp på kortet */
+.btn-start-quiz {
+  font-weight: 700;
+  background-color: #ffffff;
+  color: #667eea;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-start-quiz:hover {
+  background-color: #667eea;
+  color: #ffffff;
+  transform: scale(1.02);
+}
+
+/* "View All Quizzes" knapp */
+.view-all-btn {
+  border-color: #667eea;
+  color: #667eea;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  font-weight: 700;
+}
+
+.view-all-btn:hover {
+  background-color: #667eea;
+  border-color: #667eea;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Meta-informasjon i kortet */
+.quiz-meta {
+  border-top: 1px solid #f0f0f0;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  color: #999999;
+}
+
+/* Enkel fade-in-up animasjon, gjenbrukbar */
+.fade-in-up {
+  animation: fadeInUp 0.6s ease both;
+}
+
+.fade-in-up-delay {
+  animation: fadeInUp 0.6s ease 0.1s both;
+}
+
+.fade-in-up-delay-more {
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivt – justér bare tekststørrelse på tittel */
+@media (max-width: 768px) {
+  .hero-que {
+    font-size: 2rem;
+  }
+}
+
+
+/* Unified visual style for search + filters */
+.quiz-control {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.96);
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+.quiz-control:focus {
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.35);
+}
+
+/* Makes filters stack on mobile */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+}
