@@ -129,8 +129,7 @@ const QuizListPage: React.FC = () => {
                 </>
             )}
             </div>
-        
     );
 };
 
-export default QuizListPage;
+export default QuizListPage;  
