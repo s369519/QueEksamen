@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
-import './HomePage.css';
 
 interface QuizPreview {
   quizId: number;
@@ -20,10 +19,18 @@ const HomePage: React.FC = () => {
   const [filteredQuizzes, setFilteredQuizzes] = useState<QuizPreview[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
   const [selectedLength, setSelectedLength] = useState('Any Length');
+
+  // for fade-in animation
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   useEffect(() => {
     const fetchFeaturedQuizzes = async () => {
@@ -34,21 +41,20 @@ const HomePage: React.FC = () => {
           throw new Error('Failed to fetch featured quizzes');
         }
         const data = await response.json();
-        console.log('Fetched quizzes:', data);
-        
+
         if (data && data.length > 0) {
-          // Take only first 6 quizzes for featured section
-          setFeaturedQuizzes(data.slice(0, 6).map((quiz: any) => ({
-            quizId: quiz.quizId,
-            name: quiz.name,
-            description: quiz.description || 'No description available',
-            difficulty: quiz.difficulty || 'Medium',
-            questionCount: quiz.questionCount || 0,
-            timeLimit: quiz.timeLimit || 10,
-            category: quiz.category || 'General'
-          })));
+          setFeaturedQuizzes(
+            data.slice(0, 6).map((quiz: any) => ({
+              quizId: quiz.quizId,
+              name: quiz.name,
+              description: quiz.description || 'No description available',
+              difficulty: quiz.difficulty || 'Medium',
+              questionCount: quiz.questionCount || 0,
+              timeLimit: quiz.timeLimit || 10,
+              category: quiz.category || 'General'
+            }))
+          );
         } else {
-          // No public quizzes available
           setFeaturedQuizzes([]);
         }
         setError(null);
@@ -64,46 +70,42 @@ const HomePage: React.FC = () => {
     fetchFeaturedQuizzes();
   }, []);
 
-  // Apply filters whenever they change
+  // apply filters
   useEffect(() => {
     let filtered = [...featuredQuizzes];
 
-    // Search filter
     if (searchTerm) {
-      filtered = filtered.filter(quiz =>
+      filtered = filtered.filter((quiz) =>
         quiz.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         quiz.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         quiz.category.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
-    // Category filter
     if (selectedCategory !== 'All Categories') {
-      filtered = filtered.filter(quiz =>
-        quiz.category.toLowerCase() === selectedCategory.toLowerCase()
+      filtered = filtered.filter(
+        (quiz) => quiz.category.toLowerCase() === selectedCategory.toLowerCase()
       );
     }
 
-    // Level filter
     if (selectedLevel !== 'All Levels') {
-      filtered = filtered.filter(quiz =>
-        quiz.difficulty.toLowerCase() === selectedLevel.toLowerCase()
+      filtered = filtered.filter(
+        (quiz) => quiz.difficulty.toLowerCase() === selectedLevel.toLowerCase()
       );
     }
 
-    // Length filter
     if (selectedLength !== 'Any Length') {
-      filtered = filtered.filter(quiz => {
-        const questionCount = quiz.questionCount;
+      filtered = filtered.filter((quiz) => {
+        const c = quiz.questionCount;
         switch (selectedLength) {
           case '1-5 questions':
-            return questionCount >= 1 && questionCount <= 5;
+            return c >= 1 && c <= 5;
           case '6-10 questions':
-            return questionCount >= 6 && questionCount <= 10;
+            return c >= 6 && c <= 10;
           case '11-15 questions':
-            return questionCount >= 11 && questionCount <= 15;
+            return c >= 11 && c <= 15;
           case '16+ questions':
-            return questionCount >= 16;
+            return c >= 16;
           default:
             return true;
         }
@@ -116,13 +118,13 @@ const HomePage: React.FC = () => {
   const getDifficultyColor = (difficulty: string): string => {
     switch (difficulty?.toLowerCase()) {
       case 'easy':
-        return '#28a745';
+        return 'success';
       case 'medium':
-        return '#ffc107';
+        return 'warning';
       case 'hard':
-        return '#dc3545';
+        return 'danger';
       default:
-        return '#6c757d';
+        return 'secondary';
     }
   };
 
@@ -133,81 +135,130 @@ const HomePage: React.FC = () => {
     setSelectedLength('Any Length');
   };
 
+  // shared fade-in style
+  const fadeInStyle: React.CSSProperties = {
+    opacity: loaded ? 1 : 0,
+    transform: loaded ? 'translateY(0)' : 'translateY(20px)',
+    transition: 'opacity 0.6s ease, transform 0.6s ease'
+  };
+
+  const fadeInDelayed: React.CSSProperties = {
+    ...fadeInStyle,
+    transition: 'opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s'
+  };
+
+  // gradient card style (ombre)
+  const gradientCardStyle: React.CSSProperties = {
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    borderRadius: '1.5rem',
+    color: '#ffffff'
+  };
+
+  // input/select style on gradient background
+  const innerControlStyle: React.CSSProperties = {
+    padding: '12px 16px',
+    borderRadius: '0.75rem',
+    border: '2px solid rgba(255,255,255,0.7)',
+    backgroundColor: 'rgba(255,255,255,0.96)',
+    fontSize: '1rem'
+  };
+
+  const gradientTextStyle: React.CSSProperties = {
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    WebkitBackgroundClip: 'text',
+    color: 'transparent',
+    fontWeight: 700
+  };
+
   return (
-    <div className="home-page">
-      {/* Hero Section */}
-      <section className="hero-section">
+    <div className="bg-white min-vh-100">
+      {/* HERO */}
+      <section className="py-5 text-center" style={fadeInStyle}>
         <Container>
-          <Row className="align-items-center">
-            <Col lg={12} className="text-center hero-content">
-              <h1 className="hero-title">
-                Welcome to <span className="hero-que">¿Qué?</span>
-              </h1>
-            </Col>
-          </Row>
+          <h1 className="fw-normal fs-1 mb-0">
+            Welcome to{' '}
+            <span style={gradientTextStyle}>¿Qué?</span>
+          </h1>
         </Container>
       </section>
 
-      {/* Find Your Perfect Quiz Section */}
-      <section className="find-quiz-section py-5">
+      {/* FIND YOUR PERFECT QUIZ */}
+      <section className="py-5" style={fadeInDelayed}>
         <Container>
-          <div className="find-quiz-card">
-            <h2 className="find-quiz-title mb-4">Find Your Perfect Quiz</h2>
+          <div className="p-4 p-md-5" style={gradientCardStyle}>
+            <h2 className="fw-bold mb-4" style={{ fontSize: '1.8rem' }}>
+              Find Your Perfect Quiz
+            </h2>
 
-            <div className="search-bar mb-4">
+            {/* search */}
+            <div className="mb-4">
               <input
                 type="text"
                 placeholder="Search quizzes by title, description, or category..."
-                className="form-control search-input"
+                style={innerControlStyle}
+                className="w-100"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
 
-            <div className="filters mb-4">
-              <select 
-                className="form-select filter-select"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-              >
-                <option>All Categories</option>
-                <option>History</option>
-                <option>Geography</option>
-                <option>Sports</option>
-                <option>Technology</option>
-                <option>Trivia</option>
-                <option>Other</option>
-              </select>
+            {/* filters – 3 columns on md+, stacked on mobile */}
+            <Row className="g-3 mb-4">
+              <Col md={4}>
+                <select
+                  className="form-select"
+                  style={innerControlStyle}
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                >
+                  <option>All Categories</option>
+                  <option>History</option>
+                  <option>Geography</option>
+                  <option>Sports</option>
+                  <option>Technology</option>
+                  <option>Trivia</option>
+                  <option>Other</option>
+                </select>
+              </Col>
+              <Col md={4}>
+                <select
+                  className="form-select"
+                  style={innerControlStyle}
+                  value={selectedLevel}
+                  onChange={(e) => setSelectedLevel(e.target.value)}
+                >
+                  <option>All Levels</option>
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option>Hard</option>
+                </select>
+              </Col>
+              <Col md={4}>
+                <select
+                  className="form-select"
+                  style={innerControlStyle}
+                  value={selectedLength}
+                  onChange={(e) => setSelectedLength(e.target.value)}
+                >
+                  <option>Any Length</option>
+                  <option>1-5 questions</option>
+                  <option>6-10 questions</option>
+                  <option>11-15 questions</option>
+                  <option>16+ questions</option>
+                </select>
+              </Col>
+            </Row>
 
-              <select 
-                className="form-select filter-select"
-                value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.value)}
-              >
-                <option>All Levels</option>
-                <option>Easy</option>
-                <option>Medium</option>
-                <option>Hard</option>
-              </select>
-
-              <select 
-                className="form-select filter-select"
-                value={selectedLength}
-                onChange={(e) => setSelectedLength(e.target.value)}
-              >
-                <option>Any Length</option>
-                <option>1-5 questions</option>
-                <option>6-10 questions</option>
-                <option>11-15 questions</option>
-                <option>16+ questions</option>
-              </select>
-            </div>
-
-            <div className="filters-bottom">
-              <p className="quiz-count text-muted">
+            {/* bottom row: text left, button right */}
+            <div className="d-flex flex-wrap justify-content-between align-items-center mt-2">
+              <p className="mb-2 mb-md-0" style={{ opacity: 0.9 }}>
                 Showing {filteredQuizzes.length} of {featuredQuizzes.length} quizzes
               </p>
-              <Button className="set-filters-btn" onClick={handleResetFilters}>
+              <Button
+                variant="light"
+                className="fw-bold px-4"
+                onClick={handleResetFilters}
+              >
                 Reset Filters
               </Button>
             </div>
@@ -215,18 +266,20 @@ const HomePage: React.FC = () => {
         </Container>
       </section>
 
-      {/* Take a Quiz Section */}
-      <section className="featured-section py-5">
+      {/* QUIZ LIST */}
+      <section className="py-5" style={fadeInDelayed}>
         <Container>
-          <h2 className="section-title mb-4">Take a Quiz</h2>
+          <h2 className="fw-bold mb-4" style={{ fontSize: '2rem' }}>
+            Take a Quiz
+          </h2>
 
           {loading && (
             <div className="text-center py-5">
-              <p className="text-muted">Loading quizzes...</p>
+              <p className="text-muted mb-0">Loading quizzes...</p>
             </div>
           )}
 
-          {!loading && filteredQuizzes.length > 0 ? (
+          {!loading && filteredQuizzes.length > 0 && (
             <Row className="g-4">
               {filteredQuizzes.map((quiz) => (
                 <Col key={quiz.quizId} md={6} lg={4}>
@@ -234,21 +287,21 @@ const HomePage: React.FC = () => {
                 </Col>
               ))}
             </Row>
-          ) : (
-            !loading && (
-              <div className="text-center py-5">
-                <p className="text-muted">
-                  {featuredQuizzes.length === 0 
-                    ? 'No quizzes available at the moment.' 
-                    : 'No quizzes match your filters.'}
-                </p>
-              </div>
-            )
+          )}
+
+          {!loading && filteredQuizzes.length === 0 && (
+            <div className="text-center py-5">
+              <p className="text-muted mb-0">
+                {featuredQuizzes.length === 0
+                  ? 'No quizzes available at the moment.'
+                  : 'No quizzes match your filters.'}
+              </p>
+            </div>
           )}
 
           <div className="text-center mt-5">
             <Link to="/quizes">
-              <Button variant="outline-primary" size="lg" className="view-all-btn">
+              <Button variant="outline-primary" size="lg" className="fw-bold">
                 View All Quizzes
               </Button>
             </Link>
@@ -259,7 +312,7 @@ const HomePage: React.FC = () => {
   );
 };
 
-// Quiz Card Component
+// Quiz Card
 interface QuizCardProps {
   quiz: QuizPreview;
   getDifficultyColor: (difficulty: string) => string;
@@ -267,33 +320,42 @@ interface QuizCardProps {
 
 const QuizCard: React.FC<QuizCardProps> = ({ quiz, getDifficultyColor }) => {
   return (
-    <Card className="quiz-card h-100 shadow-sm">
-      <Card.Body>
+    <Card className="h-100 border-0 shadow-sm">
+      <Card.Body className="p-4">
+
+        {/* Title + difficulty badge */}
         <div className="d-flex justify-content-between align-items-start mb-2">
-          <Card.Title className="mb-0">{quiz.name}</Card.Title>
-          <span
-            className="badge"
-            style={{
-              backgroundColor: getDifficultyColor(quiz.difficulty),
-              color: 'white'
-            }}
-          >
+          <Card.Title className="mb-0 fs-6 fw-bold text-dark">
+            {quiz.name}
+          </Card.Title>
+
+          <span className={`badge bg-${getDifficultyColor(quiz.difficulty)} text-white`}>
             {quiz.difficulty}
           </span>
         </div>
 
+        {/* Description */}
         <Card.Text className="text-muted small mb-3">
           {quiz.description}
         </Card.Text>
 
-        <div className="quiz-meta d-flex justify-content-between text-muted small">
+        {/* Category */}
+        <div className="text-muted small mb-3">
+          📂 <span className="fw-semibold">{quiz.category}</span>
+        </div>
+
+        {/* Questiong + time */}
+        <div className="d-flex justify-content-between text-muted small pt-3 border-top">
           <span>📚 {quiz.questionCount} questions</span>
           <span>⏱️ {quiz.timeLimit} min</span>
         </div>
       </Card.Body>
 
-      <Card.Footer className="bg-white border-top-0">
-        <Link to={`/quiztake/${quiz.quizId}`} className="btn btn-sm btn-start-quiz w-100">
+      <Card.Footer className="bg-white border-0 px-4 pb-4 pt-3">
+        <Link
+          to={`/quiztake/${quiz.quizId}`}
+          className="btn btn-outline-primary btn-sm w-100 fw-bold"
+        >
           Start Quiz
         </Link>
       </Card.Footer>
