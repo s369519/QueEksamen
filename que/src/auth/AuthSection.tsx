@@ -20,9 +20,7 @@ const AuthSection: React.FC = () => {
         </Dropdown>
       ) : (
         <>
-          <Nav.Link as={Link} to="/login">Log in</Nav.Link>
-          
-          {/*<Nav.Link as={Link} to="/register">Register</Nav.Link>*/}
+          <Nav.Link as={Link} to="/login">{"Sign\u00A0in"}</Nav.Link>
         </>
       )}
     </Nav>
