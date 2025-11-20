@@ -33,7 +33,7 @@ const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted }) 
                 <tbody>
                     {quizes.map(quiz => {
                         const isOwner = user && quiz.ownerId === user.sub;
-                        const canEdit = onQuizDeleted && isOwner;
+                        const canEdit = onQuizDeleted !== undefined;
                         
                         return (
                             <tr key={quiz.quizId}>
@@ -50,10 +50,10 @@ const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted }) 
                                     </Link>
                                     {canEdit && (
                                         <>
-                                        <Link to={`/quizupdate/${quiz.quizId}`}>
+                                        <Link to={`/quizupdate/${quiz.quizId}`} className='btn btn-link text-primary me-2'>
                                         Update
                                         </Link>
-                                        <Link to="#" onClick={() => onQuizDeleted(quiz.quizId!)} className='btn btn-link text-danger'>
+                                        <Link to="#" onClick={() => onQuizDeleted!(quiz.quizId!)} className='btn btn-link text-danger'>
                                         Delete
                                         </Link>
                                         </>

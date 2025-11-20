@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from 'react-bootstrap';
 import QuizTable from "./QuizTable";
-import QuizGrid from "./QuizGrid"; 
 import { Quiz } from '../types/quiz';
 import * as QuizService from './QuizService';
 import { useAuth } from "../auth/AuthContext";
@@ -11,18 +10,21 @@ const QuizListPage: React.FC = () => {
     const [quizes, setQuizes] = useState<Quiz[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const [showTable, setShowTable] = useState<boolean>(true);
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const { user } = useAuth();
-
-    const toggleTableOrGrid = () => setShowTable(prevShowTable => !prevShowTable);
+    const { user, isAuthenticated } = useAuth();
 
     const fetchQuizes = async () => {
+        if (!isAuthenticated) {
+            setQuizes([]);
+            setLoading(false);
+            return;
+        }
+
         setLoading(true);
         setError(null);
 
         try {
-            const data = await QuizService.fetchQuizes();
+            const data = await QuizService.getUserQuizzes();
             setQuizes(data);
             console.log(data);
         } catch (error: unknown) {
@@ -39,11 +41,11 @@ const QuizListPage: React.FC = () => {
 
     useEffect(() => {
         fetchQuizes();
-    }, []);
+    }, [isAuthenticated]);
 
     const filteredQuizes = quizes.filter(quiz =>
-        quiz.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        quiz.description.toLowerCase().includes(searchQuery.toLowerCase())
+        (quiz.name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+        (quiz.description?.toLowerCase() || '').includes(searchQuery.toLowerCase())
     );
 
     const [sortCategory, setSortCategory] = useState<string>('');
@@ -73,8 +75,16 @@ const QuizListPage: React.FC = () => {
 
     return (
         <div>
-            <h1>Quizes</h1>
+            <h1>My Quizes</h1>
 
+            {!isAuthenticated ? (
+                <div className="alert alert-info" style={{ maxWidth: '600px', margin: '2rem auto', textAlign: 'center' }}>
+                    <h4>Please log in to view your quizzes</h4>
+                    <p>You need to be logged in to see quizzes you have created.</p>
+                    <Button href="/login" variant="primary">Go to Login</Button>
+                </div>
+            ) : (
+                <>
             <div className="mb-3 d-flex gap-2 flex-wrap align-items-center">
                 <Form.Control
                     type="text"
@@ -111,24 +121,13 @@ const QuizListPage: React.FC = () => {
             </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
 
-
-            <div className="mb-4 d-flex gap-2 flex-wrap">
-                <Button onClick={fetchQuizes} className="btn btn-primary" disabled={loading}>
-                    {loading ? 'Loading...' : 'Refresh Quizes'}
-                </Button>
-
-                <Button onClick={toggleTableOrGrid} className="btn btn-primary">
-                    {showTable ? 'Display Grid' : 'Display Table'}
-                </Button>
-            </div>
-                {showTable
-                ? <QuizTable quizes={sortedAndFilteredQuizzes} apiUrl={API_URL} onQuizDeleted={user ? handleQuizDeleted : undefined} />
-                : <QuizGrid quizes={sortedAndFilteredQuizzes} apiUrl={API_URL} onQuizDeleted={user ? handleQuizDeleted : undefined} />
-                }
+                <QuizTable quizes={sortedAndFilteredQuizzes} apiUrl={API_URL} onQuizDeleted={user ? handleQuizDeleted : undefined} />
             
                 {user && (
                     <Button href="/quizcreate" className="btn btn-secondary mt-3">Create New Quiz</Button>
                 )}
+                </>
+            )}
             </div>
         
     );

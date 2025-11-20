@@ -290,7 +290,20 @@ export const getUserQuizzes = async () => {
             "Authorization": `Bearer ${token}`
         }
     });
-    return handleResponse(response);
+    const data = await handleResponse(response);
+    
+    // Map API response to Quiz interface
+    return data.map((quiz: any) => ({
+        quizId: parseInt(quiz.quizId),
+        name: quiz.title,
+        description: quiz.description || '',
+        category: quiz.category || 'General',
+        difficulty: quiz.difficulty || 'Medium',
+        timeLimit: quiz.timeLimit || 10,
+        isPublic: quiz.isPublic || false,
+        ownerId: quiz.ownerId,
+        questionCount: quiz.questionCount || 0
+    }));
 };
 
 export const getUserAttemptedQuizzes = async () => {
