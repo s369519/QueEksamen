@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
 
         if (data && data.length > 0) {
           setFeaturedQuizzes(
-            data.slice(0, 6).map((quiz: any) => ({
+            data.map((quiz: any) => ({
               quizId: quiz.quizId,
               name: quiz.name,
               description: quiz.description || 'No description available',
