@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Button, Form, Alert, ProgressBar, Container, Spinner, Badge } from 'react-bootstrap';
+import { Card, Button, Form, Alert, ProgressBar, Container, Spinner, Badge, Row, Col } from 'react-bootstrap';
 import { QuizTake, QuestionTake } from '../types/quizTake';
 import * as QuizService from './QuizService';
 import { fetchQuizById, submitAnswer, submitQuizAttempt } from './QuizService';
@@ -36,14 +36,17 @@ const TakeQuizPage: React.FC = () => {
     } | null>(null);
     const [userAnswers, setUserAnswers] = useState<Map<number, number[]>>(new Map());
     const [elapsedTime, setElapsedTime] = useState(0);
+    const [finalTime, setFinalTime] = useState(0);
 
     useEffect(() => {
+        if (showResult) return; // Stop timer når quiz er ferdig
+
         const timer = setInterval(() => {
             setElapsedTime(prev => prev + 1);
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [showResult]);
 
     const formatTime = (seconds: number) => {
         const hours = Math.floor(seconds / 3600);
@@ -66,6 +69,18 @@ const TakeQuizPage: React.FC = () => {
         } catch (error) {
             console.error('Error submitting quiz attempt:', error);
         }
+    };
+
+    const handleRetakeQuiz = () => {
+        setCurrentQuestionIndex(0);
+        setSelectedOptions([]);
+        setScore(0);
+        setShowResult(false);
+        setAnswerHistory([]);
+        setUserAnswers(new Map());
+        setElapsedTime(0);
+        setFinalTime(0);
+        setQuizWithAnswers(null);
     };
 
     useEffect(() => {
@@ -189,6 +204,7 @@ const TakeQuizPage: React.FC = () => {
 
             setAnswerHistory(history);
             setScore(totalScore);
+            setFinalTime(elapsedTime); // Lagre tiden når quizen er ferdig
 
             const maxScore = quiz.questions.length;
             const finalScore = (totalScore / maxScore) * 100;
@@ -237,6 +253,8 @@ const TakeQuizPage: React.FC = () => {
 
     if (showResult) {
         const percentage = (score / quiz.totalQuestions) * 100;
+        const correctAnswers = answerHistory.filter(a => a.isCorrect).length;
+        
         return (
             <div style={{ 
                 backgroundColor: 'white',
@@ -250,31 +268,55 @@ const TakeQuizPage: React.FC = () => {
                             Quiz Complete!
                         </Card.Header>
                         <Card.Body className="py-5">
-                            <Card.Title className="mb-4 fs-3">{quiz.quizName}</Card.Title>
-                            <div className="mb-4">
-                                <Badge bg="secondary" className="fs-5 p-3">
-                                    <i className="bi bi-clock me-2"></i>
-                                    Time taken: {formatTime(elapsedTime)}
-                                </Badge>
+                            <Card.Title className="mb-4 fs-3 fw-bold">{quiz.quizName}</Card.Title>
+                            
+                            {/* Statistics Row */}
+                            <Row className="mb-4 justify-content-center">
+                                <Col xs={12} md={3} className="text-center mb-3 mb-md-0">
+                                    <div className="p-3 border rounded bg-light">
+                                        <h2 className="mb-1 text-success fw-bold">{correctAnswers}/{quiz.totalQuestions}</h2>
+                                        <small className="text-muted text-uppercase">Correct Answers</small>
+                                    </div>
+                                </Col>
+                                <Col xs={12} md={3} className="text-center mb-3 mb-md-0">
+                                    <div className="p-3 border rounded bg-light">
+                                        <h2 className="mb-1 fw-bold" style={{ color: '#6f42c1' }}>{percentage.toFixed(1)}%</h2>
+                                        <small className="text-muted text-uppercase">Score</small>
+                                    </div>
+                                </Col>
+                                <Col xs={12} md={3} className="text-center mb-3 mb-md-0">
+                                    <div className="p-3 border rounded bg-light">
+                                        <h2 className="mb-1 text-primary fw-bold">{quiz.totalQuestions}</h2>
+                                        <small className="text-muted text-uppercase">Total Questions</small>
+                                    </div>
+                                </Col>
+                                <Col xs={12} md={3} className="text-center">
+                                    <div className="p-3 border rounded bg-light">
+                                        <h2 className="mb-1 text-secondary fw-bold">{formatTime(finalTime)}</h2>
+                                        <small className="text-muted text-uppercase">Time Taken</small>
+                                    </div>
+                                </Col>
+                            </Row>
+                            
+                            {/* Action Buttons */}
+                            <div className="d-flex justify-content-center gap-3 mt-4">
+                                <Button 
+                                    size="lg"
+                                    onClick={() => navigate('/quizlist')}
+                                    style={{ backgroundColor: '#6f42c1', borderColor: '#6f42c1' }}
+                                >
+                                    <i className="bi bi-house-door me-2"></i>
+                                    Back to Home Page
+                                </Button>
+                                <Button 
+                                    size="lg"
+                                    variant="outline-primary"
+                                    onClick={handleRetakeQuiz}
+                                >
+                                    <i className="bi bi-arrow-clockwise me-2"></i>
+                                    Retake Quiz
+                                </Button>
                             </div>
-                            <h3 className="my-4">Your Score: {score.toFixed(2)} / {quiz.totalQuestions}</h3>
-                            <h4 className="mb-4">{percentage.toFixed(1)}%</h4>
-                            <ProgressBar 
-                                now={percentage} 
-                                variant={percentage >= 70 ? 'success' : percentage >= 50 ? 'warning' : 'danger'}
-                                className="mb-4"
-                                style={{ height: '30px' }}
-                            />
-                            {percentage >= 70 && <p className="text-success fs-4">Excellent work! 🎉</p>}
-                            {percentage >= 50 && percentage < 70 && <p className="text-warning fs-4">Good effort! 👍</p>}
-                            {percentage < 50 && <p className="text-danger fs-4">Keep practicing! 💪</p>}
-                            <Button 
-                                size="lg"
-                                onClick={() => navigate('/quizlist')}
-                                style={{ backgroundColor: '#6f42c1', borderColor: '#6f42c1' }}
-                            >
-                                Back to Home Page
-                            </Button>
                         </Card.Body>
                     </Card>
 
@@ -360,14 +402,24 @@ const TakeQuizPage: React.FC = () => {
                     )}
 
                     <div className="text-center mt-4 mb-5">
-                        <Button 
-                            size="lg"
-                            onClick={() => navigate('/quizlist')}
-                            style={{ backgroundColor: '#6f42c1', borderColor: '#6f42c1' }}
-                        >
-                            <i className="bi bi-house-door me-2"></i>
-                            Back to Home Page
-                        </Button>
+                        <div className="d-flex justify-content-center gap-3">
+                            <Button 
+                                size="lg"
+                                onClick={() => navigate('/quizlist')}
+                                style={{ backgroundColor: '#6f42c1', borderColor: '#6f42c1' }}
+                            >
+                                <i className="bi bi-house-door me-2"></i>
+                                Back to Home Page
+                            </Button>
+                            <Button 
+                                size="lg"
+                                variant="outline-primary"
+                                onClick={handleRetakeQuiz}
+                            >
+                                <i className="bi bi-arrow-clockwise me-2"></i>
+                                Retake Quiz
+                            </Button>
+                        </div>
                     </div>
                 </Container>
             </div>
