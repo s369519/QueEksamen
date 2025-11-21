@@ -59,7 +59,34 @@ export default function Profile() {
   };
 
   const handleCreateQuiz = () => navigate('/quizcreate');
-  const handleCreatedQuizClick = (quizId: string) => navigate(`/quizupdate/${quizId}`);
+  const handleCreatedQuizClick = async (quizId: string) => {
+    try {
+      // Check if quiz still exists before navigating to update page
+      const response = await fetch(`http://localhost:5043/api/QuizAPI/${quizId}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      
+      if (response.ok) {
+        // Quiz exists, navigate to update page
+        navigate(`/quizupdate/${quizId}`);
+      } else if (response.status === 404) {
+        // Quiz has been deleted - remove from list
+        alert('This quiz has been deleted. Removing from your list.');
+        setCreatedQuizzes(prev => prev.filter(q => q.quizId !== quizId));
+      } else if (response.status === 401) {
+        // User no longer owns this quiz (shouldn't happen, but handle it)
+        alert('You no longer have access to this quiz.');
+        setCreatedQuizzes(prev => prev.filter(q => q.quizId !== quizId));
+      } else {
+        alert('Unable to access this quiz.');
+      }
+    } catch (error) {
+      console.error('Error checking quiz access:', error);
+      alert('An error occurred while trying to access this quiz.');
+    }
+  };
   const handleAttemptedQuizClick = async (quizId: string) => {
     try {
       // Check if quiz still exists and is accessible
