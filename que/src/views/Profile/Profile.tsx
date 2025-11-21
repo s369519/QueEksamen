@@ -60,7 +60,32 @@ export default function Profile() {
 
   const handleCreateQuiz = () => navigate('/quizcreate');
   const handleCreatedQuizClick = (quizId: string) => navigate(`/quizupdate/${quizId}`);
-  const handleAttemptedQuizClick = (quizId: string) => navigate(`/quiztake/${quizId}`);
+  const handleAttemptedQuizClick = async (quizId: string) => {
+    try {
+      // Check if quiz still exists and is accessible
+      const response = await fetch(`http://localhost:5043/api/QuizAPI/${quizId}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      
+      if (response.ok) {
+        // Quiz exists and is accessible, go to take it again
+        navigate(`/quiztake/${quizId}`);
+      } else if (response.status === 401) {
+        // Quiz is private and user doesn't have access
+        alert('This quiz is private and you no longer have access to it.');
+      } else if (response.status === 404) {
+        // Quiz has been deleted
+        alert('This quiz has been deleted by its owner.');
+      } else {
+        alert('Unable to access this quiz.');
+      }
+    } catch (error) {
+      console.error('Error checking quiz access:', error);
+      alert('An error occurred while trying to access this quiz.');
+    }
+  };
 
   // Colors / shadows
   const accent = '#4b39ef'; // deep purple

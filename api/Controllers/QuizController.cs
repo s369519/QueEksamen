@@ -468,7 +468,7 @@ public class QuizAPIController : ControllerBase
         {
             _logger.LogWarning("[QuizAPIController] User {UserId} attempted to take private quiz {QuizId}", 
                 userId ?? "Anonymous", id);
-            return Unauthorized(new { message = "You are not authorized to take this private quiz." });
+            return Unauthorized(new { message = "This quiz is private and you do not have access to it." });
         }
 
         // Map to DTO without revealing correct answers
