@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Container, Card } from "react-bootstrap";
 import QuizTable from "./QuizTable";
 import { Quiz } from '../types/quiz';
 import * as QuizService from './QuizService';
 import { useAuth } from "../auth/AuthContext";
+import "./QuizListPage.css";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 const QuizListPage: React.FC = () => {
@@ -12,6 +14,9 @@ const QuizListPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const { user, isAuthenticated } = useAuth();
+
+    const [sortCategory, setSortCategory] = useState<string>('');
+    const [sortDifficulty, setSortDifficulty] = useState<string>('');
 
     const fetchQuizes = async () => {
         if (!isAuthenticated) {
@@ -26,14 +31,8 @@ const QuizListPage: React.FC = () => {
         try {
             const data = await QuizService.getUserQuizzes();
             setQuizes(data);
-            console.log(data);
         } catch (error: unknown) {
-            if (error instanceof Error) {
-                console.error(`There was a problem with the fetch operation: ${error.message}`);
-            } else {
-                console.error('Unknown error', error);
-            }
-            setError('Failed to fetch quizes');
+            setError("Failed to fetch quizzes");
         } finally {
             setLoading(false);
         }
@@ -48,88 +47,110 @@ const QuizListPage: React.FC = () => {
         (quiz.description?.toLowerCase() || '').includes(searchQuery.toLowerCase())
     );
 
-    const [sortCategory, setSortCategory] = useState<string>('');
-    const [sortDifficulty, setSortDifficulty] = useState<string>('');
-
     const sortedAndFilteredQuizzes = filteredQuizes.filter(quiz => {
         const matchesCategory = sortCategory ? quiz.category === sortCategory : true;
         const matchesDifficulty = sortDifficulty ? quiz.difficulty === sortDifficulty : true;
         return matchesCategory && matchesDifficulty;
     });
 
-
     const handleQuizDeleted = async (quizId: number) => {
         const confirmDelete = window.confirm(`Are you sure you want to delete the quiz ${quizId}?`);
         if (confirmDelete) {
             try {
                 await QuizService.deleteQuiz(quizId);
-                setQuizes(prevQuizes => prevQuizes.filter(quiz => quiz.quizId !== quizId));
-                console.log('Quiz deleted:', quizId);
-            } catch (error) {
-                console.error('Error deleting quiz:', error);
-                setError('Failed to delete quiz.');
+                setQuizes(prev => prev.filter(q => q.quizId !== quizId));
+            } catch {
+                setError("Failed to delete quiz.");
             }
         }
     };
 
-
     return (
-        <div>
-            <h1>My Quizes</h1>
+        <div className="quizlist-page">
+            <Container className="py-5">
 
-            {!isAuthenticated ? (
-                <div className="alert alert-info" style={{ maxWidth: '600px', margin: '2rem auto', textAlign: 'center' }}>
-                    <h4>Please log in to view your quizzes</h4>
-                    <p>You need to be logged in to see quizzes you have created.</p>
-                    <Button href="/login" variant="primary">Go to Login</Button>
+                {/* HEADER */}
+                <div className="gradient-header mb-4 p-4 rounded text-white text-center shadow-sm">
+                    <h1 className="fw-bold mb-0">My Quizzes</h1>
                 </div>
-            ) : (
-                <>
-            <div className="mb-3 d-flex gap-2 flex-wrap align-items-center">
-                <Form.Control
-                    type="text"
-                    placeholder="Search by name or description"
-                    value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
-                    style={{ maxWidth: '300px' }}
-                />
 
-                <Form.Select
-                    value={sortCategory}
-                    onChange={e => setSortCategory(e.target.value)}
-                    style={{ maxWidth: '200px' }}
-                >
-                    <option value="">All Categories</option>
-                    <option value="History">History</option>
-                    <option value="Geography">Geography</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Technology">Technology</option>
-                    <option value="Trivia">Trivia</option>
-                    <option value="Other">Other</option>
-                </Form.Select>
+                {!isAuthenticated ? (
+                    <Card className="shadow-sm p-4 text-center">
+                        <h4>Please log in to view your quizzes</h4>
+                        <p>You need to be logged in to see quizzes you have created.</p>
+                        <Button href="/login" className="btn-gradient mt-2">Go to Login</Button>
+                    </Card>
+                ) : (
+                    <>
+                        {/* FILTER BAR */}
+                        <Card className="p-4 shadow-sm mb-4 rounded-4">
+                            <div className="row g-3">
 
-                <Form.Select
-                    value={sortDifficulty}
-                    onChange={e => setSortDifficulty(e.target.value)}
-                    style={{ maxWidth: '200px' }}
-                >
-                    <option value="">All Difficulties</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
-                </Form.Select>
-            </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+                                <div className="col-md-4">
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Search by name or description"
+                                        className="quiz-control"
+                                        value={searchQuery}
+                                        onChange={e => setSearchQuery(e.target.value)}
+                                    />
+                                </div>
 
-                <QuizTable quizes={sortedAndFilteredQuizzes} apiUrl={API_URL} onQuizDeleted={user ? handleQuizDeleted : undefined} />
-            
-                {user && (
-                    <Button href="/quizcreate" className="btn btn-secondary mt-3">Create New Quiz</Button>
+                                <div className="col-md-4">
+                                    <Form.Select
+                                        className="quiz-control"
+                                        value={sortCategory}
+                                        onChange={e => setSortCategory(e.target.value)}
+                                    >
+                                        <option value="">All Categories</option>
+                                        <option value="History">History</option>
+                                        <option value="Geography">Geography</option>
+                                        <option value="Sports">Sports</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Trivia">Trivia</option>
+                                        <option value="Other">Other</option>
+                                    </Form.Select>
+                                </div>
+
+                                <div className="col-md-4">
+                                    <Form.Select
+                                        className="quiz-control"
+                                        value={sortDifficulty}
+                                        onChange={e => setSortDifficulty(e.target.value)}
+                                    >
+                                        <option value="">All Difficulties</option>
+                                        <option value="Easy">Easy</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Hard">Hard</option>
+                                    </Form.Select>
+                                </div>
+                            </div>
+                        </Card>
+
+                        {error && <p className="text-danger">{error}</p>}
+
+                        {/* QUIZ TABLE */}
+                        <Card className="shadow-sm p-4 rounded-4">
+                            <QuizTable
+                                quizes={sortedAndFilteredQuizzes}
+                                apiUrl={API_URL}
+                                onQuizDeleted={user ? handleQuizDeleted : undefined}
+                            />
+                        </Card>
+
+                        {/* CREATE NEW QUIZ */}
+                        {user && (
+                            <div className="text-end mt-4">
+                                <Button href="/quizcreate" className="btn-gradient px-4">
+                                    Create New Quiz
+                                </Button>
+                            </div>
+                        )}
+                    </>
                 )}
-                </>
-            )}
-            </div>
+            </Container>
+        </div>
     );
 };
 
-export default QuizListPage;  
+export default QuizListPage;

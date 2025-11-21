@@ -293,9 +293,13 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, getDifficultyColor }) => {
       </Card.Body>
 
       <Card.Footer className="bg-white border-0 px-4 pb-4 pt-3">
-        <Link to={`/quiztake/${quiz.quizId}`} className="btn btn-sm btn-start-quiz w-100">
+        <Link
+          to={`/quiztake/${quiz.quizId}`}
+          className="btn btn-gradient btn-sm w-100"
+        >
           Start Quiz
         </Link>
+
       </Card.Footer>
     </Card>
   );
