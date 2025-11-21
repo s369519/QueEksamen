@@ -24,6 +24,9 @@ interface QuizSummary {
   createdAt: string;
   description?: string;
   score?: number;
+  questionCount?: number;
+  timeLimit?: number;
+  isPublic?: boolean;
 }
 
 export default function Profile() {
@@ -265,7 +268,20 @@ export default function Profile() {
                           <div>
                             <div style={{ fontWeight: 700 }}>{q.title}</div>
                             {q.description && <small className="text-muted d-block">{q.description}</small>}
-                            <small className="text-muted">Created: {new Date(q.createdAt).toLocaleDateString()}</small>
+                            <div className="mt-1">
+                              <small className="text-muted me-3">
+                                <i className="bi bi-question-circle me-1"></i>
+                                {q.questionCount} {q.questionCount === 1 ? 'question' : 'questions'}
+                              </small>
+                              <small className="text-muted me-3">
+                                <i className="bi bi-clock me-1"></i>
+                                {q.timeLimit} min
+                              </small>
+                              <small className="text-muted">
+                                <i className="bi bi-eye me-1"></i>
+                                {q.isPublic ? 'Public' : 'Private'}
+                              </small>
+                            </div>
                           </div>
                           <div className="text-muted"><i className="bi bi-chevron-right" /></div>
                         </div>
