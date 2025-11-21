@@ -13,6 +13,7 @@ const QuizListPage: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
+    const [deletingQuizId, setDeletingQuizId] = useState<number | null>(null);
     const { user, isAuthenticated } = useAuth();
 
     const [sortCategory, setSortCategory] = useState<string>('');
@@ -56,11 +57,14 @@ const QuizListPage: React.FC = () => {
     const handleQuizDeleted = async (quizId: number) => {
         const confirmDelete = window.confirm(`Are you sure you want to delete the quiz ${quizId}?`);
         if (confirmDelete) {
+            setDeletingQuizId(quizId);
             try {
                 await QuizService.deleteQuiz(quizId);
                 setQuizes(prev => prev.filter(q => q.quizId !== quizId));
             } catch {
                 setError("Failed to delete quiz.");
+            } finally {
+                setDeletingQuizId(null);
             }
         }
     };
@@ -135,6 +139,7 @@ const QuizListPage: React.FC = () => {
                                 quizes={sortedAndFilteredQuizzes}
                                 apiUrl={API_URL}
                                 onQuizDeleted={user ? handleQuizDeleted : undefined}
+                                deletingQuizId={deletingQuizId}
                             />
                         </Card>
 

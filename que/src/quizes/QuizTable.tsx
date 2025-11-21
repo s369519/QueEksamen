@@ -8,9 +8,10 @@ interface QuizTableProps {
     quizes: Quiz[];
     apiUrl: string;
     onQuizDeleted?: (quizId: number) => void;
+    deletingQuizId?: number | null;
 }
 
-const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted }) => {
+const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted, deletingQuizId }) => {
     const [showDescriptions, setShowDescriptions] = useState<boolean>(true);
     const toggleDescriptions = () => setShowDescriptions(prevShowDescriptions => !prevShowDescriptions);
     const { user } = useAuth();
@@ -53,9 +54,21 @@ const QuizTable: React.FC<QuizTableProps> = ({ quizes, apiUrl, onQuizDeleted }) 
                                         <Link to={`/quizupdate/${quiz.quizId}`} className='btn btn-link text-primary me-2'>
                                         Update
                                         </Link>
-                                        <Link to="#" onClick={() => onQuizDeleted!(quiz.quizId!)} className='btn btn-link text-danger'>
-                                        Delete
-                                        </Link>
+                                        <button 
+                                            onClick={() => onQuizDeleted!(quiz.quizId!)} 
+                                            className='btn btn-link text-danger'
+                                            disabled={deletingQuizId === quiz.quizId}
+                                            style={{ textDecoration: 'none' }}
+                                        >
+                                            {deletingQuizId === quiz.quizId ? (
+                                                <>
+                                                    <span className="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                                    Deleting...
+                                                </>
+                                            ) : (
+                                                'Delete'
+                                            )}
+                                        </button>
                                         </>
                                     )}
                                 </td>

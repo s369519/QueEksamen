@@ -126,6 +126,7 @@ const LoginPage: React.FC = () => {
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -145,6 +146,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
+    setIsSubmitting(true);
 
     try {
       await login({
@@ -155,6 +157,8 @@ const LoginPage: React.FC = () => {
     } catch (err) {
       setError("Invalid username or password.");
       console.error(err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -162,6 +166,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
+    setIsSubmitting(true);
 
     try {
       await authService.register(registerData);
@@ -178,6 +183,8 @@ const LoginPage: React.FC = () => {
         setError("An unknown error occurred.");
       }
       console.error(err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -277,8 +284,15 @@ const LoginPage: React.FC = () => {
               />
             </Form.Group>
 
-            <Button type="submit" style={submitButtonStyle}>
-              Sign In
+            <Button type="submit" style={submitButtonStyle} disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Signing in...
+                </>
+              ) : (
+                'Sign In'
+              )}
             </Button>
           </Form>
         )}
@@ -329,8 +343,15 @@ const LoginPage: React.FC = () => {
               </Form.Text>
             </Form.Group>
 
-            <Button type="submit" style={submitButtonStyle}>
-              Sign Up
+            <Button type="submit" style={submitButtonStyle} disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Creating account...
+                </>
+              ) : (
+                'Sign Up'
+              )}
             </Button>
           </Form>
         )}

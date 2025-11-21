@@ -177,9 +177,16 @@ export default function Profile() {
                 fontWeight: 600
               }}
               className="d-flex align-items-center"
+              disabled={isLoading}
             >
-              <i className="bi bi-plus-circle me-2" style={{ fontSize: 18 }} />
-              Create New Quiz
+              {isLoading ? (
+                <Spinner animation="border" size="sm" />
+              ) : (
+                <>
+                  <i className="bi bi-plus-circle me-2" style={{ fontSize: 18 }} />
+                  Create New Quiz
+                </>
+              )}
             </Button>
           </Col>
         </Row>
