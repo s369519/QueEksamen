@@ -10,12 +10,13 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-*.local
 
-# Environment variables
-# .env
+# Environment variables (included for exam delivery)
 .env.local
 .env.production
+!.env
+!.env.example
+!.env.development
 
 # Editor directories and files
 .vscode/*
