@@ -13,6 +13,8 @@ import {
 } from 'react-bootstrap';
 import { getUserProfile, getUserQuizzes, getUserAttemptedQuizzes } from '../../quizes/QuizService';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 interface UserProfile {
   username: string;
   email: string;
@@ -65,7 +67,7 @@ export default function Profile() {
   const handleCreatedQuizClick = async (quizId: string) => {
     try {
       // Check if quiz still exists before navigating to update page
-      const response = await fetch(`http://localhost:5043/api/QuizAPI/${quizId}`, {
+      const response = await fetch(`${API_URL}/api/QuizAPI/${quizId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -93,7 +95,7 @@ export default function Profile() {
   const handleAttemptedQuizClick = async (quizId: string) => {
     try {
       // Check if quiz still exists and is accessible
-      const response = await fetch(`http://localhost:5043/api/QuizAPI/${quizId}`, {
+      const response = await fetch(`${API_URL}/api/QuizAPI/${quizId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

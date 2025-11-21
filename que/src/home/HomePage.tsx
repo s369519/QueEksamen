@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 import './HomePage.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 interface QuizPreview {
   quizId: number;
   name: string;
@@ -30,7 +32,7 @@ const HomePage: React.FC = () => {
     const fetchFeaturedQuizzes = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5043/api/QuizAPI/quizlist');
+        const response = await fetch(`${API_URL}/api/QuizAPI/quizlist`);
         if (!response.ok) throw new Error('Failed to fetch featured quizzes');
         const data = await response.json();
 
