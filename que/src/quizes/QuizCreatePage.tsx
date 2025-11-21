@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Alert } from "react-bootstrap";
+import { Container, Row, Col, Alert, Button } from "react-bootstrap";
 import QuizForm from "./QuizForm";
 import { Quiz } from "../types/quiz";
 import * as QuizService from './QuizService';
@@ -57,11 +57,25 @@ const QuizCreatePage: React.FC = () => {
 
     return (
         <div style={{ 
-            background: 'linear-gradient(135deg, #f5e6ff 0%, #e6d5f5 50%, #d5c4e8 100%)',
+            background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
             minHeight: 'calc(100vh - 56px)',
             width: '100%'
         }}>
             <Container className="py-5">
+                {/* Back to Profile Button */}
+                <Row className="mb-4">
+                    <Col>
+                        <Button 
+                            variant="outline-secondary"
+                            onClick={() => navigate('/profile')}
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-arrow-left me-2"></i>
+                            Back to My Profile
+                        </Button>
+                    </Col>
+                </Row>
+
                 {error && (
                     <Row className="mb-4">
                         <Col lg={10} xl={8} className="mx-auto">
@@ -73,18 +87,21 @@ const QuizCreatePage: React.FC = () => {
                     </Row>
                 )}
                 <Row className="mb-5">
-                    <Col>
+                    <Col className="text-center">
                         <h1 
-                            className="text-center mb-2 fw-bold" 
+                            className="mb-2 fw-bold d-inline-block" 
                             style={{ 
-                                color: '#6f42c1',
+                                background: 'linear-gradient(135deg, #6f42c1 0%, #5b3a9e 25%, #4a5b9e 50%, #3d7bb8 75%, #2d6ba8 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
                                 fontSize: '3.5rem',
                                 fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
                             }}
                         >
                             Create Quiz
                         </h1>
-                        <p className="text-center text-muted fs-5">
+                        <p className="text-muted fs-5">
                             Design your own quiz for the ¿Qué? community
                         </p>
                     </Col>

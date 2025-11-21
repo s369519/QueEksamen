@@ -230,7 +230,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
           {/* Quiz Information Section */}
           <div className="mb-4">
             <h4 className="fw-bold mb-3" style={{ color: '#6f42c1' }}>
-              <i className="bi bi-info-circle me-2"></i>
+              <i className="bi bi-book me-2"></i>
               Quiz Information
             </h4>
 
@@ -442,7 +442,8 @@ const QuizForm: React.FC<QuizFormProps> = ({
                     {question.options.map((option, oIndex) => (
                       <div key={oIndex} className="d-flex align-items-center mb-2 gap-2">
                         <Form.Check
-                          type="checkbox"
+                          type={question.allowMultiple ? "checkbox" : "radio"}
+                          name={`question-${qIndex}`}
                           checked={option.isCorrect}
                           onChange={() => handleCorrectToggle(qIndex, oIndex)}
                           label=""
