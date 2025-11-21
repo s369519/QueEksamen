@@ -10,10 +10,27 @@ using Que.Models;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.OpenApi.Models;
 using System.Security.Claims;
+using Que.Middleware;
+using Que.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
+// Configure Serilog early for startup logging
+var loggerConfiguration = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .WriteTo.File($"APILogs/app_{DateTime.Now:yyyyMMdd_HHmmss}.log",
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 7);
+
+Log.Logger = loggerConfiguration.CreateLogger();
+
+builder.Services.AddControllers(options =>
+{
+    // Add global model state validation filter
+    options.Filters.Add<ValidateModelStateAttribute>();
+}).AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
@@ -128,21 +145,33 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         */
     });
 
-var loggerConfiguration = new LoggerConfiguration()
-    .MinimumLevel.Information()
-    // Also write to console so startup logs (user sync etc.) are visible in the terminal
-    .WriteTo.File($"APILogs/app_{DateTime.Now:yyyyMMdd_HHmmss}.log")
-    .Filter.ByExcluding(e => e.Properties.TryGetValue("SourceContext", out _) &&
-                            e.Level == LogEventLevel.Information &&
-                            e.MessageTemplate.Text.Contains("Executed DbCommand"));
-var logger = loggerConfiguration.CreateLogger();
-builder.Logging.AddSerilog(logger);
-// Also add the default console logger so important startup logs are visible in terminal
-builder.Logging.AddConsole();
+// Remove duplicate logger configuration and use the one created above
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(Log.Logger);
 
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+// Add global exception handler middleware (must be first)
+app.UseMiddleware<GlobalExceptionHandler>();
+
+// Request logging middleware
+app.Use(async (context, next) =>
+{
+    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+    logger.LogInformation("HTTP {Method} {Path} from {RemoteIp}", 
+        context.Request.Method, 
+        context.Request.Path, 
+        context.Connection.RemoteIpAddress);
+    
+    await next();
+    
+    logger.LogInformation("HTTP {Method} {Path} responded {StatusCode}", 
+        context.Request.Method, 
+        context.Request.Path, 
+        context.Response.StatusCode);
+});
 
 if (app.Environment.IsDevelopment())
 {

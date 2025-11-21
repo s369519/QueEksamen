@@ -31,13 +31,23 @@ public class QuizRepository : IQuizRepository
     public async Task<Quiz?> CreateQuiz(Quiz quiz)
     {
         try {
+            // Check for duplicate quiz name by same owner
+            var existingQuiz = await _db.Quizes
+                .FirstOrDefaultAsync(q => q.Name == quiz.Name && q.OwnerId == quiz.OwnerId);
+            
+            if (existingQuiz != null)
+            {
+                _logger.LogWarning("Attempted to create duplicate quiz '{QuizName}' for owner {OwnerId}", quiz.Name, quiz.OwnerId);
+                throw new InvalidOperationException($"A quiz with the name '{quiz.Name}' already exists for this user.");
+            }
+
             _db.Quizes.Add(quiz);
             await _db.SaveChangesAsync();
             _logger.LogInformation("Quiz '{QuizName}' created successfully with ID {QuizId}", quiz.Name, quiz.QuizId);
             return quiz;
         } catch (Exception ex) {
             _logger.LogError(ex, "Unexpected error while creating quiz '{QuizName}'", quiz.Name);
-            return null;
+            throw;
         }
     }
 

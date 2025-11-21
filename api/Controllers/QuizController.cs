@@ -296,16 +296,20 @@ public class QuizAPIController : ControllerBase
 
             if (createdQuiz == null)
             {
-                _logger.LogError("Failed to save quiz {@Quiz}", newQuiz);
-                return StatusCode(500, "Failed to create quiz");
+                throw new InvalidOperationException("Failed to create quiz");
             }
 
             return CreatedAtAction(nameof(GetQuiz), new { id = createdQuiz.QuizId }, createdQuiz);
         }
+        catch (InvalidOperationException ex)
+        {
+            _logger.LogWarning(ex, "Duplicate quiz creation attempt for UserId={UserId}", user.Id);
+            return BadRequest(new { message = ex.Message });
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Exception when creating quiz for UserId={UserId}", user.Id);
-            return StatusCode(500, "Internal server error while creating quiz");
+            throw; // Let global exception handler handle it
         }
     }
 
