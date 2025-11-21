@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Container, Alert } from 'react-bootstrap';
+import { Container, Alert, Row, Col, Button } from 'react-bootstrap';
 import QuizForm from './QuizForm';
 import { Quiz } from '../types/quiz';
 import * as QuizService from './QuizService';
@@ -86,56 +86,120 @@ const QuizUpdatePage: React.FC = () => {
     }
 
     if (loading) return (
-        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
-            <div className="text-center">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
+        <div style={{ 
+            background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
+            minHeight: 'calc(100vh - 56px)',
+        }}>
+            <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
+                <div className="text-center">
+                    <div className="spinner-border" style={{ color: '#6f42c1' }} role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <p className="mt-3">Loading quiz...</p>
                 </div>
-                <p className="mt-3">Loading quiz...</p>
             </div>
         </div>
     );
     
     if (error) return (
-        <div className="container mt-5">
-            <div className="alert alert-danger" role="alert">
-                <h4 className="alert-heading"><i className="bi bi-exclamation-triangle me-2"></i>Error</h4>
-                <p>{error}</p>
-                <hr />
-                <div className="d-flex gap-2">
-                    <button className="btn btn-outline-danger" onClick={() => navigate('/quizes')}>
-                        <i className="bi bi-arrow-left me-2"></i>Back to My Quizzes
-                    </button>
-                    <button className="btn btn-outline-primary" onClick={() => navigate('/home')}>
-                        <i className="bi bi-house me-2"></i>Go to Home
-                    </button>
+        <div style={{ 
+            background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
+            minHeight: 'calc(100vh - 56px)',
+        }}>
+            <Container className="mt-5">
+                <div className="alert alert-danger" role="alert">
+                    <h4 className="alert-heading"><i className="bi bi-exclamation-triangle me-2"></i>Error</h4>
+                    <p>{error}</p>
+                    <hr />
+                    <div className="d-flex gap-2">
+                        <button className="btn btn-outline-danger" onClick={() => navigate('/quizes')}>
+                            <i className="bi bi-arrow-left me-2"></i>Back to My Quizzes
+                        </button>
+                        <button className="btn btn-outline-primary" onClick={() => navigate('/home')}>
+                            <i className="bi bi-house me-2"></i>Go to Home
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </Container>
         </div>
     );
     
     if (!quiz) return (
-        <div className="container mt-5">
-            <div className="alert alert-warning" role="alert">
-                <h4 className="alert-heading">Quiz Not Found</h4>
-                <p>The quiz you're looking for could not be found.</p>
-                <button className="btn btn-outline-warning" onClick={() => navigate('/quizes')}>
-                    <i className="bi bi-arrow-left me-2"></i>Back to My Quizzes
-                </button>
-            </div>
+        <div style={{ 
+            background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
+            minHeight: 'calc(100vh - 56px)',
+        }}>
+            <Container className="mt-5">
+                <div className="alert alert-warning" role="alert">
+                    <h4 className="alert-heading">Quiz Not Found</h4>
+                    <p>The quiz you're looking for could not be found.</p>
+                    <button className="btn btn-outline-warning" onClick={() => navigate('/quizes')}>
+                        <i className="bi bi-arrow-left me-2"></i>Back to My Quizzes
+                    </button>
+                </div>
+            </Container>
         </div>
     );
 
     return (
-        <div>
-            <h2>Update Quiz</h2>
-            {updateError && (
-                <Alert variant="danger" dismissible onClose={() => setUpdateError(null)} className="mb-3">
-                    <Alert.Heading><i className="bi bi-exclamation-triangle me-2"></i>Error</Alert.Heading>
-                    <p>{updateError}</p>
-                </Alert>
-            )}
-            <QuizForm onQuizChanged={handleQuizUpdated} quizId={quiz.quizId} isUpdate={true} initialData={quiz} isSubmitting={isSubmitting} />
+        <div style={{ 
+            background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
+            minHeight: 'calc(100vh - 56px)',
+            width: '100%'
+        }}>
+            <Container className="py-5">
+                {/* Back to Profile Button */}
+                <Row className="mb-4">
+                    <Col>
+                        <Button 
+                            variant="outline-secondary"
+                            onClick={() => navigate('/profile')}
+                            className="d-flex align-items-center"
+                        >
+                            <i className="bi bi-arrow-left me-2"></i>
+                            Back to My Profile
+                        </Button>
+                    </Col>
+                </Row>
+
+                {updateError && (
+                    <Row className="mb-4">
+                        <Col lg={10} xl={8} className="mx-auto">
+                            <Alert variant="danger" dismissible onClose={() => setUpdateError(null)}>
+                                <Alert.Heading><i className="bi bi-exclamation-triangle me-2"></i>Error</Alert.Heading>
+                                <p>{updateError}</p>
+                            </Alert>
+                        </Col>
+                    </Row>
+                )}
+
+                <Row className="mb-5">
+                    <Col className="text-center">
+                        <h1 
+                            className="mb-2 fw-bold d-inline-block" 
+                            style={{ 
+                                background: 'linear-gradient(135deg, #6f42c1 0%, #5b3a9e 25%, #4a5b9e 50%, #3d7bb8 75%, #2d6ba8 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
+                                fontSize: '3.5rem',
+                                fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
+                            }}
+                        >
+                            Update Quiz
+                        </h1>
+                        <p className="text-muted fs-5">
+                            Edit and improve your quiz
+                        </p>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col lg={10} xl={8} className="mx-auto">
+                        <QuizForm onQuizChanged={handleQuizUpdated} quizId={quiz.quizId} isUpdate={true} initialData={quiz} isSubmitting={isSubmitting} />
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 };
