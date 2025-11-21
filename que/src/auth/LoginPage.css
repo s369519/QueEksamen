@@ -1,0 +1,97 @@
+/* Page background / height */
+.login-page {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+/* Brand / logo */
+.login-brand h1 {
+  font-size: 40px;
+  font-weight: 800;
+  color: #6a5cff;
+}
+
+.login-brand p {
+  color: #7a7b8a;
+  font-size: 16px;
+}
+
+/* Card tweaks */
+.login-card {
+  border-radius: 20px;
+}
+
+/* Header inside card */
+.login-icon {
+  font-size: 22px;
+}
+
+.login-card-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.login-card-header p {
+  color: #8b8c98;
+  font-size: 14px;
+}
+
+/* Tabs */
+.login-tabs {
+  background: #f1f2f7;
+  border-radius: 999px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+.login-tab {
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #75768a;
+  cursor: pointer;
+}
+
+.login-tab.active {
+  background: #ffffff;
+  color: #1e2033;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Inputs inside the card */
+.login-card .form-control {
+  border-radius: 10px;
+  border: 1px solid #e0e2ea;
+  background-color: #f7f8fb;
+}
+
+.login-card .form-control:focus {
+  background-color: #ffffff;
+  border-color: #b0b2ff;
+  box-shadow: 0 0 0 3px rgba(140, 142, 255, 0.3);
+}
+
+/* Submit buttons */
+.login-submit-btn {
+  width: 100%;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 10px;
+}
+
+/* Alerts inside card */
+.login-card .alert {
+  border-radius: 10px;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .login-brand h1 {
+    font-size: 32px;
+  }
+}

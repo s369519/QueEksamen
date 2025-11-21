@@ -1,0 +1,35 @@
+
+/* Gradient header (same as HomePage) */
+.gradient-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Gradient button reused from HomePage */
+.btn-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    border: none;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-gradient:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Unified style for search + filter controls */
+.quiz-control {
+    padding: 12px 16px !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    border: 2px solid rgba(230, 230, 255, 0.5) !important;
+    transition: all 0.25s ease !important;
+}
+
+.quiz-control:focus {
+    background: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.25) !important;
+}
