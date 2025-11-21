@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { Container, Alert } from 'react-bootstrap';
 import QuizForm from './QuizForm';
 import { Quiz } from '../types/quiz';
 import * as QuizService from './QuizService';
+import { useAuth } from '../auth/AuthContext';
 const API_URL = import.meta.env.VITE_API_URL;
 
 const QuizUpdatePage: React.FC = () => {
     const { quizId } = useParams<{ quizId: string }>();
     const navigate = useNavigate();
+    const { checkTokenExpiry, logout } = useAuth();
     const [ quiz, setQuiz ] = useState<Quiz | null>(null);
     const [ loading, setLoading ] = useState<boolean>(true);
     const [ error, setError ] = useState<string | null>(null);
+    const [ updateError, setUpdateError ] = useState<string | null>(null);
+    const [ isSubmitting, setIsSubmitting ] = useState(false);
 
     useEffect(() => {
         const fetchQuiz = async () => {
@@ -39,12 +43,45 @@ const QuizUpdatePage: React.FC = () => {
     }, [quizId]);
 
     const handleQuizUpdated = async (quiz: Quiz) => {
+        // Check token expiry before submission
+        if (!checkTokenExpiry()) {
+            setUpdateError('Your session has expired. Please log in again.');
+            setTimeout(() => {
+                logout();
+                navigate('/login');
+            }, 2000);
+            return;
+        }
+
+        setIsSubmitting(true);
+        setUpdateError(null);
+        
         try {
             const data = await QuizService.updateQuiz(quiz);
             console.log('Quiz updated successfully', data);
             navigate('/quizes');
-        } catch (error) {
+        } catch (error: any) {
             console.error('There was a problem with the fetch operation:', error);
+            const errorMessage = error.message || 'Failed to update quiz';
+            
+            // Check for specific error types
+            if (errorMessage.includes('401') || errorMessage.includes('unauthorized') || errorMessage.includes('authenticated')) {
+                setUpdateError('Your session has expired. Please log in again.');
+                setTimeout(() => {
+                    logout();
+                    navigate('/login');
+                }, 2000);
+            } else if (errorMessage.includes('404') || errorMessage.includes('not found')) {
+                setUpdateError('This quiz no longer exists. It may have been deleted.');
+            } else if (errorMessage.includes('400') || errorMessage.includes('validation')) {
+                setUpdateError(`Validation error: ${errorMessage}`);
+            } else if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
+                setUpdateError('Network error. Please check your connection and try again.');
+            } else {
+                setUpdateError(`Failed to update quiz: ${errorMessage}`);
+            }
+        } finally {
+            setIsSubmitting(false);
         }
     }
 
@@ -92,7 +129,13 @@ const QuizUpdatePage: React.FC = () => {
     return (
         <div>
             <h2>Update Quiz</h2>
-            <QuizForm onQuizChanged={handleQuizUpdated} quizId={quiz.quizId} isUpdate={true} initialData={quiz} />
+            {updateError && (
+                <Alert variant="danger" dismissible onClose={() => setUpdateError(null)} className="mb-3">
+                    <Alert.Heading><i className="bi bi-exclamation-triangle me-2"></i>Error</Alert.Heading>
+                    <p>{updateError}</p>
+                </Alert>
+            )}
+            <QuizForm onQuizChanged={handleQuizUpdated} quizId={quiz.quizId} isUpdate={true} initialData={quiz} isSubmitting={isSubmitting} />
         </div>
     );
 };

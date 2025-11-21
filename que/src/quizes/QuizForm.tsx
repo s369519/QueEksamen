@@ -13,13 +13,15 @@ interface QuizFormProps {
   quizId?: number;
   isUpdate?: boolean;
   initialData?: Quiz;
+  isSubmitting?: boolean;
 }
 
 const QuizForm: React.FC<QuizFormProps> = ({
   onQuizChanged,
   quizId,
   isUpdate = false,
-  initialData
+  initialData,
+  isSubmitting = false
 }) => {
   const [name, setName] = useState(initialData?.name || '');
   const [description, setDescription] = useState(initialData?.description || '');
@@ -495,9 +497,19 @@ const QuizForm: React.FC<QuizFormProps> = ({
               size="lg"
               className="px-4"
               style={{ backgroundColor: '#6f42c1', borderColor: '#6f42c1', color: 'white' }}
+              disabled={isSubmitting}
             >
-              <i className="bi bi-check-circle me-2"></i>
-              {isUpdate ? 'Update Quiz' : 'Create Quiz'}
+              {isSubmitting ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  {isUpdate ? 'Updating...' : 'Creating...'}
+                </>
+              ) : (
+                <>
+                  <i className="bi bi-check-circle me-2"></i>
+                  {isUpdate ? 'Update Quiz' : 'Create Quiz'}
+                </>
+              )}
             </Button>
           </div>
         </Form>

@@ -10,6 +10,7 @@ interface AuthContextType {
   logout: () => void;
   isLoading: boolean;
   isAuthenticated: boolean;
+  checkTokenExpiry: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -111,10 +112,26 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setToken(null);
   };
 
+  const checkTokenExpiry = (): boolean => {
+    if (!token) return false;
+    
+    const decoded = decodeJwt(token);
+    if (!decoded || !decoded.exp) return false;
+    
+    // Check if token is expired (with 30 second buffer)
+    if (decoded.exp * 1000 <= Date.now() + 30000) {
+      console.log('[AuthContext] Token expired or expiring soon, logging out');
+      logout();
+      return false;
+    }
+    
+    return true;
+  };
+
   const isAuthenticated = !!token && !!user;
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, isLoading, isAuthenticated }}>
+    <AuthContext.Provider value={{ user, token, login, logout, isLoading, isAuthenticated, checkTokenExpiry }}>
       {!isLoading && children}
     </AuthContext.Provider>
   );
