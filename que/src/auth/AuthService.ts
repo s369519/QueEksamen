@@ -42,8 +42,22 @@ export const register = async (userData: RegisterDto): Promise<any> => {
   });
 
   if (!response.ok) {
-    const errorMessage = await parseError(response);
-    throw new Error(errorMessage);
+    try {
+      const errorData = await response.json();
+      // If backend returns structured error with message field
+      if (errorData.message) {
+        throw new Error(errorData.message);
+      }
+      // If backend returns array of errors
+      if (errorData.errors && Array.isArray(errorData.errors)) {
+        throw new Error(errorData.errors.join(' '));
+      }
+      // Fallback
+      throw new Error(JSON.stringify(errorData));
+    } catch (e) {
+      if (e instanceof Error) throw e;
+      throw new Error('Registration failed');
+    }
   }
 
   return response.json();

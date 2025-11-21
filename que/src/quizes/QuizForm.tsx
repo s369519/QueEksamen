@@ -151,6 +151,51 @@ const QuizForm: React.FC<QuizFormProps> = ({
       setQuestionsError('Quiz must have at least one question');
       return;
     }
+
+    // Validate each question
+    for (let i = 0; i < questions.length; i++) {
+      const question = questions[i];
+      
+      // Validate question text
+      if (!question.text || question.text.trim() === '') {
+        setQuestionsError(`Question ${i + 1} text cannot be empty`);
+        return;
+      }
+      
+      if (question.text.length > 500) {
+        setQuestionsError(`Question ${i + 1} text is too long (max 500 characters)`);
+        return;
+      }
+      
+      // Check if question has at least 2 options
+      if (question.options.length < 2) {
+        setQuestionsError(`Question ${i + 1} must have at least 2 options`);
+        return;
+      }
+      
+      // Check if question has at least one correct answer
+      const hasCorrectAnswer = question.options.some(opt => opt.isCorrect);
+      if (!hasCorrectAnswer) {
+        setQuestionsError(`Question ${i + 1} must have at least one correct answer`);
+        return;
+      }
+      
+      // Validate each option
+      for (let j = 0; j < question.options.length; j++) {
+        const option = question.options[j];
+        
+        if (!option.text || option.text.trim() === '') {
+          setQuestionsError(`Question ${i + 1}, Option ${j + 1} text cannot be empty`);
+          return;
+        }
+        
+        if (option.text.length > 200) {
+          setQuestionsError(`Question ${i + 1}, Option ${j + 1} text is too long (max 200 characters)`);
+          return;
+        }
+      }
+    }
+    
     setQuestionsError('');
 
     const quiz: Quiz = {
@@ -354,8 +399,12 @@ const QuizForm: React.FC<QuizFormProps> = ({
                       placeholder="Enter question text"
                       value={question.text}
                       onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
+                      maxLength={500}
                       required
                     />
+                    <Form.Text className="text-muted" style={{ fontSize: '11px' }}>
+                      {question.text.length}/500 characters
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Check
@@ -402,6 +451,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
                           placeholder={`Option ${oIndex + 1}`}
                           value={option.text}
                           onChange={(e) => handleOptionChange(qIndex, oIndex, e.target.value)}
+                          maxLength={200}
                           required
                         />
                         <Button

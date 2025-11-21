@@ -172,6 +172,39 @@ public class QuizAPIController : ControllerBase
         if (quizDto.Questions == null || !quizDto.Questions.Any())
             return BadRequest("Quiz must have at least one question");
 
+        // Validate each question
+        for (int i = 0; i < quizDto.Questions.Count; i++)
+        {
+            var question = quizDto.Questions[i];
+            
+            // Validate question text
+            if (string.IsNullOrWhiteSpace(question.Text))
+                return BadRequest($"Question {i + 1} text cannot be empty");
+            
+            if (question.Text.Length > 500)
+                return BadRequest($"Question {i + 1} text is too long (max 500 characters)");
+            
+            // Check if question has at least 2 options
+            if (question.Options == null || question.Options.Count < 2)
+                return BadRequest($"Question {i + 1} must have at least 2 options");
+            
+            // Check if question has at least one correct answer
+            if (!question.Options.Any(o => o.IsCorrect))
+                return BadRequest($"Question {i + 1} must have at least one correct answer");
+            
+            // Validate each option
+            for (int j = 0; j < question.Options.Count; j++)
+            {
+                var option = question.Options[j];
+                
+                if (string.IsNullOrWhiteSpace(option.Text))
+                    return BadRequest($"Question {i + 1}, Option {j + 1} text cannot be empty");
+                
+                if (option.Text.Length > 200)
+                    return BadRequest($"Question {i + 1}, Option {j + 1} text is too long (max 200 characters)");
+            }
+        }
+
         // --- Logg alle claims for debugging ---
         _logger.LogInformation("Claims for current user:");
         foreach (var c in User.Claims)
@@ -278,6 +311,43 @@ public class QuizAPIController : ControllerBase
     public async Task<IActionResult> Update(int id, [FromBody] QuizDto quizDto)
     {
         if (quizDto == null)return BadRequest("Quiz data cannot be null");
+
+        // Validate that quiz has at least one question
+        if (quizDto.Questions == null || !quizDto.Questions.Any())
+            return BadRequest("Quiz must have at least one question");
+
+        // Validate each question
+        for (int i = 0; i < quizDto.Questions.Count; i++)
+        {
+            var question = quizDto.Questions[i];
+            
+            // Validate question text
+            if (string.IsNullOrWhiteSpace(question.Text))
+                return BadRequest($"Question {i + 1} text cannot be empty");
+            
+            if (question.Text.Length > 500)
+                return BadRequest($"Question {i + 1} text is too long (max 500 characters)");
+            
+            // Check if question has at least 2 options
+            if (question.Options == null || question.Options.Count < 2)
+                return BadRequest($"Question {i + 1} must have at least 2 options");
+            
+            // Check if question has at least one correct answer
+            if (!question.Options.Any(o => o.IsCorrect))
+                return BadRequest($"Question {i + 1} must have at least one correct answer");
+            
+            // Validate each option
+            for (int j = 0; j < question.Options.Count; j++)
+            {
+                var option = question.Options[j];
+                
+                if (string.IsNullOrWhiteSpace(option.Text))
+                    return BadRequest($"Question {i + 1}, Option {j + 1} text cannot be empty");
+                
+                if (option.Text.Length > 200)
+                    return BadRequest($"Question {i + 1}, Option {j + 1} text is too long (max 200 characters)");
+            }
+        }
 
         var existingQuiz = await _quizRepository.GetQuizById(id);
         if (existingQuiz == null) return NotFound("Quiz not found");

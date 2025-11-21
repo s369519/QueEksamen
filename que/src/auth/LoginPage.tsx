@@ -324,6 +324,9 @@ const LoginPage: React.FC = () => {
                 minLength={6}
                 style={inputStyle}
               />
+              <Form.Text className="text-muted" style={{ fontSize: '12px' }}>
+                Password must be at least 6 characters and contain: uppercase letter, lowercase letter, number, and special character (!@#$%^&*).
+              </Form.Text>
             </Form.Group>
 
             <Button type="submit" style={submitButtonStyle}>

@@ -45,7 +45,11 @@ namespace Que.Controllers
             }
 
             _logger.LogWarning("[AuthAPIController] user registration failed for {@username}", registerDto.Username);
-            return BadRequest(result.Errors);
+            
+            // Return user-friendly error messages
+            var errors = result.Errors.Select(e => e.Description).ToList();
+            var errorMessage = string.Join(" ", errors);
+            return BadRequest(new { message = errorMessage, errors = errors });
         }
 
         [HttpPost("login")]
