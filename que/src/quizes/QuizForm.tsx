@@ -30,6 +30,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
   const [isPublic, setIsPublic] = useState(initialData?.isPublic || false);
   const [nameError, setNameError] = useState('');
   const [timeLimitError, setTimeLimitError] = useState<string>('');
+  const [questionsError, setQuestionsError] = useState<string>('');
 
   const difficulties = ['Easy', 'Medium', 'Hard'];
 
@@ -144,6 +145,13 @@ const QuizForm: React.FC<QuizFormProps> = ({
     e.preventDefault();
 
     if (!validateName(name)) return;
+
+    // Validate that quiz has at least one question
+    if (questions.length === 0) {
+      setQuestionsError('Quiz must have at least one question');
+      return;
+    }
+    setQuestionsError('');
 
     const quiz: Quiz = {
       quizId: quizId ?? initialData?.quizId,
@@ -312,6 +320,13 @@ const QuizForm: React.FC<QuizFormProps> = ({
               <div className="text-center py-5 text-muted">
                 <i className="bi bi-clipboard-x fs-1 d-block mb-3"></i>
                 <p>No questions yet. Click "Add Question" to start building your quiz.</p>
+              </div>
+            )}
+
+            {questionsError && (
+              <div className="alert alert-danger" role="alert">
+                <i className="bi bi-exclamation-triangle me-2"></i>
+                {questionsError}
               </div>
             )}
 

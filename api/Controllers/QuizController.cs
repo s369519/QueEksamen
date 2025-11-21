@@ -168,6 +168,10 @@ public class QuizAPIController : ControllerBase
         if (quizDto == null)
             return BadRequest("Quiz cannot be null");
 
+        // Validate that quiz has at least one question
+        if (quizDto.Questions == null || !quizDto.Questions.Any())
+            return BadRequest("Quiz must have at least one question");
+
         // --- Logg alle claims for debugging ---
         _logger.LogInformation("Claims for current user:");
         foreach (var c in User.Claims)
