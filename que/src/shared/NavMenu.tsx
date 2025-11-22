@@ -18,7 +18,7 @@ const NavMenu: React.FC = () => {
                 background: 'linear-gradient(135deg, #8b5fc7 0%, #7a5aae 50%, #6d7dbe 100%)',
             }}
         >
-            <Container>
+            <Container fluid>
                 <Navbar.Brand 
                     as={Link} 
                     to="/" 
