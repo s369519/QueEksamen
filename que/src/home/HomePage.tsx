@@ -28,6 +28,10 @@ const HomePage: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
   const [selectedLength, setSelectedLength] = useState('Any Length');
 
+  // Pagination state
+  const [visibleCount, setVisibleCount] = useState(9);
+  const ITEMS_PER_PAGE = 9;
+
   useEffect(() => {
     const fetchFeaturedQuizzes = async () => {
       try {
@@ -103,6 +107,8 @@ const HomePage: React.FC = () => {
     }
 
     setFilteredQuizzes(filtered);
+    // Reset visible count when filters change
+    setVisibleCount(9);
   }, [featuredQuizzes, searchTerm, selectedCategory, selectedLevel, selectedLength]);
 
   const getDifficultyColor = (difficulty: string): string => {
@@ -121,14 +127,27 @@ const HomePage: React.FC = () => {
     setSelectedLength('Any Length');
   };
 
+  const handleLoadMore = () => {
+    setVisibleCount(prevCount => prevCount + ITEMS_PER_PAGE);
+  };
+
+  // Get quizzes to display (only show up to visibleCount)
+  const displayedQuizzes = filteredQuizzes.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredQuizzes.length;
+
   return (
-    <div className="home-page">
+    <div className="home-page"
+     style={{
+        background: 'linear-gradient(180deg, #ffffff 0%, #faf8ff 20%, #f5f0ff 40%, #f0e6ff 60%, #ebe0ff 80%, #e6d9ff 100%)',
+        minHeight: '100vh'
+      }}
+      >
       {/* HERO */}
-      <section className="py-5 text-center fade-in-up">
+      <section className="py-3 text-center fade-in-up">
         <Container>
           <Row>
             <Col>
-              <h1 className="fw-normal fs-1 text-dark">
+              <h1 className="text-dark" style={{ fontWeight: 600, fontSize: '2.5rem' }}>
                 Welcome to <span className="hero-que">¿Qué?</span>
               </h1>
             </Col>
@@ -137,7 +156,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* FIND YOUR PERFECT QUIZ */}
-      <section className="py-5 fade-in-up-delay">
+      <section className="py-3 fade-in-up-delay">
         <Container>
           <div className="find-quiz-card p-4 p-md-5">
             <h2 className="find-quiz-title mb-4 fw-bold">Find Your Perfect Quiz</h2>
@@ -202,7 +221,7 @@ const HomePage: React.FC = () => {
             {/* BOTTOM LINE */}
             <div className="d-flex flex-wrap justify-content-between align-items-center">
               <p className="mb-2 quiz-count">
-                Showing {filteredQuizzes.length} of {featuredQuizzes.length} quizzes
+                Showing {displayedQuizzes.length} of {filteredQuizzes.length} quizzes
               </p>
 
               <Button className="set-filters-btn" onClick={handleResetFilters}>
@@ -224,14 +243,44 @@ const HomePage: React.FC = () => {
             </div>
           )}
 
-          {!loading && filteredQuizzes.length > 0 && (
-            <Row className="g-4">
-              {filteredQuizzes.map(quiz => (
-                <Col key={quiz.quizId} md={6} lg={4}>
-                  <QuizCard quiz={quiz} getDifficultyColor={getDifficultyColor} />
-                </Col>
-              ))}
-            </Row>
+          {!loading && displayedQuizzes.length > 0 && (
+            <>
+              <Row className="g-4">
+                {displayedQuizzes.map(quiz => (
+                  <Col key={quiz.quizId} md={6} lg={4}>
+                    <QuizCard quiz={quiz} getDifficultyColor={getDifficultyColor} />
+                  </Col>
+                ))}
+              </Row>
+
+              {/* Load More Button */}
+              {hasMore && (
+                <div className="text-center mt-5">
+                  <Button 
+                    variant="outline-primary" 
+                    size="lg" 
+                    className="view-all-btn"
+                    onClick={handleLoadMore}
+                  >
+                    <i className="bi bi-arrow-down-circle me-2"></i>
+                    Load More Quizzes
+                  </Button>
+                  <p className="text-muted mt-2 small">
+                    {filteredQuizzes.length - visibleCount} more quizzes available
+                  </p>
+                </div>
+              )}
+
+              {/* All Loaded Message */}
+              {!hasMore && filteredQuizzes.length > 9 && (
+                <div className="text-center mt-5">
+                  <p className="text-muted">
+                    <i className="bi bi-check-circle me-2"></i>
+                    All quizzes loaded!
+                  </p>
+                </div>
+              )}
+            </>
           )}
 
           {!loading && filteredQuizzes.length === 0 && (
@@ -241,14 +290,6 @@ const HomePage: React.FC = () => {
                 : 'No quizzes match your filters.'}
             </div>
           )}
-
-          <div className="text-center mt-4">
-            <Link to="/quizes">
-              <Button variant="outline-primary" size="lg" className="view-all-btn">
-                View All Quizzes
-              </Button>
-            </Link>
-          </div>
         </Container>
       </section>
     </div>
