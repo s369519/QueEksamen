@@ -45,7 +45,7 @@ const AuthSection: React.FC = () => {
         </Dropdown>
       ) : (
         <Button
-          as={Link}
+          as={Link as any}
           to="/login"
           variant="light"
           className="fw-bold ms-2 sign-in-btn"
@@ -65,6 +65,7 @@ const AuthSection: React.FC = () => {
                 transform: scale(1.05);
                 color: #6f42c1 !important;
               }
+                
             `}
           </style>
           <i className="bi bi-box-arrow-in-right me-2"></i>
