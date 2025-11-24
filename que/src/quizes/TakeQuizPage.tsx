@@ -35,18 +35,41 @@ const TakeQuizPage: React.FC = () => {
         scoreValue: number;
     } | null>(null);
     const [userAnswers, setUserAnswers] = useState<Map<number, number[]>>(new Map());
-    const [elapsedTime, setElapsedTime] = useState(0);
+    const [remainingTime, setRemainingTime] = useState(0);
     const [finalTime, setFinalTime] = useState(0);
+    const [timeWarning, setTimeWarning] = useState(false);
 
+    // Initialiser timer når quiz lastes
     useEffect(() => {
-        if (showResult) return; // Stop timer når quiz er ferdig
+        if (quiz && !showResult && remainingTime === 0) {
+            setRemainingTime(quiz.timeLimit * 60); // Konverter minutter til sekunder
+        }
+    }, [quiz]);
+
+    // Countdown timer
+    useEffect(() => {
+        if (showResult || remainingTime === 0 || !quiz) return;
 
         const timer = setInterval(() => {
-            setElapsedTime(prev => prev + 1);
+            setRemainingTime(prev => {
+                if (prev <= 1) {
+                    // Tid er ute - auto-submit
+                    clearInterval(timer);
+                    handleSubmitQuiz();
+                    return 0;
+                }
+                
+                // Vis advarsel når det er 1 minutt igjen
+                if (prev === 60 && !timeWarning) {
+                    setTimeWarning(true);
+                }
+                
+                return prev - 1;
+            });
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [showResult]);
+    }, [showResult, remainingTime, quiz, timeWarning]);
 
     const formatTime = (seconds: number) => {
         const hours = Math.floor(seconds / 3600);
@@ -78,9 +101,10 @@ const TakeQuizPage: React.FC = () => {
         setShowResult(false);
         setAnswerHistory([]);
         setUserAnswers(new Map());
-        setElapsedTime(0);
+        setRemainingTime(quiz ? quiz.timeLimit * 60 : 0);
         setFinalTime(0);
         setQuizWithAnswers(null);
+        setTimeWarning(false);
     };
 
     useEffect(() => {
@@ -168,11 +192,18 @@ const TakeQuizPage: React.FC = () => {
     };
 
     const handleSubmitQuiz = async () => {
-        if (!quiz || !currentQuestion || !id) return;
+        if (!quiz || !id) return;
 
-        const newUserAnswers = new Map(userAnswers);
-        newUserAnswers.set(currentQuestion.questionId, selectedOptions);
-        setUserAnswers(newUserAnswers);
+        // Lagre current question answer hvis det finnes
+        if (currentQuestion && selectedOptions.length > 0) {
+            const newUserAnswers = new Map(userAnswers);
+            newUserAnswers.set(currentQuestion.questionId, selectedOptions);
+            setUserAnswers(newUserAnswers);
+        }
+
+        // Beregn brukt tid
+        const timeUsed = (quiz.timeLimit * 60) - remainingTime;
+        setFinalTime(timeUsed);
 
         setIsSubmitting(true);
         try {
@@ -180,7 +211,7 @@ const TakeQuizPage: React.FC = () => {
             const history: AnswerHistory[] = [];
 
             for (const question of quiz.questions) {
-                const answer = newUserAnswers.get(question.questionId);
+                const answer = userAnswers.get(question.questionId);
                 if (!answer || answer.length === 0) continue;
 
                 const result = await QuizService.submitAnswer(
@@ -204,7 +235,6 @@ const TakeQuizPage: React.FC = () => {
 
             setAnswerHistory(history);
             setScore(totalScore);
-            setFinalTime(elapsedTime); // Lagre tiden når quizen er ferdig
 
             const maxScore = quiz.questions.length;
             const finalScore = (totalScore / maxScore) * 100;
@@ -270,7 +300,6 @@ const TakeQuizPage: React.FC = () => {
                         <Card.Body className="py-5">
                             <Card.Title className="mb-4 fs-3 fw-bold">{quiz.quizName}</Card.Title>
                             
-                            {/* Statistics Row */}
                             <Row className="mb-4 justify-content-center">
                                 <Col xs={12} md={3} className="text-center mb-3 mb-md-0">
                                     <div className="p-3 border rounded bg-light">
@@ -298,7 +327,6 @@ const TakeQuizPage: React.FC = () => {
                                 </Col>
                             </Row>
                             
-                            {/* Action Buttons */}
                             <div className="d-flex justify-content-center gap-3 mt-4">
                                 <Button 
                                     size="lg"
@@ -432,6 +460,7 @@ const TakeQuizPage: React.FC = () => {
 
     const progress = ((currentQuestionIndex + 1) / quiz.totalQuestions) * 100;
     const answeredQuestions = userAnswers.size;
+    const isTimeRunningOut = remainingTime <= 60;
 
     return (
         <div style={{ 
@@ -440,9 +469,20 @@ const TakeQuizPage: React.FC = () => {
             padding: '2rem 0'
         }}>
             <Container>
+                {timeWarning && remainingTime > 0 && (
+                    <Alert 
+                        variant="warning" 
+                        dismissible 
+                        onClose={() => setTimeWarning(false)}
+                        className="mb-3"
+                    >
+                        <i className="bi bi-exclamation-triangle me-2"></i>
+                        <strong>Warning!</strong> Less than 1 minute remaining. The quiz will auto-submit when time runs out.
+                    </Alert>
+                )}
+
                 <Card className="shadow-lg border-0">
                     <Card.Body className="p-0">
-                        {/* Header without background color */}
                         <div className="p-4 border-bottom">
                             <div className="d-flex justify-content-between align-items-center mb-3">
                                 <h2 className="mb-0" style={{ color: '#6f42c1' }}>
@@ -450,18 +490,27 @@ const TakeQuizPage: React.FC = () => {
                                     {quiz.quizName}
                                 </h2>
                                 <Badge 
-                                    bg="dark" 
+                                    bg={isTimeRunningOut ? 'danger' : 'dark'}
                                     className="fs-5 p-3"
                                     style={{ 
                                         display: 'flex', 
                                         alignItems: 'center',
-                                        fontWeight: 'normal'
+                                        fontWeight: 'normal',
+                                        animation: isTimeRunningOut ? 'pulse 1s infinite' : 'none'
                                     }}
                                 >
                                     <i className="bi bi-clock me-2"></i>
-                                    {formatTime(elapsedTime)}
+                                    {formatTime(remainingTime)}
                                 </Badge>
                             </div>
+                            <style>
+                                {`
+                                    @keyframes pulse {
+                                        0%, 100% { opacity: 1; }
+                                        50% { opacity: 0.6; }
+                                    }
+                                `}
+                            </style>
                             <div className="d-flex justify-content-between align-items-center mb-2">
                                 <span className="text-muted">
                                     Question {currentQuestionIndex + 1} of {quiz.totalQuestions}
@@ -484,7 +533,6 @@ const TakeQuizPage: React.FC = () => {
                             />
                         </div>
 
-                        {/* Question Content */}
                         <div className="p-4">
                             <h4 className="mb-4 fw-bold" style={{ color: '#6f42c1' }}>
                                 Question {currentQuestionIndex + 1}
@@ -547,7 +595,6 @@ const TakeQuizPage: React.FC = () => {
                                 })}
                             </Form>
 
-                            {/* Navigation Buttons */}
                             <div className="d-flex justify-content-between mt-5">
                                 <div>
                                     <Button 
