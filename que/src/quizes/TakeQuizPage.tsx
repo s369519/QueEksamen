@@ -194,11 +194,10 @@ const TakeQuizPage: React.FC = () => {
     const handleSubmitQuiz = async () => {
         if (!quiz || !id) return;
 
-        // Lagre current question answer hvis det finnes
+        // Lagre current question answer hvis det finnes - VIKTIG FIX!
+        const finalUserAnswers = new Map(userAnswers);
         if (currentQuestion && selectedOptions.length > 0) {
-            const newUserAnswers = new Map(userAnswers);
-            newUserAnswers.set(currentQuestion.questionId, selectedOptions);
-            setUserAnswers(newUserAnswers);
+            finalUserAnswers.set(currentQuestion.questionId, selectedOptions);
         }
 
         // Beregn brukt tid
@@ -211,8 +210,19 @@ const TakeQuizPage: React.FC = () => {
             const history: AnswerHistory[] = [];
 
             for (const question of quiz.questions) {
-                const answer = userAnswers.get(question.questionId);
-                if (!answer || answer.length === 0) continue;
+                const answer = finalUserAnswers.get(question.questionId); // Bruk finalUserAnswers istedenfor userAnswers
+                if (!answer || answer.length === 0) {
+                    // Legg til ubesvarte spørsmål med 0 poeng
+                    history.push({
+                        questionId: question.questionId,
+                        questionText: question.text,
+                        selectedOptionIds: [],
+                        isCorrect: false,
+                        isPartiallyCorrect: false,
+                        scoreValue: 0
+                    });
+                    continue;
+                }
 
                 const result = await QuizService.submitAnswer(
                     quiz.quizId,
@@ -235,6 +245,7 @@ const TakeQuizPage: React.FC = () => {
 
             setAnswerHistory(history);
             setScore(totalScore);
+            setUserAnswers(finalUserAnswers); // Oppdater userAnswers med det siste svaret
 
             const maxScore = quiz.questions.length;
             const finalScore = (totalScore / maxScore) * 100;
@@ -330,7 +341,7 @@ const TakeQuizPage: React.FC = () => {
                             <div className="d-flex justify-content-center gap-3 mt-4">
                                 <Button 
                                     size="lg"
-                                    onClick={() => navigate('/quizlist')}
+                                    onClick={() => navigate('/')}
                                     style={{ backgroundColor: '#6f42c1', borderColor: '#6f42c1' }}
                                 >
                                     <i className="bi bi-house-door me-2"></i>
@@ -433,7 +444,7 @@ const TakeQuizPage: React.FC = () => {
                         <div className="d-flex justify-content-center gap-3">
                             <Button 
                                 size="lg"
-                                onClick={() => navigate('/quizlist')}
+                                onClick={() => navigate('/')}
                                 style={{ backgroundColor: '#6f42c1', borderColor: '#6f42c1' }}
                             >
                                 <i className="bi bi-house-door me-2"></i>
@@ -459,7 +470,7 @@ const TakeQuizPage: React.FC = () => {
     }
 
     const progress = ((currentQuestionIndex + 1) / quiz.totalQuestions) * 100;
-    const answeredQuestions = userAnswers.size;
+    const answeredQuestions = userAnswers.size + (selectedOptions.length > 0 ? 1 : 0);
     const isTimeRunningOut = remainingTime <= 60;
 
     return (
@@ -600,7 +611,7 @@ const TakeQuizPage: React.FC = () => {
                                     <Button 
                                         variant="outline-secondary" 
                                         size="lg"
-                                        onClick={() => navigate('/quizlist')}
+                                        onClick={() => navigate('/')}
                                         disabled={isSubmitting}
                                         className="me-2"
                                     >
