@@ -175,7 +175,7 @@ app.Use(async (context, next) =>
 
 if (app.Environment.IsDevelopment())
 {
-    DBInit.Seed(app);
+    DbInit.Seed(app);
     app.UseSwagger();
     app.UseSwaggerUI();
 }

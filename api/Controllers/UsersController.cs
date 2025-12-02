@@ -7,6 +7,7 @@ using Que.Models;
 
 namespace Que.Controllers;
 
+// Controller for managing user profile operations
 [ApiController]
 [Route("api/[controller]")]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -15,15 +16,18 @@ public class UsersController : ControllerBase
     private readonly UserManager<AuthUser> _userManager;
     private readonly ILogger<UsersController> _logger;
 
+    // Constructor that injects required dependencies for user management
     public UsersController(UserManager<AuthUser> userManager, ILogger<UsersController> logger)
     {
         _userManager = userManager;
         _logger = logger;
     }
 
+    // Gets the profile information for the currently authenticated user
     [HttpGet("profile")]
     public async Task<IActionResult> GetProfile()
     {
+        // Extract user ID from JWT token claims
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (string.IsNullOrEmpty(userId))
         {
@@ -31,6 +35,7 @@ public class UsersController : ControllerBase
             return Unauthorized();
         }
 
+        // Retrieve user from database
         var user = await _userManager.FindByIdAsync(userId);
         if (user == null)
         {
@@ -38,6 +43,7 @@ public class UsersController : ControllerBase
             return NotFound();
         }
 
+        // Return user profile information
         return Ok(new {
             id = user.Id,
             username = user.UserName,
