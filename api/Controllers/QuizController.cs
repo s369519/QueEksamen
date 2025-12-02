@@ -41,13 +41,13 @@ public class QuizAPIController : ControllerBase
     [HttpGet("quizlist")]
     public async Task<IActionResult> GetAllQuizes()
     {
-        // Hent brukerinfo fra token (om innlogget)
+        // Get user info from token (if logged in)
         string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         bool isAuthenticated = User.Identity?.IsAuthenticated ?? false;
 
         _logger.LogInformation("[QuizAPIController] Fetching quiz list for user: {UserId}", userId ?? "Anonymous");
 
-        // Hent alle quizer fra databasen
+        // Get all quizzes from the database
         var quizzes = await _quizRepository.GetAllQuizes();
 
         if (quizzes == null)
@@ -56,7 +56,7 @@ public class QuizAPIController : ControllerBase
             return NotFound("No quizzes found");
         }
 
-        // Filtrer synlighet
+        // Filter visibility
         var visibleQuizzes = quizzes
             .Where(q => q.IsPublic || (isAuthenticated && q.OwnerId == userId))
             .Select(q => new 
@@ -167,14 +167,14 @@ public class QuizAPIController : ControllerBase
     {
         // Validation is handled automatically by ValidateModelStateAttribute and DataAnnotations
         
-        // --- Logg alle claims for debugging ---
+        // --- Log all claims for debugging ---
         _logger.LogInformation("Claims for current user:");
         foreach (var c in User.Claims)
         {
             _logger.LogInformation("{Type} = {Value}", c.Type, c.Value);
         }
 
-        // --- Hent GUID-Id fra claim NameIdentifier ---
+        // --- Get GUID-Id from claim NameIdentifier ---
         var userId = User.Claims.FirstOrDefault(
             c => c.Type == ClaimTypes.NameIdentifier && Guid.TryParse(c.Value, out _)
         )?.Value;
@@ -185,7 +185,7 @@ public class QuizAPIController : ControllerBase
             return Unauthorized("User not authenticated");
         }
 
-        // --- Hent bruker fra databasen ---
+        // --- Get user from database ---
         var user = await _userManager.FindByIdAsync(userId);
         if (user == null)
         {
@@ -193,7 +193,7 @@ public class QuizAPIController : ControllerBase
             return Unauthorized("User not found in database");
         }
 
-        // --- Sørg for at brukeren finnes i QuizDbContext (for FK-constraint) ---
+        // --- Ensure user exists in QuizDbContext (for FK-constraint) ---
         var userInQuizDb = await _quizDbContext.Set<AuthUser>().FindAsync(userId);
         if (userInQuizDb == null)
         {
@@ -222,7 +222,7 @@ public class QuizAPIController : ControllerBase
 
         try
         {
-                // --- Lag quiz med riktig OwnerId ---
+                // --- Create quiz with correct OwnerId ---
                 var newQuiz = new Quiz
                 {
                     Name = quizDto.Name ?? throw new ArgumentNullException(nameof(quizDto.Name)),
@@ -502,7 +502,7 @@ public class QuizAPIController : ControllerBase
         });
     }
     
-    //Legger inn Quiz forsøk hvis de er innlogget med brukeren
+    // Submit quiz attempt if user is logged in with the user account
 
 [Authorize]
 [HttpPost("submit-attempt")]

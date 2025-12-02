@@ -158,17 +158,17 @@ public class QuizRepository : IQuizRepository
 
 public async Task<IEnumerable<Quiz>> GetAttemptedQuizzesByUserId(string userId)
 {
-    // Hent alle unike quiz-IDer brukeren har forsøkt
+    // Get all unique quiz IDs the user has attempted
     var quizIds = await _db.QuizAttempts
         .Where(a => a.UserId == userId)
         .Select(a => a.QuizId)
         .Distinct()
         .ToListAsync();
 
-    // Hvis ingen forsøk, returner tom liste
+    // If no attempts, return empty list
     if (!quizIds.Any()) return new List<Quiz>();
 
-    // Hent alle quizer basert på quiz-IDene
+    // Get all quizzes based on the quiz IDs
     return await _db.Quizes
         .Where(q => quizIds.Contains(q.QuizId))
         .Include(q => q.Questions)

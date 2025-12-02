@@ -100,7 +100,7 @@ namespace Que.Controllers
                 new Claim(ClaimTypes.NameIdentifier, user.Id),         // GUID som backend bruker
                 new Claim(ClaimTypes.Name, user.UserName ?? ""),       // Brukernavnet
                 new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id),       // SUB bør også være GUID
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),       // SUB should also be GUID
                 new Claim("username", user.UserName ?? ""),            // Eksplisitt brukernavn claim
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())

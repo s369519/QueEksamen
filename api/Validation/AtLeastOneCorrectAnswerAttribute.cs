@@ -3,9 +3,7 @@ using Que.DTOs;
 
 namespace Que.Validation
 {
-    /// <summary>
     /// Validates that a list of OptionDto contains at least one correct answer
-    /// </summary>
     public class AtLeastOneCorrectAnswerAttribute : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)

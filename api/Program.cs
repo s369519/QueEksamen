@@ -76,7 +76,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     };
 });
 
-// fjernet for L15 : builder.Services.AddControllers();
+// removed for L15 : builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
 {
@@ -112,7 +112,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             RoleClaimType = ClaimTypes.Role
         };
 
-        // For debugging senere:
+        // For debugging later:
         /*
         options.Events = new JwtBearerEvents
         {
