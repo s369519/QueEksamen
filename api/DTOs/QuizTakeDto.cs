@@ -23,7 +23,6 @@ namespace Que.DTOs
     {
         public int OptionId { get; set; }
         public string Text { get; set; } = string.Empty;
-        // IsCorrect is optional - only included when reviewing answers after completion
         public bool? IsCorrect { get; set; }
     }
 

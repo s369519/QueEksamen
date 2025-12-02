@@ -13,9 +13,12 @@ using System.Security.Claims;
 using Que.Middleware;
 using Que.Filters;
 
+// APPLICATION BUILDER CONFIGURATION
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Serilog early for startup logging
+// Configure Serilog for structured logging
+// Logs are written to files with daily rotation, keeping last 7 days
 var loggerConfiguration = new LoggerConfiguration()
     .MinimumLevel.Information()
     .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Warning)
@@ -26,6 +29,10 @@ var loggerConfiguration = new LoggerConfiguration()
 
 Log.Logger = loggerConfiguration.CreateLogger();
 
+// SERVICE CONFIGURATION
+
+// Configure MVC controllers with global validation filter
+// Newtonsoft.Json handles circular references in entity relationships
 builder.Services.AddControllers(options =>
 {
     // Add global model state validation filter
@@ -37,6 +44,7 @@ builder.Services.AddControllers(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 
+// Configure Swagger/OpenAPI with JWT Bearer authentication support
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Que API", Version = "v1" });
@@ -57,16 +65,21 @@ builder.Services.AddSwaggerGen(c =>
             }});
 });
 
+
+// QuizDbContext: Stores quizzes, questions, options, and quiz attempts
 builder.Services.AddDbContext<QuizDbContext>(options => {
     options.UseSqlite(builder.Configuration["ConnectionStrings:QuizDbContextConnection"]);});
 
+// AuthDbContext: Stores user authentication data (ASP.NET Identity)
 builder.Services.AddDbContext<AuthDbContext>(options => {
     options.UseSqlite(builder.Configuration["ConnectionStrings:AuthDbContextConnection"]);});
 
+// Configure ASP.NET Core Identity for user management
 builder.Services.AddIdentity<AuthUser, IdentityRole>()
     .AddEntityFrameworkStores<AuthDbContext>()
     .AddDefaultTokenProviders();
 
+// Configure Identity to return 401 instead of redirecting to login page (for API)
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Events.OnRedirectToLogin = context =>
@@ -76,8 +89,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     };
 });
 
-// removed for L15 : builder.Services.AddControllers();
-
+// CORS policy: Allow requests from localhost only (development)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
@@ -90,14 +102,19 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Register repository for dependency injection
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();
 
+// AUTHENTICATION & AUTHORIZATION
+
 builder.Services.AddAuthorization();
+
+// Configure JWT Bearer authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.SaveToken = true;
-        options.RequireHttpsMetadata = false;
+        options.RequireHttpsMetadata = false; // Allow HTTP in development
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -111,52 +128,22 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             NameClaimType = ClaimTypes.NameIdentifier,
             RoleClaimType = ClaimTypes.Role
         };
-
-        // For debugging later:
-        /*
-        options.Events = new JwtBearerEvents
-        {
-            OnMessageReceived = context =>
-            {
-                var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").LastOrDefault();
-                Console.WriteLine($"OnMessageReceived - Token: {token}");
-                return Task.CompletedTask;
-            },
-            OnTokenValidated = context =>
-            {
-                Console.WriteLine("OnTokenValidated: SUCCESS");
-                return Task.CompletedTask;
-            },
-            OnAuthenticationFailed = context =>
-            {
-                Console.WriteLine($"OnAuthenticationFailed: {context.Exception.Message}");
-                if (context.Exception.InnerException != null)
-                {
-                    Console.WriteLine($"Inner Exception: {context.Exception.InnerException.Message}");
-                }
-                return Task.CompletedTask;
-            },
-            OnChallenge = context =>
-            {
-                Console.WriteLine($"OnChallenge: {context.Error} - {context.ErrorDescription}");
-                return Task.CompletedTask;
-            }
-        };
-        */
     });
 
-// Remove duplicate logger configuration and use the one created above
+// Configure Serilog as the logging provider
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(Log.Logger);
 
 builder.Services.AddAuthorization();
 
+// APPLICATION MIDDLEWARE PIPELINE
+
 var app = builder.Build();
 
-// Add global exception handler middleware (must be first)
+// Global exception handler - MUST be first to catch all exceptions
 app.UseMiddleware<GlobalExceptionHandler>();
 
-// Request logging middleware
+// Custom request/response logging middleware
 app.Use(async (context, next) =>
 {
     var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
@@ -173,13 +160,16 @@ app.Use(async (context, next) =>
         context.Response.StatusCode);
 });
 
+// Development-only features: database seeding and Swagger UI
 if (app.Environment.IsDevelopment())
 {
     DbInit.Seed(app);
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-// Ensure users in AuthDbContext are present in QuizDbContext to satisfy FK constraints
+
+// USER SYNCHRONIZATION
+// Ensures users from AuthDbContext exist in QuizDbContext for foreign key constraints
 using (var scope = app.Services.CreateScope())
 {
     try
@@ -236,36 +226,20 @@ using (var scope = app.Services.CreateScope())
         startupLogger.LogError(ex, "Failed to synchronize users between AuthDbContext and QuizDbContext");
     }
 }
+
+// MIDDLEWARE ORDER (CRITICAL)
+// Order matters: Static files → Routing → CORS → Authentication → Authorization → Controllers
+
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors("CorsPolicy");
 
-/* app.Use(async (context, next) =>
-{
-    if (context.Request.Headers.TryGetValue("Authorization", out var authHeader))
-    {
-        var headerValue = authHeader.FirstOrDefault();
-        if (headerValue?.StartsWith("Bearer ") == true)
-        {
-            var token = headerValue.Substring("Bearer ".Length).Trim();
-
-            var handler = new JwtSecurityTokenHandler();
-            var jsonToken = handler.ReadJwtToken(token);
-
-            console.WriteLine($"--> Token Issuer: {jsonToken.Issuer}");
-            console.WriteLine($"--> Token Audience: {jsonToken.Audiences.FirstOrDefault()}");
-            console.WriteLine($"--> Token Expiry: {jsonToken.ValidTo}");
-            console.WriteLine($"--> Current Time: {DateTime.UtcNow}");
-            console.WriteLine($"--> Config Issuer: {builder.Configuration["Jwt:Issuer"]}");
-            console.WriteLine($"--> Config Audience: {builder.Configuration["Jwt:Audience"]}");
-        }
-    }
-    await next.Invoke();
-});
-*/
-
+// Authentication must come before Authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Map controller endpoints
 app.MapControllers();
 
+// Start the application
 await app.RunAsync();

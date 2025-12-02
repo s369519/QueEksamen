@@ -23,17 +23,11 @@ public class QuizDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // ==========================
         // KONFIGURASJON AV AUTHUSER
-        // ==========================
-        
         // Spesifiser at AuthUser skal bruke "AuthUser" tabellen, ikke "Users"
         modelBuilder.Entity<AuthUser>().ToTable("AuthUser");
 
-        // ==========================
         // RELASJONER MED CASCADING DELETE
-        // ==========================
-
         // Quiz -> Question
         modelBuilder.Entity<Question>()
             .HasOne(q => q.Quiz)
@@ -48,9 +42,7 @@ public class QuizDbContext : DbContext
             .HasForeignKey(o => o.QuestionId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // ==========================
         // SEEDING
-        // ==========================
 
         // Quiz
         modelBuilder.Entity<Quiz>().HasData(

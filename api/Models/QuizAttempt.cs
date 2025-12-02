@@ -6,7 +6,6 @@ public class QuizAttempt
     public int QuizAttemptId { get; set; }
     public int QuizId { get; set; }
 
-    // virtual for lazy-loading / change-tracking proxies
     public virtual Quiz? Quiz { get; set; }
 
     public string UserId { get; set; } = null!;
