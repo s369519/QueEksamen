@@ -8,18 +8,36 @@ import "./QuizListPage.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// QuizListPage Component 
+
 const QuizListPage: React.FC = () => {
+    // Array of quizzes fetched from the API
     const [quizes, setQuizes] = useState<Quiz[]>([]);
+    
+    // Loading state for async operations
     const [loading, setLoading] = useState<boolean>(false);
+    
+    // Error message to display if operations fail
     const [error, setError] = useState<string | null>(null);
+    
+    // Search query for filtering quizzes by name or description
     const [searchQuery, setSearchQuery] = useState<string>('');
+    
+    // ID of quiz currently being deleted (for loading indicator)
     const [deletingQuizId, setDeletingQuizId] = useState<number | null>(null);
+    
+    // Authentication context providing user info and auth status
     const { user, isAuthenticated } = useAuth();
 
+    // Selected category filter (empty string = all categories)
     const [sortCategory, setSortCategory] = useState<string>('');
+    
+    // Selected difficulty filter (empty string = all difficulties)
     const [sortDifficulty, setSortDifficulty] = useState<string>('');
 
+    // Fetches all quizzes created by the authenticated user
     const fetchQuizes = async () => {
+        // Early return if user is not authenticated
         if (!isAuthenticated) {
             setQuizes([]);
             setLoading(false);
@@ -30,6 +48,7 @@ const QuizListPage: React.FC = () => {
         setError(null);
 
         try {
+            // Fetch user's quizzes from API
             const data = await QuizService.getUserQuizzes();
             setQuizes(data);
         } catch (error: unknown) {
@@ -39,27 +58,39 @@ const QuizListPage: React.FC = () => {
         }
     };
 
+    // Effect hook to fetch quizzes when authentication state changes
+    // Triggers on component mount and whenever isAuthenticated changes
     useEffect(() => {
         fetchQuizes();
     }, [isAuthenticated]);
 
+    // First filter: Search query matching
+    // Filters quizzes by search query, checking both name and description fields.
     const filteredQuizes = quizes.filter(quiz =>
         (quiz.name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
         (quiz.description?.toLowerCase() || '').includes(searchQuery.toLowerCase())
     );
 
+
+    // Second filter: Category and difficulty matching
+    // Applies dropdown filter selections on top of search results.
+    // Empty filter values (empty strings) match all quizzes.
     const sortedAndFilteredQuizzes = filteredQuizes.filter(quiz => {
         const matchesCategory = sortCategory ? quiz.category === sortCategory : true;
         const matchesDifficulty = sortDifficulty ? quiz.difficulty === sortDifficulty : true;
         return matchesCategory && matchesDifficulty;
     });
 
+    // Handles quiz deletion with user confirmation
     const handleQuizDeleted = async (quizId: number) => {
+        // Show confirmation dialog
         const confirmDelete = window.confirm(`Are you sure you want to delete the quiz ${quizId}?`);
         if (confirmDelete) {
             setDeletingQuizId(quizId);
             try {
+                // Delete quiz via API
                 await QuizService.deleteQuiz(quizId);
+                // Remove deleted quiz from local state
                 setQuizes(prev => prev.filter(q => q.quizId !== quizId));
             } catch {
                 setError("Failed to delete quiz.");
