@@ -203,9 +203,14 @@ dotnet ef database update --context AuthDbContext
 ### CORS Errors
 Ensure `VITE_API_URL` in `.env` matches backend URL
 
-## 👥 Authors
+## Authors
 
-- Arthur Flotvik - s369519
+- Grimstveit s385500
+- Da Quynh Truong s385550
+- Zoey Retzius s380936
+- Sara Solstad Wessel-Hansen s385572
+- Arthur Thonrud Flotvik s369519
+
 
 ## License
 
