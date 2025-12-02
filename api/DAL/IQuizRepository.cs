@@ -15,6 +15,6 @@ public interface IQuizRepository
     Task<IEnumerable<Quiz>> GetAllQuizes();
     Task<Question?> GetQuestionByIdAsync(int questionId);
 
-    Task<IEnumerable<Quiz>> GetQuizzesByUserId(string userId); //For brukerprofil
-    Task<IEnumerable<Quiz>> GetAttemptedQuizzesByUserId(string userId); //For brukerprofil/teller antall ganger
+    Task<IEnumerable<Quiz>> GetQuizzesByUserId(string userId);
+    Task<IEnumerable<Quiz>> GetAttemptedQuizzesByUserId(string userId);
 }

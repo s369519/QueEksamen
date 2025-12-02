@@ -166,7 +166,7 @@ public async Task<IEnumerable<Quiz>> GetAttemptedQuizzesByUserId(string userId)
         .ToListAsync();
 
     // If no attempts, return empty list
-    if (!quizIds.Any()) return new List<Quiz>();
+    if (quizIds.Count == 0) return new List<Quiz>();
 
     // Get all quizzes based on the quiz IDs
     return await _db.Quizes
