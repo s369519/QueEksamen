@@ -3,6 +3,8 @@ import { User } from '../types/user';
 import { LoginDto } from '../types/auth';
 import * as authService from './AuthService';
 
+ // Authentication context type definition
+ // Provides user state, token management, and authentication methods
 interface AuthContextType {
   user: User | null;
   token: string | null;
@@ -15,24 +17,32 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Simple base64url -> JSON decoder for JWT payload (no external lib)
+ // Decodes a JWT token without external libraries
+ // Extracts the payload from a JWT token and parses it as JSON
 const decodeJwt = (token: string): any | null => {
   try {
     const parts = token.split('.');
     if (parts.length !== 3) return null;
+    
     const payload = parts[1];
-    // base64url -> base64
+    
+    // Convert base64url to base64
     const b64 = payload.replace(/-/g, '+').replace(/_/g, '/');
-    // pad base64 string
+    
+    // Pad base64 string to correct length
     const pad = b64.length % 4;
     const padded = b64 + (pad ? '='.repeat(4 - pad) : '');
-    // atob -> decode utf-8 safely
+    
+    // Decode base64 to binary string
     const binary = atob(padded);
+    
+    // Convert binary string to UTF-8 JSON string
     const json = decodeURIComponent(
       Array.prototype.map
         .call(binary, (c: string) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
         .join('')
     );
+    
     return JSON.parse(json);
   } catch (err) {
     console.warn('decodeJwt failed', err);
@@ -40,11 +50,16 @@ const decodeJwt = (token: string): any | null => {
   }
 };
 
+ // Authentication Provider Component
+ // Manages authentication state, token storage, and user session
+ // Automatically restores session from localStorage on mount
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  // Effect to restore user session from stored token on component mount
+  // Validates token expiry and decodes user information
   useEffect(() => {
     console.log('[AuthContext] init - token from localStorage:', token);
     if (!token) {
@@ -56,6 +71,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const decoded = decodeJwt(token);
     console.log('[AuthContext] decoded token on init:', decoded);
 
+    // If token is invalid, clear everything
     if (!decoded) {
       localStorage.removeItem('token');
       setUser(null);
@@ -64,7 +80,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       return;
     }
 
-    // if token has exp (seconds) check expiry
+    // Check if token has expired (exp claim is in seconds)
     if (decoded.exp && decoded.exp * 1000 <= Date.now()) {
       localStorage.removeItem('token');
       setUser(null);
@@ -73,15 +89,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       return;
     }
 
+    // Token is valid, set user from decoded payload
     setUser(decoded as User);
     setIsLoading(false);
   }, [token]);
 
+  // Logs in a user with provided credentials
+  // Stores token in localStorage and updates user state
   const login = async (credentials: LoginDto) => {
     console.log('[AuthContext] login called with', credentials);
     const result = await authService.login(credentials);
     console.log('[AuthContext] login result from service:', result);
 
+    // Extract token from various possible response formats
     const newToken =
       typeof result === 'string'
         ? result
@@ -90,10 +110,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     console.log('[AuthContext] extracted token:', newToken);
     if (!newToken) throw new Error('Login did not return a token');
 
+    // Store token and update state
     localStorage.setItem('token', newToken);
     setToken(newToken);
     console.log('[AuthContext] token saved to localStorage');
 
+    // Decode token to get user information
     const decoded = decodeJwt(newToken);
     console.log('[AuthContext] decoded token after login:', decoded);
     if (decoded) {
@@ -105,6 +127,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  // Logs out the current user
+  // Clears token from localStorage and resets user state
   const logout = () => {
     console.log('[AuthContext] logout - clearing token and user');
     localStorage.removeItem('token');
@@ -112,6 +136,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setToken(null);
   };
 
+  // Checks if the current token is still valid
+  // Logs out user if token is expired or expiring soon (30 second buffer)
   const checkTokenExpiry = (): boolean => {
     if (!token) return false;
     
@@ -137,6 +163,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   );
 };
 
+// Custom hook to access authentication context
+// Must be used within an AuthProvider
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (context === undefined) {

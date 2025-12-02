@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Button, Form, Card, Row, Col, Container } from 'react-bootstrap';
 import { Quiz } from '../types/quiz';
 
+// Question structure for form state management
 interface Question {
   text: string;
   options: { text: string; isCorrect: boolean }[];
   allowMultiple?: boolean;
 }
 
+// Props for QuizForm component
 interface QuizFormProps {
   onQuizChanged: (newQuiz: Quiz) => void;
   quizId?: number;
@@ -16,6 +18,10 @@ interface QuizFormProps {
   isSubmitting?: boolean;
 }
 
+// Quiz Form Component
+// Handles creating and editing quizzes with questions and options
+// Provides validation for quiz metadata, questions, and options
+// Supports both single and multiple correct answers per question
 const QuizForm: React.FC<QuizFormProps> = ({
   onQuizChanged,
   quizId,
@@ -23,6 +29,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
   initialData,
   isSubmitting = false
 }) => {
+  // Quiz metadata state
   const [name, setName] = useState(initialData?.name || '');
   const [description, setDescription] = useState(initialData?.description || '');
   const [category, setCategory] = useState(initialData?.category || '');
@@ -30,10 +37,13 @@ const QuizForm: React.FC<QuizFormProps> = ({
   const [timeLimit, setTimeLimit] = useState(initialData?.timeLimit || 10);
   const [questions, setQuestions] = useState<Question[]>(initialData?.questions || []);
   const [isPublic, setIsPublic] = useState(initialData?.isPublic || false);
+  
+  // Validation error state
   const [nameError, setNameError] = useState('');
   const [timeLimitError, setTimeLimitError] = useState<string>('');
   const [questionsError, setQuestionsError] = useState<string>('');
 
+  // Available options for dropdowns
   const difficulties = ['Easy', 'Medium', 'Hard'];
 
   const categories = [
@@ -45,6 +55,8 @@ const QuizForm: React.FC<QuizFormProps> = ({
     'Other'
   ];
 
+  // Validates quiz name against regex pattern
+  // Must be 2-40 characters with letters, numbers, spaces, or hyphens
   const validateName = (value: string) => {
     const regex = /^[a-zA-ZæøåÆØÅ0-9 \-]{2,40}$/;
     if (!regex.test(value)) {
@@ -55,6 +67,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
     return true;
   };
 
+  // Validates time limit is a number between 1 and 100
   const validateTimeLimit = (value: number) => {
     if (isNaN(value)) {
       setTimeLimitError('The time limit must be a number');
@@ -87,6 +100,7 @@ const QuizForm: React.FC<QuizFormProps> = ({
     setTimeLimitError("");
   };
 
+  // Adds a new question with 4 empty options
   const addQuestion = () => {
     const defaultOptions = Array(4).fill(null).map(() => ({ text: '', isCorrect: false }));
     setQuestions([
@@ -95,36 +109,44 @@ const QuizForm: React.FC<QuizFormProps> = ({
     ]);
   };
 
+  // Removes a question by index
   const removeQuestion = (index: number) => {
     const updated = [...questions];
     updated.splice(index, 1);
     setQuestions(updated);
   };
 
+  // Updates question text
   const handleQuestionChange = (index: number, value: string) => {
     const updated = [...questions];
     updated[index].text = value;
     setQuestions(updated);
   };
 
+  // Adds a new option to a question
   const addOption = (qIndex: number) => {
     const updated = [...questions];
     updated[qIndex].options.push({ text: '', isCorrect: false });
     setQuestions(updated);
   };
 
+  // Removes an option from a question
   const removeOption = (qIndex: number, oIndex: number) => {
     const updated = [...questions];
     updated[qIndex].options.splice(oIndex, 1);
     setQuestions(updated);
   };
 
+  // Updates option text
   const handleOptionChange = (qIndex: number, oIndex: number, value: string) => {
     const updated = [...questions];
     updated[qIndex].options[oIndex].text = value;
     setQuestions(updated);
   };
 
+  // Toggles correct answer status for an option
+  // For single answer questions: sets only selected option as correct
+  // For multiple answer questions: toggles selected option
   const handleCorrectToggle = (qIndex: number, oIndex: number) => {
     const updated = [...questions];
     const question = updated[qIndex];
@@ -143,6 +165,8 @@ const QuizForm: React.FC<QuizFormProps> = ({
     setQuestions(updated);
   };
 
+  // Handles form submission
+  // Validates all quiz data before calling onQuizChanged callback
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 

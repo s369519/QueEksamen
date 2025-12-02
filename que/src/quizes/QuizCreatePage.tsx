@@ -8,12 +8,16 @@ import { useAuth } from '../auth/AuthContext';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Quiz Creation Page Component
+// Handles authentication validation and error handling during quiz creation
 const QuizCreatePage: React.FC = () => {
     const navigate = useNavigate();
     const { checkTokenExpiry, logout } = useAuth();
     const [error, setError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    // Handles quiz creation submission
+    // Validates user session, submits quiz to backend, and handles errors
     const handleQuizCreated = async (quiz: Quiz) => {
         // Check token expiry before submission
         if (!checkTokenExpiry()) {
@@ -31,23 +35,28 @@ const QuizCreatePage: React.FC = () => {
         try {
             const data = await QuizService.createQuiz(quiz);
             console.log('Quiz created successfully:', data);
+            // Navigate to quiz list on success
             navigate('/quizes');
         } catch (error: any) {
             console.error('There was a problem with the fetch operation: ', error);
             const errorMessage = error.message || 'Failed to create quiz';
             
-            // Check for specific error types
+            // Check for specific error types and provide appropriate feedback
             if (errorMessage.includes('401') || errorMessage.includes('unauthorized') || errorMessage.includes('authenticated')) {
+                // Authentication error - redirect to login
                 setError('Your session has expired. Please log in again.');
                 setTimeout(() => {
                     logout();
                     navigate('/login');
                 }, 2000);
             } else if (errorMessage.includes('400') || errorMessage.includes('validation')) {
+                // Validation error - show validation message
                 setError(`Validation error: ${errorMessage}`);
             } else if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
+                // Network error - suggest connection check
                 setError('Network error. Please check your connection and try again.');
             } else {
+                // Generic error - show error message
                 setError(`Failed to create quiz: ${errorMessage}`);
             }
         } finally {
@@ -76,6 +85,7 @@ const QuizCreatePage: React.FC = () => {
                     </Col>
                 </Row>
 
+                {/* Error Alert - Displayed when quiz creation fails */}
                 {error && (
                     <Row className="mb-4">
                         <Col lg={10} xl={8} className="mx-auto">
@@ -86,6 +96,8 @@ const QuizCreatePage: React.FC = () => {
                         </Col>
                     </Row>
                 )}
+                
+                {/* Page Header */}
                 <Row className="mb-5">
                     <Col className="text-center">
                         <h1 
@@ -106,6 +118,8 @@ const QuizCreatePage: React.FC = () => {
                         </p>
                     </Col>
                 </Row>
+                
+                {/* Quiz Form - Handles quiz data input and validation */}
                 <Row>
                     <Col lg={10} xl={8} className="mx-auto">
                         <QuizForm onQuizChanged={handleQuizCreated} isSubmitting={isSubmitting} />
