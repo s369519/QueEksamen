@@ -6,6 +6,8 @@ import './HomePage.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Interface for quiz preview data displayed on home page
+// Contains essential quiz information without full question details
 interface QuizPreview {
   quizId: number;
   name: string;
@@ -16,22 +18,42 @@ interface QuizPreview {
   category: string;
 }
 
+// HomePage Component
+// Landing page displaying all available quizzes with filtering and search.
 const HomePage: React.FC = () => {
   const { isAuthenticated } = useAuth();
+  
+  // All quizzes fetched from API (unfiltered)
   const [featuredQuizzes, setFeaturedQuizzes] = useState<QuizPreview[]>([]);
+  
+  // Quizzes after applying search and filters
   const [filteredQuizzes, setFilteredQuizzes] = useState<QuizPreview[]>([]);
+  
+  // Loading state for initial data fetch
   const [loading, setLoading] = useState(true);
+  
+  // Error message for fetch failures
   const [error, setError] = useState<string | null>(null);
 
+  // Search term for title/description/category
   const [searchTerm, setSearchTerm] = useState('');
+  
+  // Selected category filter
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
+  
+  // Selected difficulty level filter
   const [selectedLevel, setSelectedLevel] = useState('All Levels');
+  
+  // Selected quiz length filter (by question count)
   const [selectedLength, setSelectedLength] = useState('Any Length');
 
-  // Pagination state
+  // Number of quizzes currently visible
   const [visibleCount, setVisibleCount] = useState(9);
+  
+  // Quizzes to load per "Load More" click
   const ITEMS_PER_PAGE = 9;
 
+  // Effect to fetch all quizzes on component mount
   useEffect(() => {
     const fetchFeaturedQuizzes = async () => {
       try {
@@ -40,6 +62,7 @@ const HomePage: React.FC = () => {
         if (!response.ok) throw new Error('Failed to fetch featured quizzes');
         const data = await response.json();
 
+        // Map API response to QuizPreview interface with default values
         if (data && data.length > 0) {
           setFeaturedQuizzes(
             data.map((quiz: any) => ({
@@ -69,10 +92,12 @@ const HomePage: React.FC = () => {
     fetchFeaturedQuizzes();
   }, []);
 
-  // Filtering
+  // Effect to apply search and filters whenever they change
+  // Filters are applied in order: search → category → level → length
   useEffect(() => {
     let filtered = [...featuredQuizzes];
 
+    // Filter by search term (case-insensitive, searches name/description/category)
     if (searchTerm) {
       filtered = filtered.filter(quiz =>
         quiz.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -81,18 +106,21 @@ const HomePage: React.FC = () => {
       );
     }
 
+    // Filter by category
     if (selectedCategory !== 'All Categories') {
       filtered = filtered.filter(
         quiz => quiz.category.toLowerCase() === selectedCategory.toLowerCase()
       );
     }
 
+    // Filter by difficulty level
     if (selectedLevel !== 'All Levels') {
       filtered = filtered.filter(
         quiz => quiz.difficulty.toLowerCase() === selectedLevel.toLowerCase()
       );
     }
 
+    // Filter by quiz length (question count ranges)
     if (selectedLength !== 'Any Length') {
       filtered = filtered.filter(quiz => {
         const count = quiz.questionCount;
@@ -107,10 +135,12 @@ const HomePage: React.FC = () => {
     }
 
     setFilteredQuizzes(filtered);
-    // Reset visible count when filters change
+    // Reset pagination to first page when filters change
     setVisibleCount(9);
   }, [featuredQuizzes, searchTerm, selectedCategory, selectedLevel, selectedLength]);
 
+  // Returns color hex code based on difficulty level
+  // Easy → green, Medium → yellow, Hard → red
   const getDifficultyColor = (difficulty: string): string => {
     switch (difficulty?.toLowerCase()) {
       case 'easy': return '#28a745';
@@ -120,6 +150,7 @@ const HomePage: React.FC = () => {
     }
   };
 
+  // Resets all filters to default values
   const handleResetFilters = () => {
     setSearchTerm('');
     setSelectedCategory('All Categories');
@@ -127,12 +158,15 @@ const HomePage: React.FC = () => {
     setSelectedLength('Any Length');
   };
 
+  // Loads next page of quizzes (increments visible count)
   const handleLoadMore = () => {
     setVisibleCount(prevCount => prevCount + ITEMS_PER_PAGE);
   };
 
-  // Get quizzes to display (only show up to visibleCount)
+  // Get slice of filtered quizzes to display (based on visibleCount)
   const displayedQuizzes = filteredQuizzes.slice(0, visibleCount);
+  
+  // Check if there are more quizzes to load
   const hasMore = visibleCount < filteredQuizzes.length;
 
   return (
@@ -142,7 +176,7 @@ const HomePage: React.FC = () => {
         minHeight: '100vh'
       }}
       >
-      {/* HERO */}
+      {/* Hero section with welcome title */}
       <section className="py-3 text-center fade-in-up">
         <Container>
           <Row>
@@ -155,13 +189,13 @@ const HomePage: React.FC = () => {
         </Container>
       </section>
 
-      {/* FIND YOUR PERFECT QUIZ */}
+      {/* Filter section with search bar and dropdown filters */}
       <section className="py-3 fade-in-up-delay">
         <Container>
           <div className="find-quiz-card p-4 p-md-5">
             <h2 className="find-quiz-title mb-4 fw-bold">Find Your Perfect Quiz</h2>
 
-            {/* SEARCH – én lang bar */}
+            {/* Search bar - searches across name, description, and category */}
             <div className="mb-4">
               <input
                 type="text"
@@ -172,7 +206,7 @@ const HomePage: React.FC = () => {
               />
             </div>
 
-            {/* FILTERS – 3 kolonner på md+, 1 per rad på mobil */}
+            {/* Filter dropdowns - 3 columns on desktop, stacked on mobile */}
             <Row className="g-3 mb-4">
               <Col md={4}>
                 <select
@@ -218,7 +252,7 @@ const HomePage: React.FC = () => {
               </Col>
             </Row>
 
-            {/* BOTTOM LINE */}
+            {/* Filter status bar with count and reset button */}
             <div className="d-flex flex-wrap justify-content-between align-items-center">
               <p className="mb-2 quiz-count">
                 Showing {displayedQuizzes.length} of {filteredQuizzes.length} quizzes
@@ -232,17 +266,19 @@ const HomePage: React.FC = () => {
         </Container>
       </section>
 
-      {/* QUIZ LIST */}
+      {/* Quiz list section with cards and pagination */}
       <section className="py-5 fade-in-up-delay-more">
         <Container>
           <h2 className="section-title mb-4 fw-bold text-dark">Take a Quiz</h2>
 
+          {/* Loading state */}
           {loading && (
             <div className="text-center py-5">
               <p className="text-muted">Loading quizzes...</p>
             </div>
           )}
 
+          {/* Quiz grid - 3 columns on lg, 2 on md, 1 on mobile */}
           {!loading && displayedQuizzes.length > 0 && (
             <>
               <Row className="g-4">
@@ -253,7 +289,7 @@ const HomePage: React.FC = () => {
                 ))}
               </Row>
 
-              {/* Load More Button */}
+              {/* Load More button - shown when more quizzes available */}
               {hasMore && (
                 <div className="text-center mt-5">
                   <Button 
@@ -271,7 +307,7 @@ const HomePage: React.FC = () => {
                 </div>
               )}
 
-              {/* All Loaded Message */}
+              {/* All quizzes loaded message */}
               {!hasMore && filteredQuizzes.length > 9 && (
                 <div className="text-center mt-5">
                   <p className="text-muted">
@@ -283,6 +319,7 @@ const HomePage: React.FC = () => {
             </>
           )}
 
+          {/* Empty state - shown when no quizzes match filters or none available */}
           {!loading && filteredQuizzes.length === 0 && (
             <div className="text-center py-5 text-muted">
               {featuredQuizzes.length === 0
@@ -296,7 +333,11 @@ const HomePage: React.FC = () => {
   );
 };
 
-/* QUIZ CARD */
+// QuizCard Component
+// Individual quiz card displayed in grid layout.
+// Shows quiz metadata with difficulty badge and start button.
+
+// Props interface for QuizCard component
 interface QuizCardProps {
   quiz: QuizPreview;
   getDifficultyColor: (difficulty: string) => string;
@@ -307,7 +348,7 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, getDifficultyColor }) => {
     <Card className="quiz-card h-100 shadow-sm">
       <Card.Body className="p-4">
 
-        {/* Title + Difficulty */}
+        {/* Title and difficulty badge */}
         <div className="d-flex justify-content-between align-items-start mb-2">
           <Card.Title className="fw-bold mb-0">{quiz.name}</Card.Title>
           <span
@@ -318,23 +359,24 @@ const QuizCard: React.FC<QuizCardProps> = ({ quiz, getDifficultyColor }) => {
           </span>
         </div>
 
-        {/* Description */}
+        {/* Quiz description */}
         <Card.Text className="text-muted small mb-2">
           {quiz.description}
         </Card.Text>
 
-        {/* Category */}
+        {/* Category with folder icon */}
         <div className="text-muted small mb-3">
           📂 <span className="fw-semibold">{quiz.category}</span>
         </div>
 
-        {/* Meta */}
+        {/* Metadata row - question count and time limit */}
         <div className="quiz-meta d-flex justify-content-between text-muted small">
           <span>📚 {quiz.questionCount} questions</span>
           <span>⏱️ {quiz.timeLimit} min</span>
         </div>
       </Card.Body>
 
+      {/* Card footer with Start Quiz button */}
       <Card.Footer className="bg-white border-0 px-4 pb-4 pt-3">
         <Link
           to={`/quiztake/${quiz.quizId}`}

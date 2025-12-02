@@ -5,6 +5,8 @@ import { QuizTake, QuestionTake } from '../types/quizTake';
 import * as QuizService from './QuizService';
 import { fetchQuizById, submitAnswer, submitQuizAttempt } from './QuizService';
 
+// Interface for tracking user's answer history
+// Stores complete information about each answered question including correctness and score
 interface AnswerHistory {
     questionId: number;
     questionText: string;
@@ -14,52 +16,86 @@ interface AnswerHistory {
     scoreValue: number;
 }
 
+// TakeQuizPage Component
+// Interactive quiz-taking interface with timer, progress tracking, and instant feedback.
 const TakeQuizPage: React.FC = () => {
+    // Get quiz ID from URL parameters
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     
+    // Quiz data (without correct answers during taking)
     const [quiz, setQuiz] = useState<QuizTake | null>(null);
+    
+    // Quiz data with correct answers (for results review)
     const [quizWithAnswers, setQuizWithAnswers] = useState<QuizTake | null>(null);
+    
+    // Current question index (0-based)
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    
+    // Currently selected option IDs for active question
     const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
+    
+    // Total score accumulated across all questions
     const [score, setScore] = useState(0);
+    
+    // Loading state for initial quiz fetch
     const [loading, setLoading] = useState(true);
+    
+    // Error message for failed operations
     const [error, setError] = useState<string | null>(null);
+    
+    // Submission state for quiz submit operation
     const [isSubmitting, setIsSubmitting] = useState(false);
+    
+    // Flag to show results page after quiz completion
     const [showResult, setShowResult] = useState(false);
+    
+    // Complete history of all answered questions with scores
     const [answerHistory, setAnswerHistory] = useState<AnswerHistory[]>([]);
+    
+    // Feedback for individual answer submission (currently unused)
     const [answerFeedback, setAnswerFeedback] = useState<{ 
         show: boolean; 
         isCorrect: boolean; 
         isPartiallyCorrect: boolean;
         scoreValue: number;
     } | null>(null);
+    
+    // Map storing all user answers by question ID
     const [userAnswers, setUserAnswers] = useState<Map<number, number[]>>(new Map());
+    
+    // Remaining time in seconds
     const [remainingTime, setRemainingTime] = useState(0);
+    
+    // Time taken to complete quiz (in seconds)
     const [finalTime, setFinalTime] = useState(0);
+    
+    // Flag to show time warning alert
     const [timeWarning, setTimeWarning] = useState(false);
 
-    // Initialiser timer når quiz lastes
+    // Initialize timer when quiz loads (convert minutes to seconds)
     useEffect(() => {
         if (quiz && !showResult && remainingTime === 0) {
-            setRemainingTime(quiz.timeLimit * 60); // Konverter minutter til sekunder
+            setRemainingTime(quiz.timeLimit * 60); // Convert minutes to seconds
         }
     }, [quiz]);
 
-    // Countdown timer
+    // Countdown timer with auto-submit and warning
+    // Decrements every second, shows warning at 1 minute, auto-submits at 0
     useEffect(() => {
+        // Don't run timer if showing results, time is 0, or quiz not loaded
         if (showResult || remainingTime === 0 || !quiz) return;
 
         const timer = setInterval(() => {
             setRemainingTime(prev => {
                 if (prev <= 1) {
-                    // Tid er ute - auto-submit
+                    // Time expired - auto-submit quiz
                     clearInterval(timer);
                     handleSubmitQuiz();
                     return 0;
                 }
                 
-                // Vis advarsel når det er 1 minutt igjen
+                // Show warning when 1 minute remains
                 if (prev === 60 && !timeWarning) {
                     setTimeWarning(true);
                 }
@@ -68,9 +104,11 @@ const TakeQuizPage: React.FC = () => {
             });
         }, 1000);
 
+        // Cleanup interval on unmount
         return () => clearInterval(timer);
     }, [showResult, remainingTime, quiz, timeWarning]);
 
+    // Formats seconds into HH:MM:SS or MM:SS format
     const formatTime = (seconds: number) => {
         const hours = Math.floor(seconds / 3600);
         const minutes = Math.floor((seconds % 3600) / 60);
@@ -82,6 +120,7 @@ const TakeQuizPage: React.FC = () => {
         return `${minutes}:${secs.toString().padStart(2, '0')}`;
     };
 
+    // Submits quiz attempt to backend for recording in user history
     const handleQuizComplete = async (finalScore: number) => {
         try {
             if (!id) return;
@@ -94,6 +133,8 @@ const TakeQuizPage: React.FC = () => {
         }
     };
 
+    // Resets all state to retake the quiz from beginning
+    // Clears answers, resets timer, and returns to first question
     const handleRetakeQuiz = () => {
         setCurrentQuestionIndex(0);
         setSelectedOptions([]);
@@ -107,6 +148,7 @@ const TakeQuizPage: React.FC = () => {
         setTimeWarning(false);
     };
 
+    // Effect to load quiz data when component mounts or ID changes
     useEffect(() => {
         if (!id) return;
         
@@ -127,6 +169,7 @@ const TakeQuizPage: React.FC = () => {
         loadQuiz();
     }, [id]);
 
+    // Effect to load quiz with correct answers after completion
     useEffect(() => {
         if (!showResult || !id) return;
 
@@ -142,6 +185,7 @@ const TakeQuizPage: React.FC = () => {
         loadQuizResults();
     }, [showResult, id]);
 
+    // Effect to restore saved answer when navigating between questions
     useEffect(() => {
         if (!currentQuestion) return;
         const savedAnswer = userAnswers.get(currentQuestion.questionId);
@@ -152,8 +196,12 @@ const TakeQuizPage: React.FC = () => {
         }
     }, [currentQuestionIndex]);
 
+    // Get current question object from quiz
     const currentQuestion: QuestionTake | undefined = quiz?.questions[currentQuestionIndex];
 
+    // Handles option selection/deselection
+    // For single-select: replaces selection
+    // For multi-select: toggles option in array
     const handleOptionToggle = (optionId: number) => {
         if (!currentQuestion) return;
 
@@ -168,6 +216,8 @@ const TakeQuizPage: React.FC = () => {
         }
     };
 
+    // Saves current answer and navigates to next question
+    // Requires at least one option selected
     const handleNextQuestion = () => {
         if (!currentQuestion || selectedOptions.length === 0) return;
 
@@ -180,6 +230,7 @@ const TakeQuizPage: React.FC = () => {
         }
     };
 
+    // Saves current answer and navigates to previous question
     const handlePreviousQuestion = () => {
         if (currentQuestionIndex > 0) {
             if (currentQuestion && selectedOptions.length > 0) {
@@ -191,16 +242,18 @@ const TakeQuizPage: React.FC = () => {
         }
     };
 
+    // Submits quiz and calculates final score
     const handleSubmitQuiz = async () => {
         if (!quiz || !id) return;
 
-        // Lagre current question answer hvis det finnes - VIKTIG FIX!
+        // Save current question answer if exists - IMPORTANT FIX!
+        // Prevents losing last answer when submitting without navigating away
         const finalUserAnswers = new Map(userAnswers);
         if (currentQuestion && selectedOptions.length > 0) {
             finalUserAnswers.set(currentQuestion.questionId, selectedOptions);
         }
 
-        // Beregn brukt tid
+        // Calculate time used in seconds
         const timeUsed = (quiz.timeLimit * 60) - remainingTime;
         setFinalTime(timeUsed);
 
@@ -209,10 +262,11 @@ const TakeQuizPage: React.FC = () => {
             let totalScore = 0;
             const history: AnswerHistory[] = [];
 
+            // Submit each question's answer for scoring
             for (const question of quiz.questions) {
-                const answer = finalUserAnswers.get(question.questionId); // Bruk finalUserAnswers istedenfor userAnswers
+                const answer = finalUserAnswers.get(question.questionId); // Use finalUserAnswers instead of userAnswers
                 if (!answer || answer.length === 0) {
-                    // Legg til ubesvarte spørsmål med 0 poeng
+                    // Add unanswered questions with 0 points
                     history.push({
                         questionId: question.questionId,
                         questionText: question.text,
@@ -224,6 +278,7 @@ const TakeQuizPage: React.FC = () => {
                     continue;
                 }
 
+                // Submit answer to API for scoring
                 const result = await QuizService.submitAnswer(
                     quiz.quizId,
                     question.questionId,
@@ -245,11 +300,13 @@ const TakeQuizPage: React.FC = () => {
 
             setAnswerHistory(history);
             setScore(totalScore);
-            setUserAnswers(finalUserAnswers); // Oppdater userAnswers med det siste svaret
+            setUserAnswers(finalUserAnswers); // Update userAnswers with final answer
 
+            // Calculate percentage score (0-100)
             const maxScore = quiz.questions.length;
             const finalScore = (totalScore / maxScore) * 100;
             
+            // Record attempt in database
             await handleQuizComplete(finalScore);
             setShowResult(true);
 
@@ -261,6 +318,7 @@ const TakeQuizPage: React.FC = () => {
         }
     };
 
+    // Loading state - show spinner while fetching quiz
     if (loading) {
         return (
             <Container className="mt-5 text-center">
@@ -270,6 +328,7 @@ const TakeQuizPage: React.FC = () => {
         );
     }
 
+    // Error state - show error message with back button
     if (error) {
         return (
             <Container className="mt-5">
@@ -284,6 +343,7 @@ const TakeQuizPage: React.FC = () => {
         );
     }
 
+    // Quiz not found state
     if (!quiz) {
         return (
             <Container className="mt-5">
@@ -292,6 +352,7 @@ const TakeQuizPage: React.FC = () => {
         );
     }
 
+    // Show results after quiz completion with score breakdown and answer review
     if (showResult) {
         const percentage = (score / quiz.totalQuestions) * 100;
         const correctAnswers = answerHistory.filter(a => a.isCorrect).length;
@@ -465,10 +526,12 @@ const TakeQuizPage: React.FC = () => {
         );
     }
 
+    // No questions available in quiz
     if (!currentQuestion) {
         return <Container className="mt-5"><Alert variant="warning">No questions available</Alert></Container>;
     }
 
+    // Calculate progress and status indicators
     const progress = ((currentQuestionIndex + 1) / quiz.totalQuestions) * 100;
     const answeredQuestions = userAnswers.size + (selectedOptions.length > 0 ? 1 : 0);
     const isTimeRunningOut = remainingTime <= 60;

@@ -7,17 +7,33 @@ import * as QuizService from './QuizService';
 import { useAuth } from '../auth/AuthContext';
 const API_URL = import.meta.env.VITE_API_URL;
 
+// QuizUpdatePage Component
+// Page for editing an existing quiz.
+// Fetches quiz data by ID, displays edit form, and handles update submission.
 const QuizUpdatePage: React.FC = () => {
+    // Get quizId from URL parameters
     const { quizId } = useParams<{ quizId: string }>();
     const navigate = useNavigate();
     const { checkTokenExpiry, logout } = useAuth();
+    
+    // Quiz data fetched from API
     const [ quiz, setQuiz ] = useState<Quiz | null>(null);
+    
+    // Loading state for initial data fetch
     const [ loading, setLoading ] = useState<boolean>(true);
+    
+    // Error message for fetch failures (404, 401, network errors)
     const [ error, setError ] = useState<string | null>(null);
+    
+    // Error message for update operation failures
     const [ updateError, setUpdateError ] = useState<string | null>(null);
+    
+    // Submission state to disable form during update
     const [ isSubmitting, setIsSubmitting ] = useState(false);
 
+    // Effect hook to fetch quiz data when component mounts or quizId changes
     useEffect(() => {
+        // Fetch quiz data from API by ID
         const fetchQuiz = async () => {
             try {
                 const data = await QuizService.fetchQuizById(quizId!);
@@ -26,12 +42,15 @@ const QuizUpdatePage: React.FC = () => {
                 console.error('There was a problem with the fetch operation:', error);
                 const errorMessage = error.message || 'Failed to fetch quiz';
                 
+                // Parse error message and set appropriate user-friendly message
                 // Check if it's a 404 error (quiz deleted)
                 if (errorMessage.includes('404') || errorMessage.includes('not found')) {
                     setError('This quiz no longer exists. It may have been deleted.');
                 } else if (errorMessage.includes('401') || errorMessage.includes('authorized')) {
+                    // 401 Unauthorized - user doesn't have permission
                     setError('You do not have permission to edit this quiz.');
                 } else {
+                    // Generic error message for other failures
                     setError('Failed to load quiz. Please try again later.');
                 }
             } finally {
@@ -42,10 +61,14 @@ const QuizUpdatePage: React.FC = () => {
         fetchQuiz();
     }, [quizId]);
 
+    // Handles quiz update submission from QuizForm
+    // Validates token expiry, submits update to API, and handles various error scenarios.
+    // On success, navigates to quiz list. On failure, displays error message.
     const handleQuizUpdated = async (quiz: Quiz) => {
-        // Check token expiry before submission
+        // Check token expiry before submission to avoid failed requests
         if (!checkTokenExpiry()) {
             setUpdateError('Your session has expired. Please log in again.');
+            // Auto-logout and redirect after 2 seconds
             setTimeout(() => {
                 logout();
                 navigate('/login');
@@ -59,25 +82,32 @@ const QuizUpdatePage: React.FC = () => {
         try {
             const data = await QuizService.updateQuiz(quiz);
             console.log('Quiz updated successfully', data);
+            // Navigate back to quiz list on success
             navigate('/quizes');
         } catch (error: any) {
             console.error('There was a problem with the fetch operation:', error);
             const errorMessage = error.message || 'Failed to update quiz';
             
-            // Check for specific error types
+            // Parse error type and set appropriate user-friendly message
+            // Check for authentication errors
             if (errorMessage.includes('401') || errorMessage.includes('unauthorized') || errorMessage.includes('authenticated')) {
                 setUpdateError('Your session has expired. Please log in again.');
+                // Auto-logout and redirect after 2 seconds
                 setTimeout(() => {
                     logout();
                     navigate('/login');
                 }, 2000);
             } else if (errorMessage.includes('404') || errorMessage.includes('not found')) {
+                // Quiz was deleted while user was editing
                 setUpdateError('This quiz no longer exists. It may have been deleted.');
             } else if (errorMessage.includes('400') || errorMessage.includes('validation')) {
+                // Validation error from server
                 setUpdateError(`Validation error: ${errorMessage}`);
             } else if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
+                // Network connection error
                 setUpdateError('Network error. Please check your connection and try again.');
             } else {
+                // Generic error message
                 setUpdateError(`Failed to update quiz: ${errorMessage}`);
             }
         } finally {
@@ -85,6 +115,7 @@ const QuizUpdatePage: React.FC = () => {
         }
     }
 
+    // Loading state - show spinner while fetching quiz data
     if (loading) return (
         <div style={{ 
             background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
@@ -101,6 +132,7 @@ const QuizUpdatePage: React.FC = () => {
         </div>
     );
     
+    // Error state - show error message with navigation options
     if (error) return (
         <div style={{ 
             background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
@@ -124,6 +156,7 @@ const QuizUpdatePage: React.FC = () => {
         </div>
     );
     
+    // Quiz not found state - quiz is null after loading completed
     if (!quiz) return (
         <div style={{ 
             background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
@@ -141,6 +174,7 @@ const QuizUpdatePage: React.FC = () => {
         </div>
     );
 
+    // Main quiz update page with form and error handling
     return (
         <div style={{ 
             background: 'linear-gradient(180deg, #ffffff 0%, #f8f5ff 50%, #f0e6ff 100%)',
@@ -148,7 +182,7 @@ const QuizUpdatePage: React.FC = () => {
             width: '100%'
         }}>
             <Container className="py-5">
-                {/* Back to Profile Button */}
+                {/* Back to Profile navigation button */}
                 <Row className="mb-4">
                     <Col>
                         <Button 
@@ -162,6 +196,7 @@ const QuizUpdatePage: React.FC = () => {
                     </Col>
                 </Row>
 
+                {/* Update error alert - dismissible */}
                 {updateError && (
                     <Row className="mb-4">
                         <Col lg={10} xl={8} className="mx-auto">
@@ -173,6 +208,7 @@ const QuizUpdatePage: React.FC = () => {
                     </Row>
                 )}
 
+                {/* Page header with gradient title */}
                 <Row className="mb-5">
                     <Col className="text-center">
                         <h1 
@@ -194,6 +230,7 @@ const QuizUpdatePage: React.FC = () => {
                     </Col>
                 </Row>
 
+                {/* QuizForm component with initialData for editing */}
                 <Row>
                     <Col lg={10} xl={8} className="mx-auto">
                         <QuizForm onQuizChanged={handleQuizUpdated} quizId={quiz.quizId} isUpdate={true} initialData={quiz} isSubmitting={isSubmitting} />

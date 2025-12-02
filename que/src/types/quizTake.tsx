@@ -16,7 +16,7 @@ export interface QuestionTake {
 export interface OptionTake {
     optionId: number;
     text: string;
-    isCorrect?: boolean;  // Optional - only present in results review
+    isCorrect?: boolean;
 }
 
 export interface AnswerResult {
