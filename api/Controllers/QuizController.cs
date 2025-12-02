@@ -15,10 +15,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Que.Controllers;
 
-/// <summary>
 /// Controller for managing quiz operations (CRUD, taking quizzes, submitting answers)
 /// Requires JWT authentication for most endpoints except public quiz access
-/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -29,9 +27,7 @@ public class QuizAPIController : ControllerBase
     private readonly UserManager<AuthUser> _userManager;
     private readonly QuizDbContext _quizDbContext;
     
-    /// <summary>
     /// Constructor that injects required dependencies for quiz management
-    /// </summary>
     public QuizAPIController(
         IQuizRepository quizRepository, 
         ILogger<QuizAPIController> logger, 
@@ -44,11 +40,7 @@ public class QuizAPIController : ControllerBase
         _quizDbContext = quizDbContext;
     }
 
-    /// <summary>
-    /// Gets all quizzes visible to the current user
     /// Public quizzes are visible to all, private quizzes only to their owners
-    /// </summary>
-    /// <returns>List of quiz summaries with question counts</returns>
     [AllowAnonymous]
     [HttpGet("quizlist")]
     public async Task<IActionResult> GetAllQuizes()
@@ -90,12 +82,7 @@ public class QuizAPIController : ControllerBase
         return Ok(visibleQuizzes);
     }
 
-    /// <summary>
-    /// Gets a specific quiz by ID
     /// Checks access permissions: public quizzes accessible to all, private only to owner
-    /// </summary>
-    /// <param name="id">Quiz ID</param>
-    /// <returns>Quiz details or 404/401 if not found or unauthorized</returns>
     [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetQuiz(int id)
@@ -118,10 +105,7 @@ public class QuizAPIController : ControllerBase
         return Ok(quiz);
     }
     
-    /// <summary>
     /// Gets all quizzes created by the authenticated user
-    /// </summary>
-    /// <returns>List of user's quizzes with metadata</returns>
     [Authorize]
     [HttpGet("user/quizzes")]
     public async Task<IActionResult> GetUserQuizzes()
@@ -141,7 +125,7 @@ public class QuizAPIController : ControllerBase
             quizId = q.QuizId.ToString(),
             title = q.Name,
             description = q.Description,
-            createdAt = q.CreatedAt, // Using actual CreatedAt timestamp
+            createdAt = q.CreatedAt,
             category = q.Category,
             difficulty = q.Difficulty,
             timeLimit = q.TimeLimit,
@@ -152,11 +136,8 @@ public class QuizAPIController : ControllerBase
         return Ok(quizSummaries);
     }
 
-    /// <summary>
     /// Gets all quiz attempts made by the authenticated user
     /// Includes quiz details and scores, ordered by most recent first
-    /// </summary>
-    /// <returns>List of quiz attempts with scores and timestamps</returns>
     [Authorize]
     [HttpGet("user/attempts")]
     public async Task<IActionResult> GetUserAttemptedQuizzes()
@@ -200,14 +181,14 @@ public class QuizAPIController : ControllerBase
     {
         // Validation is handled automatically by ValidateModelStateAttribute and DataAnnotations
         
-        // --- Log all claims for debugging ---
+        // Log all claims for debugging
         _logger.LogInformation("Claims for current user:");
         foreach (var c in User.Claims)
         {
             _logger.LogInformation("{Type} = {Value}", c.Type, c.Value);
         }
 
-        // --- Get GUID-Id from claim NameIdentifier ---
+        // Get GUID-Id from claim NameIdentifier
         var userId = User.Claims.FirstOrDefault(
             c => c.Type == ClaimTypes.NameIdentifier && Guid.TryParse(c.Value, out _)
         )?.Value;
@@ -218,7 +199,7 @@ public class QuizAPIController : ControllerBase
             return Unauthorized("User not authenticated");
         }
 
-        // --- Get user from database ---
+        // Get user from database
         var user = await _userManager.FindByIdAsync(userId);
         if (user == null)
         {
@@ -226,7 +207,7 @@ public class QuizAPIController : ControllerBase
             return Unauthorized("User not found in database");
         }
 
-        // --- Ensure user exists in QuizDbContext (for FK-constraint) ---
+        // Ensure user exists in QuizDbContext (for FK-constraint)
         var userInQuizDb = await _quizDbContext.Set<AuthUser>().FindAsync(userId);
         if (userInQuizDb == null)
         {
@@ -255,7 +236,7 @@ public class QuizAPIController : ControllerBase
 
         try
         {
-                // --- Create quiz with correct OwnerId ---
+                // Create quiz with correct OwnerId 
                 var newQuiz = new Quiz
                 {
                     Name = quizDto.Name ?? throw new ArgumentNullException(nameof(quizDto.Name)),
@@ -303,22 +284,14 @@ public class QuizAPIController : ControllerBase
         }
     }
 
-
-
-    /// <summary>
     /// Updates an existing quiz (only owner can update)
     /// Updates quiz metadata, questions, and options
     /// Handles adding new questions/options and removing deleted ones
-    /// </summary>
-    /// <param name="id">Quiz ID to update</param>
-    /// <param name="quizDto">Updated quiz data</param>
-    /// <returns>Updated quiz or 404/401 if not found or unauthorized</returns>
     [Authorize]
     [HttpPut("update/{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] QuizDto quizDto)
     {
         // Validation is handled automatically by ValidateModelStateAttribute and DataAnnotations
-        
         var existingQuiz = await _quizRepository.GetQuizById(id);
         if (existingQuiz == null) return NotFound("Quiz not found");
 
@@ -390,11 +363,7 @@ public class QuizAPIController : ControllerBase
         return Ok(existingQuiz);
     }
 
-    /// <summary>
     /// Deletes a quiz (only owner can delete)
-    /// </summary>
-    /// <param name="id">Quiz ID to delete</param>
-    /// <returns>204 No Content on success, 404/401 if not found or unauthorized</returns>
     [Authorize]
     [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteConfirmed(int id)
@@ -423,16 +392,9 @@ public class QuizAPIController : ControllerBase
         return NoContent();
     }
 
-    // =========================
     // TAKE QUIZ - Get quiz data for taking (without correct answers)
-    // =========================
-    
-    /// <summary>
     /// Gets quiz data for taking (correct answers are NOT included)
     /// Public quizzes accessible to all, private quizzes only to owner
-    /// </summary>
-    /// <param name="id">Quiz ID</param>
-    /// <returns>Quiz with questions and options (IsCorrect flag hidden)</returns>
     [AllowAnonymous]
     [HttpGet("take/{id}")]
     public async Task<IActionResult> GetQuizForTaking(int id)
@@ -482,18 +444,11 @@ public class QuizAPIController : ControllerBase
         return Ok(quizTakeDto);
     }
 
-    // =========================
     // SUBMIT ANSWER - Check if answer is correct (with partial scoring)
-    // =========================
-    
-    /// <summary>
     /// Submits an answer for a single question and calculates score
     /// Supports partial scoring for multiple-choice questions
     /// Single-choice: 1.0 for correct, 0.0 for incorrect
     /// Multiple-choice: (correct selections / total correct) - (incorrect selections / total correct)
-    /// </summary>
-    /// <param name="submitDto">Question ID, Quiz ID, and selected option IDs</param>
-    /// <returns>Score (0.0-1.0), whether fully correct, and whether partially correct</returns>
     [AllowAnonymous]
     [HttpPost("take/answer")]
     public async Task<IActionResult> SubmitAnswer([FromBody] SubmitAnswerDto submitDto)
@@ -567,12 +522,8 @@ public class QuizAPIController : ControllerBase
         });
     }
     
-    /// <summary>
     /// Submits a completed quiz attempt with final score
     /// Stores attempt in database for user's quiz history
-    /// </summary>
-    /// <param name="attemptDto">Quiz ID and final score</param>
-    /// <returns>Success message with attempt ID</returns>
     [Authorize]
     [HttpPost("submit-attempt")]
     public async Task<IActionResult> SubmitQuizAttempt([FromBody] QuizAttemptDto attemptDto)
@@ -609,16 +560,9 @@ public class QuizAPIController : ControllerBase
     return Ok(new { message = "Quiz attempt saved successfully", attemptId = attempt.QuizAttemptId });
 }
 
-    // =========================
     // GET QUIZ RESULTS - Get quiz with correct answers (for review after completion)
-    // =========================
-    
-    /// <summary>
     /// Gets quiz results with correct answers revealed (for review after completion)
     /// Unlike GetQuizForTaking, this includes the IsCorrect flag on options
-    /// </summary>
-    /// <param name="id">Quiz ID</param>
-    /// <returns>Quiz with all questions, options, and correct answer indicators</returns>
     [AllowAnonymous]
     [HttpGet("results/{id}")]
     public async Task<IActionResult> GetQuizResults(int id)
