@@ -37,46 +37,6 @@ public class QuizAPIController : ControllerBase
         _quizDbContext = quizDbContext;
     }
 
-    // Helper method to validate quiz DTO (DRY principle - Don't Repeat Yourself)
-    private IActionResult? ValidateQuizDto(QuizDto quizDto)
-    {
-        if (quizDto == null)
-            return BadRequest("Quiz cannot be null");
-
-        if (quizDto.Questions == null || !quizDto.Questions.Any())
-            return BadRequest("Quiz must have at least one question");
-
-        for (int i = 0; i < quizDto.Questions.Count; i++)
-        {
-            var question = quizDto.Questions[i];
-            
-            if (string.IsNullOrWhiteSpace(question.Text))
-                return BadRequest($"Question {i + 1} text cannot be empty");
-            
-            if (question.Text.Length > 500)
-                return BadRequest($"Question {i + 1} text is too long (max 500 characters)");
-            
-            if (question.Options == null || question.Options.Count < 2)
-                return BadRequest($"Question {i + 1} must have at least 2 options");
-            
-            if (!question.Options.Any(o => o.IsCorrect))
-                return BadRequest($"Question {i + 1} must have at least one correct answer");
-            
-            for (int j = 0; j < question.Options.Count; j++)
-            {
-                var option = question.Options[j];
-                
-                if (string.IsNullOrWhiteSpace(option.Text))
-                    return BadRequest($"Question {i + 1}, Option {j + 1} text cannot be empty");
-                
-                if (option.Text.Length > 200)
-                    return BadRequest($"Question {i + 1}, Option {j + 1} text is too long (max 200 characters)");
-            }
-        }
-
-        return null; // Validation passed
-    }
-
     [AllowAnonymous]
     [HttpGet("quizlist")]
     public async Task<IActionResult> GetAllQuizes()
@@ -205,11 +165,8 @@ public class QuizAPIController : ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> Create([FromBody] QuizDto quizDto)
     {
-        // Use validation helper method
-        var validationResult = ValidateQuizDto(quizDto);
-        if (validationResult != null)
-            return validationResult;
-
+        // Validation is handled automatically by ValidateModelStateAttribute and DataAnnotations
+        
         // --- Logg alle claims for debugging ---
         _logger.LogInformation("Claims for current user:");
         foreach (var c in User.Claims)
@@ -319,11 +276,8 @@ public class QuizAPIController : ControllerBase
     [HttpPut("update/{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] QuizDto quizDto)
     {
-        // Use validation helper method
-        var validationResult = ValidateQuizDto(quizDto);
-        if (validationResult != null)
-            return validationResult;
-
+        // Validation is handled automatically by ValidateModelStateAttribute and DataAnnotations
+        
         var existingQuiz = await _quizRepository.GetQuizById(id);
         if (existingQuiz == null) return NotFound("Quiz not found");
 

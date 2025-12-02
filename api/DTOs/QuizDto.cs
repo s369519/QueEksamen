@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Que.Validation;
 
 namespace Que.DTOs
 {
@@ -44,6 +45,7 @@ namespace Que.DTOs
         
         [Required(ErrorMessage = "Options are required")]
         [MinLength(2, ErrorMessage = "A question must have at least 2 options")]
+        [AtLeastOneCorrectAnswer]
         public List<OptionDto> Options { get; set; } = new List<OptionDto>();
     }
 
