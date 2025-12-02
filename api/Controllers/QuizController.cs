@@ -601,7 +601,7 @@ public class QuizAPIController : ControllerBase
                 {
                     OptionId = o.OptionId,
                     Text = o.Text,
-                    IsCorrect = o.IsCorrect  // NOW included for review
+                    IsCorrect = o.IsCorrect
                 }).ToList() ?? new List<OptionTakeDto>()
             }).ToList() ?? new List<QuestionTakeDto>()
         };
