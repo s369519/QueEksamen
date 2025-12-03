@@ -55,33 +55,21 @@ A full-stack quiz application built with React (TypeScript) and ASP.NET Core, al
 - **.NET SDK 8.0** or higher
 - **Git**
 
-### Installation
+### Installation from zip-file
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/s369519/QueEksamen.git
-cd QueEksamen
-```
-
-2. **Setup Backend**
-```bash
-cd api
-dotnet restore
-dotnet ef database update --context QuizDbContext
-dotnet ef database update --context AuthDbContext
-```
-
-3. **Setup Frontend**
-```bash
-cd ../que
+cd que
 npm install
+npm run dev
+
 ```
 
 ### Configuration
 
 Create a `.env` file in the `que` folder:
 ```env
-VITE_API_URL=http://localhost:5113
+VITE_API_URL=http://localhost:5043
 ```
 
 ### Running the Application
@@ -91,16 +79,16 @@ VITE_API_URL=http://localhost:5113
 cd api
 dotnet run
 ```
-Backend will run on `http://localhost:5113`
+Backend will run on `http://localhost:5043`
 
 2. **Start Frontend (Terminal 2)**
 ```bash
 cd que
 npm run dev
 ```
-Frontend will run on `http://localhost:5173`
+Frontend will run on `http://localhost:4000`
 
-3. **Open your browser** and navigate to `http://localhost:5173`
+3. **Open your browser** and navigate to `http://localhost:4000`
 
 ## API Endpoints
 
