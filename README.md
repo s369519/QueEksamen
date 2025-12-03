@@ -56,38 +56,17 @@ A full-stack quiz application built with React (TypeScript) and ASP.NET Core, al
 - **Git**
 
 
-### Installation from zip-file
+### Running the Application From Zip-File
 
+1. **Start Backend and Frontend together**
 ```bash
 cd que
 npm install
 npm run dev
 ```
 
-### Configuration
+Frontend will run on `http://localhost:5043`
 
-Create a `.env` file in the `que` folder:
-```env
-VITE_API_URL=http://localhost:5113
-```
-
-### Running the Application
-
-1. **Start Backend (Terminal 1)**
-```bash
-cd api
-dotnet run
-```
-Backend will run on `http://localhost:5113`
-
-2. **Start Frontend (Terminal 2)**
-```bash
-cd que
-npm run dev
-```
-Frontend will run on `http://localhost:5173`
-
-3. **Open your browser** and navigate to `http://localhost:5173`
 
 ## API Endpoints
 
@@ -121,6 +100,12 @@ Frontend will run on `http://localhost:5173`
 4. Token included in Authorization header for protected routes
 5. Automatic logout on token expiry
 
+### Alternative Flow
+1. User does not sign up
+2. User gets access to public quizzes
+3. User can only take quizes, not modify or create new
+4. Results/attempts are not logged
+
 ### Quiz Taking Flow
 1. User starts quiz (timer begins)
 2. Navigate between questions (answers saved)
@@ -139,14 +124,9 @@ Frontend will run on `http://localhost:5173`
 
 The application uses two SQLite databases:
 
-1. **QuizDb.db** - Stores quizzes, questions, options
-2. **AuthDb.db** - Stores user accounts
+1. **QuizDatabase.db** - Stores quizzes, questions, options
+2. **AuthDatabase.db** - Stores user accounts
 
-### Initial Data
-The database is seeded with 3 sample quizzes:
-- General Knowledge (3 questions)
-- Programming Basics (2 questions)
-- Math Quiz (2 questions)
 
 ## Security
 
@@ -156,21 +136,6 @@ The database is seeded with 3 sample quizzes:
 - CORS configured for development
 - Global exception handling middleware
 
-## Build for Production
-
-### Frontend
-```bash
-cd que
-npm run build
-```
-Output in `que/dist/`
-
-### Backend
-```bash
-cd api
-dotnet publish -c Release
-```
-Output in `api/bin/Release/net8.0/publish/`
 
 ## Troubleshooting
 
@@ -178,14 +143,6 @@ Output in `api/bin/Release/net8.0/publish/`
 - Backend port: Change in `api/Properties/launchSettings.json`
 - Frontend port: Change in `que/vite.config.js`
 
-### Database Issues
-```bash
-cd api
-dotnet ef database drop --context QuizDbContext
-dotnet ef database drop --context AuthDbContext
-dotnet ef database update --context QuizDbContext
-dotnet ef database update --context AuthDbContext
-```
 
 ### CORS Errors
 Ensure `VITE_API_URL` in `.env` matches backend URL
@@ -202,10 +159,3 @@ Ensure `VITE_API_URL` in `.env` matches backend URL
 ## License
 
 This project is created for educational purposes as part of an exam project.
-
-## Acknowledgments
-
-- ASP.NET Core documentation
-- React documentation
-- Bootstrap documentation
-- Entity Framework Core documentation
