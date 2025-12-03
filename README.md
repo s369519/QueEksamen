@@ -58,7 +58,6 @@ A full-stack quiz application built with React (TypeScript) and ASP.NET Core, al
 
 ### Installation from zip-file
 
-1. **Clone the repository**
 ```bash
 cd que
 npm install
