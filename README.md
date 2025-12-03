@@ -124,8 +124,8 @@ Frontend will run on `http://localhost:5043`
 
 The application uses two SQLite databases:
 
-1. **QuizDatabase.db** - Stores quizzes, questions, options
-2. **AuthDatabase.db** - Stores user accounts
+- **QuizDatabase.db** - Stores quizzes, questions, options
+- **AuthDatabase.db** - Stores user accounts
 
 
 ## Security
