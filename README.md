@@ -55,26 +55,14 @@ A full-stack quiz application built with React (TypeScript) and ASP.NET Core, al
 - **.NET SDK 8.0** or higher
 - **Git**
 
-### Installation
+
+### Installation from zip-file
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/s369519/QueEksamen.git
-cd QueEksamen
-```
-
-2. **Setup Backend**
-```bash
-cd api
-dotnet restore
-dotnet ef database update --context QuizDbContext
-dotnet ef database update --context AuthDbContext
-```
-
-3. **Setup Frontend**
-```bash
-cd ../que
+cd que
 npm install
+npm run dev
 ```
 
 ### Configuration
